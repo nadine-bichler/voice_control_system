@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prototyp"
         mc:Ignorable="d"
-        Title="Prototyp - Spritzgussmaschine" Height="600" Width="900">
+        Title="Prototyp - Spritzgussmaschine" Height="700" Width="1000">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -21,13 +20,54 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="0" Content="3" VerticalAlignment="Center" HorizontalAlignment="Center" 
-               FontSize="50" FontWeight="Bold" Foreground="#669d34"/>
+        <!-- Befehl Widget -->
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource WidgetBorderStyle}">
+            <Grid>
+                <!-- Title -->
+                <Label Content="Befehl" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Separator Margin="5,32,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <Label Grid.Column="0" Grid.Row="3" Content="Standardmikrofon: Intel XY" VerticalAlignment="Bottom"
-               FontSize="14" Foreground="DimGray" Padding="8"/>
+                <Label Content="3" FontSize="55" FontWeight="Bold" Foreground="#669d34"
+               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+        
+        <!-- Informationen Widget -->
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource WidgetBorderStyle}">
+            <Grid>
+                <!-- Title -->
+                <Label Content="Informationen" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Separator Margin="5,32,0,0" Width="135" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <Button Grid.Column="1" Grid.Row="3" Content="Start" VerticalAlignment="Top" Background="#75bd33"
-                Width="120" Height="30" FontSize="18" FontWeight="Medium" x:Name="toggleButton" Click="toggleButton_Click"/>
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,45,0,0">
+                    <TextBlock Text="Standardmikrofon" FontSize="14" Foreground="DimGray" />
+                    <TextBlock Text="Intel XY" FontSize="14"  FontWeight="Medium" />
+                </StackPanel>
+
+                <Button Grid.Column="1" Grid.Row="3" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#75bd33"
+                    Width="100" Height="30" FontSize="18" FontWeight="Medium" x:Name="ToggleButton" Click="ToggleButton_Click" Margin="5,0,0,5" BorderThickness="1.5"
+                        BorderBrush="#cccccc"/>
+            </Grid>
+        </Border>
+        
+        <!-- History Widget -->
+        <Border Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource WidgetBorderStyle}">
+            <Grid>
+                <!-- Title -->
+                <Label Content="Die letzten Befehle" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Separator Margin="5,32,0,0" Width="175" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <StackPanel x:Name="HistoryPanel" Orientation="Vertical" Margin="5,45,0,0" />
+            </Grid>
+        </Border>
+        
+        <!-- Zeitsignal Widget -->
+        <Border Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2"  Style="{StaticResource WidgetBorderStyle}">
+            <Grid>
+                <!-- Title -->
+                <Label Content="Zeitsignal" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <Separator Margin="5,32,0,0" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

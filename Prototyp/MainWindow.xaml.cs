@@ -21,9 +21,14 @@ namespace Prototyp
         public MainWindow()
         {
             InitializeComponent();
+
+            // Dummy Daten für die History
+            AddToHistory(2);
+            AddToHistory(6);
+            AddToHistory(1);
         }
 
-        private void toggleButton_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             this.isRunning = !this.isRunning;
 
@@ -41,8 +46,43 @@ namespace Prototyp
                 backgroundColor = "#75bd33";
             }
 
-            toggleButton.Content = content;
-            toggleButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(backgroundColor));
+            ToggleButton.Content = content;
+            ToggleButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(backgroundColor));
+        }
+
+        private void AddToHistory(int value)
+        {
+            StackPanel horizontalPanel = new StackPanel
+            {
+                Orientation = Orientation.Horizontal
+            };
+
+            String currentTime = DateTime.Now.ToString("HH:mm:ss");
+
+            TextBlock timeText = new TextBlock
+            {
+                Text = currentTime,
+                FontSize = 16,
+                Foreground = Brushes.DimGray
+            };
+
+            Rectangle spacer = new Rectangle
+            {
+                Width = 5 
+            };
+
+            TextBlock valueText = new TextBlock
+            {
+                Text = value.ToString(),
+                FontSize = 16,
+                FontWeight = FontWeights.SemiBold
+            };
+
+            horizontalPanel.Children.Add(timeText);
+            horizontalPanel.Children.Add(spacer);
+            horizontalPanel.Children.Add(valueText);
+
+            HistoryPanel.Children.Add(horizontalPanel);
         }
     }
 }

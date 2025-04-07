@@ -18,3 +18,4 @@ C:\Users\Jan\Desktop\Studium\Semester4\Projekt1\projekt_1_team_1\Prototyp\obj\De
 C:\Users\Jan\Desktop\Studium\Semester4\Projekt1\projekt_1_team_1\Prototyp\obj\Debug\net8.0-windows\Prototyp.pdb
 C:\Users\Jan\Desktop\Studium\Semester4\Projekt1\projekt_1_team_1\Prototyp\obj\Debug\net8.0-windows\Prototyp.genruntimeconfig.cache
 C:\Users\Jan\Desktop\Studium\Semester4\Projekt1\projekt_1_team_1\Prototyp\obj\Debug\net8.0-windows\ref\Prototyp.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt1\projekt_1_team_1\Prototyp\obj\Debug\net8.0-windows\App.baml
