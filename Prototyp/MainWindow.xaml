@@ -12,6 +12,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -21,6 +22,12 @@
         </Grid.ColumnDefinitions>
 
         <Label Grid.Column="1" Grid.Row="0" Content="3" VerticalAlignment="Center" HorizontalAlignment="Center" 
-               FontSize="50" FontWeight="Bold" Foreground="Green"/>
+               FontSize="50" FontWeight="Bold" Foreground="#669d34"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Content="Standardmikrofon: Intel XY" VerticalAlignment="Bottom"
+               FontSize="14" Foreground="DimGray" Padding="8"/>
+
+        <Button Grid.Column="1" Grid.Row="3" Content="Start" VerticalAlignment="Top" Background="#75bd33"
+                Width="120" Height="30" FontSize="18" FontWeight="Medium" x:Name="toggleButton" Click="toggleButton_Click"/>
     </Grid>
 </Window>
