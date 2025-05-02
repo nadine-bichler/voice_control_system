@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Spritzgussmaschienen Sprachsteuerung" company="TeamRocket" webLink="http://" view-date="2025-02-23" view-index="0" gantt-divider-location="351" resource-divider-location="300" version="3.3.3316" locale="en_GB">
+    <description/>
+    <view zooming-state="default:3" id="gantt-chart">
+        <field id="tpd3" name="Name" width="200" order="0"/>
+        <field id="tpd4" name="Begin date" width="75" order="1"/>
+        <field id="tpd5" name="End date" width="75" order="2"/>
+        <field id="tpd15" name="Notes" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="1" tue="1" wed="1" thu="1" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="1" uid="df6bf09fbd9445fba9e63991e537d845" name="Abgabe Projekt" meeting="false" start="2025-06-27" duration="1" complete="0" expand="true"/>
+        <task id="0" uid="3c31be5375584f47a17090aac50361e2" name="Grobplanung" meeting="false" start="2025-03-21" duration="4" complete="0" expand="true"/>
+        <task id="2" uid="1e7158978b9c42eda3f3d5a313a4a854" name="Lastenheft" meeting="false" start="2025-03-21" duration="5" complete="0" expand="true"/>
+        <task id="3" uid="0556377d510a4be3b44a5b2605a9a4d9" name="Akzeptanztests" meeting="false" start="2025-03-21" duration="5" complete="0" expand="true"/>
+        <task id="4" uid="93fbfe67c38948d7899999844762df62" name="Pflichtenheft" meeting="false" start="2025-04-04" duration="4" complete="0" expand="true"/>
+        <task id="5" uid="dad239f8c0844d17a524ad90a0b2ec90" name="Projektplan + AP" meeting="false" start="2025-04-04" duration="7" complete="0" expand="true"/>
+        <task id="7" uid="4ed0136e957d4e80bbe0c1ab9135fd57" name="Risikoanalyse" meeting="false" start="2025-04-04" duration="5" complete="0" expand="true"/>
+        <task id="8" uid="752f98f9751843548373bf131555fa77" name="Mastertestplan" meeting="false" start="2025-04-04" duration="5" complete="0" expand="true"/>
+        <task id="9" uid="c67ab8932e594d3eab0782e4723b62b9" name="Testfälle Systemtest" meeting="false" start="2025-04-04" duration="5" complete="0" expand="true"/>
+        <task id="10" uid="25f81ddc70234c7abe48a39725c4b4d8" name="SW-Spec. 1" meeting="false" start="2025-05-02" duration="3" complete="0" expand="true"/>
+        <task id="11" uid="7d072cae60d040b4a13250854c29e5d6" name="Testfälle Integrationstest" meeting="false" start="2025-05-02" duration="3" complete="0" expand="true"/>
+        <task id="12" uid="d5709dc77f72425bb6a871df5a7ccc02" name="SW-Spec. 2" meeting="false" start="2025-05-16" duration="2" complete="0" expand="true"/>
+        <task id="13" uid="dd6e8ad2db784de9a9ca082a791fdf95" name="Testfälle Komponententest 1" meeting="false" start="2025-05-16" duration="2" complete="0" expand="true"/>
+        <task id="14" uid="3a906309afa64bc3be2b6d3c50c6addb" name="doxygen oder Ndoc" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="15" uid="957eaa8208014ec8acc06e97b7380623" name="Implementierung" meeting="false" start="2025-05-16" duration="5" complete="0" expand="true"/>
+        <task id="18" uid="44bcbb5e62f54c6586d8b6ef6014680b" name="Metriken" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="19" uid="49bb20f834d3474ea295ea24c3cd4d14" name="Testfälle Komponententest 2" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="20" uid="bbaa8917a3484713bee46cd4c02893f1" name="Report Komponententest" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="21" uid="310270af187c40ab9f96bea9044d64a8" name="Report Integrationstest" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="22" uid="ee5ae7313fac4610ad491624f01d7ab5" name="Report Systemtest" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="23" uid="00527c3eb80d4bb79229695145d3e77b" name="Report Akzeptanztest" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+        <task id="25" uid="9d250e4524484786888355e84a0cdfae" name="Post Mortem Analyse" meeting="false" start="2025-05-23" duration="5" complete="0" expand="true"/>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
