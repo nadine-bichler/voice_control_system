@@ -35,6 +35,12 @@ public class Microphone
         Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
     }
 
+    String getStandardMicrophoneName()
+    {
+        var caps = WaveIn.GetCapabilities(0);
+        return caps.ProductName;
+    }
+
     public Int16[] getValues()
     {
         return values;
