@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,9 +21,7 @@ namespace Spritzgusslogik
 
         public void Transform(Signal sig)
         {
-            var _sig = sig;
-
-            Fourier.
+          
 
         }
 
