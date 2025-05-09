@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spritzgusslogik")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a6c8b9e3964dfbf4f1a8d32504cfad5df70b203")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a854b60f3ecf69c5b3392f78730de7c5923f98c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spritzgusslogik")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spritzgusslogik")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
