@@ -35,8 +35,13 @@ public class Microphone
         Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
     }
 
-    String getStandardMicrophoneName()
+    public String getStandardMicrophoneName()
     {
+        if (WaveIn.DeviceCount == 0)
+        {
+            return "No microphone found";
+        }
+
         var caps = WaveIn.GetCapabilities(0);
         return caps.ProductName;
     }

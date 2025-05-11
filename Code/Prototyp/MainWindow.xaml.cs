@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Spritzgusslogik;
+
 namespace Prototyp
 {
     /// <summary>
@@ -18,6 +20,8 @@ namespace Prototyp
     {
         private Boolean isRunning = false;
 
+        private Microphone microphone = new Microphone();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -26,6 +30,8 @@ namespace Prototyp
             AddToHistory(2);
             AddToHistory(6);
             AddToHistory(1);
+
+            microphoneName.Text = microphone.getStandardMicrophoneName();
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)

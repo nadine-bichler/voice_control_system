@@ -19,12 +19,13 @@ namespace Spritzgusslogik
 
         }
 
-        public void Transform(Signal sig)
+        // Auskommentiert, damit es compiled
+        /* public void Transform(Signal sig)
         {
            
           
 
-        }
+        } */
 
     }
 }

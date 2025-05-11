@@ -41,7 +41,7 @@
 
                 <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,45,0,0">
                     <TextBlock Text="Standardmikrofon" FontSize="14" Foreground="DimGray" />
-                    <TextBlock Text="Intel XY" FontSize="14"  FontWeight="Medium" />
+                    <TextBlock Text="?" FontSize="14"  FontWeight="Medium" x:Name="microphoneName" />
                 </StackPanel>
 
                 <Button Grid.Column="1" Grid.Row="3" Content="Start" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#75bd33"
