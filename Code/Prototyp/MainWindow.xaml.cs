@@ -18,45 +18,52 @@ namespace Prototyp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Boolean isRunning = false;
+        private Microphone microphone;
 
-        private Microphone microphone = new Microphone();
+        private SignalDrawer signalDrawer;
+        private SignalGuiUpdater signalGuiUpdater;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            // Dummy Daten für die History
-            AddToHistory(2);
-            AddToHistory(6);
-            AddToHistory(1);
+            microphone = new Microphone();
+            signalDrawer = new SignalDrawer(PlotView);
+            signalGuiUpdater = new SignalGuiUpdater(microphone, signalDrawer);
 
-            microphoneName.Text = microphone.getStandardMicrophoneName();
+            microphoneName.Text = microphone.GetStandardMicrophoneName();
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            this.isRunning = !this.isRunning;
-
             String content;
             String backgroundColor;
 
-            if (this.isRunning)
+            if (this.microphone.IsMuted())
             {
                 content = "Stop";
                 backgroundColor = "#ff9d98";
+                microphone.Start();
             }
             else
             {
                 content = "Start";
                 backgroundColor = "#75bd33";
+                microphone.Stop();
             }
 
             ToggleButton.Content = content;
             ToggleButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(backgroundColor));
         }
 
-        private void AddToHistory(int value)
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            microphone.Stop();
+        }
+
+        // TODO: Objektorientierte History einbauen
+        /*private void AddToHistory(int value)
         {
             StackPanel horizontalPanel = new StackPanel
             {
@@ -89,6 +96,6 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Add(horizontalPanel);
-        }
+        } */
     }
 }

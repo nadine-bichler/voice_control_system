@@ -8,6 +8,8 @@ public class Microphone
     private WaveInEvent waveIn;
     private Int16[] values;
 
+    private Boolean muted = true;
+
     public Microphone()
     {
         waveIn = new WaveInEvent
@@ -19,14 +21,16 @@ public class Microphone
         waveIn.DataAvailable += WaveIn_DataAvailable;
     }
 
-    public void start()
+    public void Start()
     {
         waveIn.StartRecording();
+        muted = false;
     }
 
-    public void stop()
+    public void Stop()
     {
         waveIn.StopRecording();
+        muted = true;
     }
 
     void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
@@ -35,7 +39,12 @@ public class Microphone
         Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
     }
 
-    public String getStandardMicrophoneName()
+    public Boolean IsMuted()
+    {
+        return muted;
+    }
+
+    public String GetStandardMicrophoneName()
     {
         if (WaveIn.DeviceCount == 0)
         {
@@ -46,7 +55,7 @@ public class Microphone
         return caps.ProductName;
     }
 
-    public Int16[] getValues()
+    public Int16[] GetValues()
     {
         return values;
     }

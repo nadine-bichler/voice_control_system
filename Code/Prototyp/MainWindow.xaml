@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Prototyp"
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="Prototyp - Spritzgussmaschine" Height="700" Width="1000">
 
@@ -69,6 +70,8 @@
                 <!-- Title -->
                 <Label Content="Zeitsignal" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 <Separator Margin="5,32,0,0" Width="90" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <oxy:PlotView x:Name="PlotView" Margin="5,45,0,0" />
             </Grid>
         </Border>
     </Grid>
