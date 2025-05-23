@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Spritzgusslogik
 {
+    //Die Klasse enthält die Liste der Befehlseinträge
     internal class History
     {
         private List<HistoryEntry> entries = new();

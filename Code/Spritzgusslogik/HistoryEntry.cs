@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spritzgusslogik
 {
+    //Die klasse bildet Befehlseinträge
     internal class HistoryEntry
     {
         private int command { get; }
