@@ -23,7 +23,15 @@ public class Microphone
 
     public void Start()
     {
-        waveIn.StartRecording();
+        try
+        {
+            waveIn.StartRecording();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
+        }
+        //waveIn.StartRecording();
         muted = false;
     }
 
