@@ -8,7 +8,13 @@ namespace Spritzgusslogik
 {
     internal class HistoryEntry
     {
-        private int command;
-        private string time => DateTime.Now.ToString("HH:mm:ss");
+        private int command { get; }
+        public DateTime time { get; }
+
+        public HistoryEntry(int command)
+        {
+            this.command = command;
+            time = DateTime.Now;
+        }
     }
 }
