@@ -65,7 +65,7 @@ namespace Prototyp
         }
 
         // TODO: Objektorientierte History einbauen
-        private void AddToHistory(int value)
+        private void AddToHistory()
         {
             var lastEntry = _history.entries.Last();
             StackPanel horizontalPanel = new StackPanel
@@ -96,7 +96,7 @@ namespace Prototyp
             horizontalPanel.Children.Add(spacer);
             horizontalPanel.Children.Add(valueText);
 
-            HistoryPanel.Children.Add(horizontalPanel);
+            HistoryPanel.Children.Insert(0, horizontalPanel);
         }
     }
 }
