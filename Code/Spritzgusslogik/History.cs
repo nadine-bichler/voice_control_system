@@ -8,18 +8,23 @@ using System.Threading.Tasks;
 namespace Spritzgusslogik
 {
     //Die Klasse enthält die Liste der Befehlseinträge
-    internal class History
+    public class History
     {
-        private List<HistoryEntry> entries = new();
+        public readonly List<HistoryEntry> entries = new();
 
         public void AddEntry(int command)
         {
             entries.Add(new HistoryEntry(command));
         }
 
-        public List<HistoryEntry> SortEntries()
+        public void PrintEntries()
         {
-            return entries.OrderBy(e => e.time).ToList();
+            foreach (var entry in entries)
+            {
+                Console.WriteLine(entry);
+            }
         }
+
+
     }
 }

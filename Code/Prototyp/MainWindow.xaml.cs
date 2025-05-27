@@ -22,6 +22,7 @@ namespace Prototyp
 
         private SignalDrawer signalDrawer;
         private SignalGuiUpdater signalGuiUpdater;
+        private History _history;
 
         public MainWindow()
         {
@@ -30,6 +31,7 @@ namespace Prototyp
             microphone = new Microphone();
             signalDrawer = new SignalDrawer(PlotView);
             signalGuiUpdater = new SignalGuiUpdater(microphone, signalDrawer);
+            _history = new History();
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
         }
@@ -63,18 +65,17 @@ namespace Prototyp
         }
 
         // TODO: Objektorientierte History einbauen
-        /*private void AddToHistory(int value)
+        private void AddToHistory(int value)
         {
+            var lastEntry = _history.entries.Last();
             StackPanel horizontalPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal
             };
 
-            String currentTime = DateTime.Now.ToString("HH:mm:ss");
-
             TextBlock timeText = new TextBlock
             {
-                Text = currentTime,
+                Text = lastEntry.time.ToString("HH:mm:ss"),
                 FontSize = 16,
                 Foreground = Brushes.DimGray
             };
@@ -86,7 +87,7 @@ namespace Prototyp
 
             TextBlock valueText = new TextBlock
             {
-                Text = value.ToString(),
+                Text = lastEntry.command.ToString(),
                 FontSize = 16,
                 FontWeight = FontWeights.SemiBold
             };
@@ -96,6 +97,6 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Add(horizontalPanel);
-        } */
+        }
     }
 }

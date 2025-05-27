@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace Spritzgusslogik
 {
     //Die klasse bildet Befehlseinträge
-    internal class HistoryEntry
+    public class HistoryEntry
     {
-        private int command { get; }
+        public int command { get; }
         public DateTime time { get; }
 
         public HistoryEntry(int command)
