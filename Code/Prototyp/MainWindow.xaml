@@ -28,8 +28,8 @@
                 <Label Content="Befehl" FontSize="20" FontWeight="Medium" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 <Separator Margin="5,32,0,0" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-                <Label Content="3" FontSize="55" FontWeight="Bold" Foreground="#669d34"
-               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="" FontSize="55" FontWeight="Bold" Foreground="#669d34"
+               HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="commandText"/>
             </Grid>
         </Border>
         
