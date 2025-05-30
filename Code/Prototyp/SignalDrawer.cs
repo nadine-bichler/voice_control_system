@@ -22,12 +22,24 @@ namespace Prototyp
         {
             plotModel = new PlotModel { };
 
+            // X-Achse im Bereich von 0 bis 800
+            plotModel.Axes.Add(new OxyPlot.Axes.LinearAxis
+            {
+                Position = OxyPlot.Axes.AxisPosition.Bottom,
+                Minimum = 0,
+                Maximum = 800,
+                IsZoomEnabled = false,
+                IsPanEnabled = false
+            });
+
             // Y-Achse im Bereich von -1 bis 1
             plotModel.Axes.Add(new OxyPlot.Axes.LinearAxis
             {
                 Position = OxyPlot.Axes.AxisPosition.Left,
                 Minimum = -1,
-                Maximum = 1
+                Maximum = 1,
+                IsZoomEnabled = false,
+                IsPanEnabled = false
             });
 
             waveformSeries = new LineSeries
@@ -36,6 +48,7 @@ namespace Prototyp
                 StrokeThickness = 1,
                 MarkerSize = 0
             };
+
             plotModel.Series.Add(waveformSeries);
             plotView.Model = plotModel;
         }
@@ -57,6 +70,12 @@ namespace Prototyp
             }
 
             // Diagramm aktualisieren
+            plotModel.InvalidatePlot(true);
+        }
+
+        public void ClearWaveform()
+        {
+            waveformSeries.Points.Clear();
             plotModel.InvalidatePlot(true);
         }
     }

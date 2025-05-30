@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices.Marshalling;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,6 +23,7 @@ namespace Prototyp
 
         private SignalDrawer signalDrawer;
         private SignalGuiUpdater signalGuiUpdater;
+        private History _history;
 
         public MainWindow()
         {
@@ -30,6 +32,7 @@ namespace Prototyp
             microphone = new Microphone();
             signalDrawer = new SignalDrawer(PlotView);
             signalGuiUpdater = new SignalGuiUpdater(microphone, signalDrawer);
+            _history = new History();
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
         }
@@ -50,6 +53,7 @@ namespace Prototyp
                 content = "Start";
                 backgroundColor = "#75bd33";
                 microphone.Stop();
+                signalDrawer.ClearWaveform();
             }
 
             ToggleButton.Content = content;
@@ -62,19 +66,29 @@ namespace Prototyp
             microphone.Stop();
         }
 
-        // TODO: Objektorientierte History einbauen
-        /*private void AddToHistory(int value)
+        public void UpdateCurrentCommand(int value)
         {
+            _history.AddEntry(value);
+            AddToHistory();
+            SetCurrentCommand(value);
+        }
+
+        private void SetCurrentCommand(int value)
+        {
+            commandText.Text = value.ToString();
+        }
+
+        private void AddToHistory()
+        {
+            var lastEntry = _history.entries.Last();
             StackPanel horizontalPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal
             };
 
-            String currentTime = DateTime.Now.ToString("HH:mm:ss");
-
             TextBlock timeText = new TextBlock
             {
-                Text = currentTime,
+                Text = lastEntry.time.ToString("HH:mm:ss"),
                 FontSize = 16,
                 Foreground = Brushes.DimGray
             };
@@ -86,7 +100,7 @@ namespace Prototyp
 
             TextBlock valueText = new TextBlock
             {
-                Text = value.ToString(),
+                Text = lastEntry.command.ToString(),
                 FontSize = 16,
                 FontWeight = FontWeights.SemiBold
             };
@@ -95,7 +109,7 @@ namespace Prototyp
             horizontalPanel.Children.Add(spacer);
             horizontalPanel.Children.Add(valueText);
 
-            HistoryPanel.Children.Add(horizontalPanel);
-        } */
+            HistoryPanel.Children.Insert(0, horizontalPanel);
+        }
     }
 }
