@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices.Marshalling;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -52,6 +53,7 @@ namespace Prototyp
                 content = "Start";
                 backgroundColor = "#75bd33";
                 microphone.Stop();
+                signalDrawer.ClearWaveform();
             }
 
             ToggleButton.Content = content;
@@ -62,6 +64,18 @@ namespace Prototyp
         {
             base.OnClosed(e);
             microphone.Stop();
+        }
+
+        public void UpdateCurrentCommand(int value)
+        {
+            _history.AddEntry(value);
+            AddToHistory();
+            SetCurrentCommand(value);
+        }
+
+        private void SetCurrentCommand(int value)
+        {
+            commandText.Text = value.ToString();
         }
 
         // TODO: Objektorientierte History einbauen
