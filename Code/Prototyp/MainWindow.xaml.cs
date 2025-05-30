@@ -65,6 +65,7 @@ namespace Prototyp
         }
 
         // TODO: Objektorientierte History einbauen
+        //EventHandler?
         private void AddToHistory()
         {
             var lastEntry = _history.entries.Last();
