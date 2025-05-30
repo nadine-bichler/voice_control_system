@@ -3,7 +3,7 @@ using System.IO;
 using NAudio.Wave;
 using Spritzgusslogik;
 using Complex = System.Numerics.Complex;
-
+/*
 SignalTransformer transformer = new SignalTransformer();
 
 
@@ -106,4 +106,4 @@ class audioConvert
 
         return result.ToArray();
     }
-}
+}*/
