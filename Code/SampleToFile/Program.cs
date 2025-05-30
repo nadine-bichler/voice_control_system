@@ -17,7 +17,7 @@ foreach (var file in files)
 
     //audioConvert.SaveInt16ArrayAsWav(pcm,"../../../wavTest/test.wav");
 
-    var fft = transformer.Transform(pcm,pcm.Length);
+    var fft = transformer.Transform(pcm);
 
 
 
