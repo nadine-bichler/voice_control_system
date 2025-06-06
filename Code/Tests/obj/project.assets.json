@@ -955,6 +955,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "MSTest": "3.6.4",
           "OxyPlot.Wpf": "2.2.0",
           "Spritzgusslogik": "1.0.0"
         },
