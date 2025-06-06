@@ -50,11 +50,3 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\o
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.AssemblyReference.cache
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.GeneratedMSBuildEditorConfig.editorconfig
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfoInputs.cache
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfo.cs
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.CoreCompileInputs.cache
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.dll
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\refint\SampleToFile.dll
-H:\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
