@@ -54,10 +54,6 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "MSTest": {
-              "target": "Package",
-              "version": "[3.6.4, )"
-            },
             "OxyPlot.Wpf": {
               "target": "Package",
               "version": "[2.2.0, )"
