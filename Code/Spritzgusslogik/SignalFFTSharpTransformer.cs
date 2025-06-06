@@ -10,16 +10,27 @@ namespace Spritzgusslogik
 {
     public class SignalFFTSharpTransformer : IFFTransformer
     {
-        public Complex[] Transform(Int16[] signal)
+        public double[] Transform(Int16[] signal)
         {
-            float[] floatSignal = new float[signal.Length];
+           
 
-            for(int i= 0; i < signal.Length; i++)
+            // Audiodaten im Byte-Array signal verarbeiten
+            int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
+            int sampleCount = signal.Length / bytesPerSample;
+
+            // In Complex-Werte umwandeln (normalisiert auf [-1, 1])
+            Complex[] FFTBuffer = new Complex[sampleCount];
+            for (int i = 0; i < sampleCount; i++)
             {
-                floatSignal[i] = (float)signal[i];
+                // short sample = BitConverter.ToInt16(signal, i * bytesPerSample);
+                double normalized = signal[i] / 32768.0;
+                FFTBuffer[i] = new Complex(normalized, 0.0);
             }
 
-            FFT.ForwardReal(signal, FFTWindowType.Hanning);
+            //tranform with FFT and get the Magnitude
+            double[] fftMagnitude = FFT.Magnitude(FFTBuffer);
+
+            return fftMagnitude;
         }
     }
 }
