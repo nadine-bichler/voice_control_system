@@ -1,16 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "BTPa+nH/73KA/fyO6UgsgSre4YnZ6j16AcIYjgC5hZava0tuN4BozilFU3+LsId1cKQKiUF4Nc60XALk1YPewg==",
+  "dgSpecHash": "vILzM3RGoPeYrrkVPGyGu0iMQDbNBkNIBYGdwmWgX/2WJqVMBkc+wH67xCwaRKfuWKpS2MEauzW8PnSZhedsfg==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\donar\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.applicationinsights\\2.23.0\\microsoft.applicationinsights.2.23.0.nupkg.sha512",
-    "C:\\Users\\donar\\.nuget\\packages\\microsoft.codecoverage\\17.14.0\\microsoft.codecoverage.17.14.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.diasymreader\\2.0.0\\microsoft.diasymreader.2.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.extensions.dependencymodel\\6.0.2\\microsoft.extensions.dependencymodel.6.0.2.nupkg.sha512",
-    "C:\\Users\\donar\\.nuget\\packages\\microsoft.net.test.sdk\\17.14.0\\microsoft.net.test.sdk.17.14.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\microsoft.net.test.sdk\\17.14.1\\microsoft.net.test.sdk.17.14.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testing.extensions.codecoverage\\17.14.2\\microsoft.testing.extensions.codecoverage.17.14.2.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testing.extensions.telemetry\\1.7.1\\microsoft.testing.extensions.telemetry.1.7.1.nupkg.sha512",
@@ -19,14 +19,17 @@
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testing.extensions.vstestbridge\\1.7.1\\microsoft.testing.extensions.vstestbridge.1.7.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testing.platform\\1.7.1\\microsoft.testing.platform.1.7.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testing.platform.msbuild\\1.7.1\\microsoft.testing.platform.msbuild.1.7.1.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform\\17.14.1\\microsoft.testplatform.17.14.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.adapterutilities\\17.13.0\\microsoft.testplatform.adapterutilities.17.13.0.nupkg.sha512",
-    "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.14.0\\microsoft.testplatform.objectmodel.17.14.0.nupkg.sha512",
-    "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.testhost\\17.14.0\\microsoft.testplatform.testhost.17.14.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.14.1\\microsoft.testplatform.objectmodel.17.14.1.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.testhost\\17.14.1\\microsoft.testplatform.testhost.17.14.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest\\3.9.1\\mstest.3.9.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.analyzers\\3.9.1\\mstest.analyzers.3.9.1.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\mstest.sdk\\3.9.1\\mstest.sdk.3.9.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.testadapter\\3.9.1\\mstest.testadapter.3.9.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.testframework\\3.9.1\\mstest.testframework.3.9.1.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\mstestextensions\\4.0.0\\mstestextensions.4.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio\\2.2.1\\naudio.2.2.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio.asio\\2.2.1\\naudio.asio.2.2.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio.core\\2.2.1\\naudio.core.2.2.1.nupkg.sha512",
@@ -49,5 +52,16 @@
     "C:\\Users\\donar\\.nuget\\packages\\system.text.encodings.web\\6.0.1\\system.text.encodings.web.6.0.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.text.json\\6.0.11\\system.text.json.6.0.11.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MSTestExtensions 4.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MSTestExtensions",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
 }

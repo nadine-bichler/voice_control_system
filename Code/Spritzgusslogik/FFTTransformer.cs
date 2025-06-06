@@ -7,11 +7,11 @@ using Complex = System.Numerics.Complex;
 
 namespace Spritzgusslogik
 {
-    public class FFTrannsformer
+    public class FFTTransformer
     {
-        public IFFTransformer TransformerAlgo;
+        public IFFTTransformer TransformerAlgo;
 
-        public void setAlgorithm(IFFTransformer newAlgo) { 
+        public void setAlgorithm(IFFTTransformer newAlgo) { 
             TransformerAlgo = newAlgo;
         }
 

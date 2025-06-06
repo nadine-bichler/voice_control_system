@@ -198,6 +198,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.9.1, )"
+            },
             "MathNet.Numerics": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -289,9 +293,31 @@
               "target": "Package",
               "version": "[3.9.1, )"
             },
+            "MSTest.Analyzers": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.9.1, )"
+            },
+            "MSTest.Sdk": {
+              "target": "Package",
+              "version": "[3.9.1, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.9.1, )"
+            },
+            "MSTestExtensions": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.14.0, )"
+              "version": "[17.14.1, )"
+            },
+            "Microsoft.TestPlatform": {
+              "target": "Package",
+              "version": "[17.14.1, )"
             }
           },
           "imports": [

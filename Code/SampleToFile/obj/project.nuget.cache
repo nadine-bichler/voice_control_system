@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yGC6xnw1bJHVoq98o5eFslbDtjDoo6hsq8UJHALSU3agV13dquBAe5AXTT7rBK2T3MVmy3N6Ud59YcTRMkTo+A==",
+  "dgSpecHash": "ScSbTYsS0LNg2lH05WOyv+RX2yxeQahiVV4/PahS/5MV3wbqi0a9o6fZlowBuM5jHgi8eN7x5Niaa7FaSaMFzw==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\mstest.analyzers\\3.9.1\\mstest.analyzers.3.9.1.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\mstest.testframework\\3.9.1\\mstest.testframework.3.9.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio\\2.2.1\\naudio.2.2.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio.asio\\2.2.1\\naudio.asio.2.2.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio.core\\2.2.1\\naudio.core.2.2.1.nupkg.sha512",
