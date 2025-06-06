@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using Complex = System.Numerics.Complex;
-
+/*
 SignalTransformer transformer = new SignalTransformer();
 
 
@@ -121,4 +121,4 @@ class audioConvert
 
         return result.ToArray();
     }
-}
+}*/

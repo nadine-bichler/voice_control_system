@@ -11,15 +11,12 @@ using Complex = System.Numerics.Complex;
 
 namespace Spritzgusslogik
 {
-    public class SignalTransformer
+    public class SignalTransformer : IFFTransformer
     {
      
-        public SignalTransformer()
-        {
+     
 
-        }
-
-        // Auskommentiert, damit es compiled
+        // 
         public Complex[] Transform(Int16[] signal)
         {
                 // Audiodaten im Byte-Array signal verarbeiten

@@ -16,15 +16,5 @@ namespace Spritzgusslogik
         {
             entries.Add(new HistoryEntry(command));
         }
-
-        public void PrintEntries()
-        {
-            foreach (var entry in entries)
-            {
-                Console.WriteLine(entry);
-            }
-        }
-
-
     }
 }
