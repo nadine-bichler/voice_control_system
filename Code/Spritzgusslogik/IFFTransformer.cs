@@ -9,6 +9,6 @@ namespace Spritzgusslogik
 {
     public  interface IFFTransformer
     {
-        public Complex[] Transform(Int16[] signal);
+        public double[] Transform(Int16[] signal);
     }
 }

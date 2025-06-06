@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj": {}
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj",
+        "projectUniqueName": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj",
         "projectName": "Prototyp",
-        "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj",
-        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\obj\\",
+        "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj",
+        "packagesPath": "C:\\Users\\donar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -47,17 +47,12 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "NDtw": {
-              "target": "Package",
-              "version": "[0.2.3, )"
-            },
             "OxyPlot.Wpf": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -82,24 +77,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
+        "projectUniqueName": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
         "projectName": "SampleToFile",
-        "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
-        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\obj\\",
+        "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
+        "packagesPath": "C:\\Users\\donar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -114,8 +109,8 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -129,18 +124,11 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
-          "dependencies": {
-            "NDtw": {
-              "target": "Package",
-              "version": "[0.2.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -157,24 +145,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "projectUniqueName": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
         "projectName": "Spritzgusslogik",
-        "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
-        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\obj\\",
+        "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "packagesPath": "C:\\Users\\donar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -200,13 +188,16 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "FftSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "MathNet.Numerics": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -214,10 +205,6 @@
             "NAudio": {
               "target": "Package",
               "version": "[2.2.1, )"
-            },
-            "NDtw": {
-              "target": "Package",
-              "version": "[0.2.3, )"
             }
           },
           "imports": [
@@ -239,24 +226,24 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj": {
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
+        "projectUniqueName": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
-        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\obj\\",
+        "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\donar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -271,14 +258,14 @@
           "net8.0-windows7.0": {
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj"
+              "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
+                "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj"
               },
-              "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj"
+              "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
+                "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj"
               },
-              "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -292,8 +279,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0-windows7.0": {
@@ -301,15 +287,11 @@
           "dependencies": {
             "MSTest": {
               "target": "Package",
-              "version": "[3.6.4, )"
+              "version": "[3.9.1, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.12.0, )"
-            },
-            "NDtw": {
-              "target": "Package",
-              "version": "[0.2.3, )"
+              "version": "[17.14.0, )"
             }
           },
           "imports": [
@@ -328,7 +310,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
