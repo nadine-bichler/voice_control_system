@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "PsSlseTUilU=",
+  "dgSpecHash": "KOfWr6HvrYM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
+  "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nbich\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
@@ -15,7 +14,6 @@
     "C:\\Users\\nbich\\.nuget\\packages\\naudio.wasapi\\2.2.1\\naudio.wasapi.2.2.1.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\naudio.winforms\\2.2.1\\naudio.winforms.2.2.1.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\naudio.winmm\\2.2.1\\naudio.winmm.2.2.1.nupkg.sha512",
-    "C:\\Users\\nbich\\.nuget\\packages\\ndtw\\0.2.3\\ndtw.0.2.3.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
