@@ -22,8 +22,6 @@ namespace Spritzgusslogik
         // Auskommentiert, damit es compiled
         public Complex[] Transform(Int16[] signal)
         {
-           
-
                 // Audiodaten im Byte-Array signal verarbeiten
                 int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
                 int sampleCount = signal.Length / bytesPerSample;
@@ -38,10 +36,10 @@ namespace Spritzgusslogik
                 }
               Fourier.Forward(FFTBuffer, FourierOptions.Matlab);
 
-              Console.Write("Transformed Signals: ");
+              //Console.Write("Transformed Signals: ");
               for (int i = 0; i < sampleCount; i++)
               {
-                Console.Write(FFTBuffer[i].ToString());
+                //Console.Write(FFTBuffer[i].ToString());
               }
 
               return FFTBuffer;

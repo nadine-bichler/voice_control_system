@@ -1,10 +1,25 @@
-﻿using System;
-using System.IO;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using Spritzgusslogik;
+using System;
+using System.Globalization;
+using System.IO;
 using Complex = System.Numerics.Complex;
 
 SignalTransformer transformer = new SignalTransformer();
+
+
+var array = Identify.LoadComplexArrayCsv("../../../samples/armin11.csv");
+var array2 = Identify.LoadComplexArrayCsv("../../../samples/armin21.csv");
+Console.WriteLine(array.Length);
+//Console.WriteLine(array);
+
+
+
+var result = Identify.compare(array, array2);
+
+Console.WriteLine(result);
+
+
 
 
 
@@ -17,7 +32,7 @@ foreach (var file in files)
 
     //audioConvert.SaveInt16ArrayAsWav(pcm,"../../../wavTest/test.wav");
 
-    var fft = transformer.Transform(pcm,pcm.Length);
+    var fft = transformer.Transform(pcm);
 
 
 
@@ -79,7 +94,7 @@ class audioConvert
         {
             foreach (var c in data)
             {
-                writer.WriteLine($"{c.Real},{c.Imaginary}");
+                writer.WriteLine($"{c.Real.ToString(CultureInfo.InvariantCulture)},{c.Imaginary.ToString(CultureInfo.InvariantCulture)}");
             }
         }
     }
