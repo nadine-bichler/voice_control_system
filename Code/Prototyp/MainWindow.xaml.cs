@@ -66,16 +66,43 @@ namespace Prototyp
             microphone.Stop();
         }
 
-        public void UpdateCurrentCommand(int value)
+        public void UpdateCurrentCommand(int value, double confidence)
         {
             _history.AddEntry(value);
             AddToHistory();
             SetCurrentCommand(value);
+            SetCommandConfidence(confidence);
         }
 
         private void SetCurrentCommand(int value)
         {
             commandText.Text = value.ToString();
+        }
+
+        private void SetCommandConfidence(double confidence)
+        {
+            commandConfidence.Text = confidence.ToString("0") + "%";
+            UpdateConfidenceColor(confidence);
+        }
+
+        private void UpdateConfidenceColor(double confidence)
+        {
+            String color;
+
+            if (confidence < 50)
+            {
+               color = "#cf241b";
+            }
+            else if (confidence < 80)
+            {
+                color = "#de8a0b";
+            }
+            else
+            {
+                color = "#75bd33";
+            }
+
+            commandConfidence.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
         }
 
         // TODO: Objektorientierte History einbauen
