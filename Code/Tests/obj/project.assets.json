@@ -955,7 +955,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
-          "MSTest": "3.6.4",
           "OxyPlot.Wpf": "2.2.0",
           "Spritzgusslogik": "1.0.0"
         },
@@ -2341,23 +2340,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nbich\\.nuget\\packages\\": {},
+    "C:\\Users\\student\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
+      "projectUniqueName": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
-      "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Tests\\obj\\",
+      "projectPath": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
+      "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+      "outputPath": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2372,14 +2371,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj"
+            "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
+              "projectPath": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj"
             },
-            "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj"
+            "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
+              "projectPath": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj"
             },
-            "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+            "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+              "projectPath": "H:\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
             }
           }
         }
@@ -2425,7 +2424,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
