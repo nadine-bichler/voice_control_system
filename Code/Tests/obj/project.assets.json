@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0-windows7.0": {
+      "FftSharp/2.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/FftSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/FftSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MathNet.Numerics/5.0.0": {
         "type": "package",
         "compile": {
@@ -1500,6 +1513,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "FftSharp": "2.2.0",
           "MathNet.Numerics": "5.0.0",
           "NAudio": "2.2.1"
         },
@@ -1516,6 +1530,23 @@
     }
   },
   "libraries": {
+    "FftSharp/2.2.0": {
+      "sha512": "TMdujVhp5qPCo8qABBxWJAS+sUFHR7XBX1U/v9l9vDosx8CqKWTttW4fpetroTGrqOfq/jRBRi8zthpoe7a+Qg==",
+      "type": "package",
+      "path": "fftsharp/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "fftsharp.2.2.0.nupkg.sha512",
+        "fftsharp.nuspec",
+        "icon.png",
+        "lib/net8.0/FftSharp.dll",
+        "lib/net8.0/FftSharp.xml",
+        "lib/netstandard2.0/FftSharp.dll",
+        "lib/netstandard2.0/FftSharp.xml"
+      ]
+    },
     "MathNet.Numerics/5.0.0": {
       "sha512": "pg1W2VwaEQMAiTpGK840hZgzavnqjlCMTVSbtVCXVyT+7AX4mc1o89SPv4TBlAjhgCOo9c1Y+jZ5m3ti2YgGgA==",
       "type": "package",
@@ -3666,13 +3697,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

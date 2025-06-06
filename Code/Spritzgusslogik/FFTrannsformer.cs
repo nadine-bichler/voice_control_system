@@ -15,7 +15,7 @@ namespace Spritzgusslogik
             TransformerAlgo = newAlgo;
         }
 
-        public Complex[] Transform(Int16[] signal) { 
+        public double[] Transform(Int16[] signal) { 
         
             if(TransformerAlgo == null)
             {

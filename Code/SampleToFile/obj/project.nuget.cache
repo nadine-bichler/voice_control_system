@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "UbSa0JcWIqGopaVlJ0GFBtkWTxaR2vp3DgKJkMFTPxVN3afKSXlt8n9cEXtgfyMlI6/5O6il+LmLUA6IA+Ck5A==",
+  "dgSpecHash": "yGC6xnw1bJHVoq98o5eFslbDtjDoo6hsq8UJHALSU3agV13dquBAe5AXTT7rBK2T3MVmy3N6Ud59YcTRMkTo+A==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\donar\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
