@@ -54,9 +54,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "MSTest": {
+            "NDtw": {
               "target": "Package",
-              "version": "[3.6.4, )"
+              "version": "[0.2.3, )"
             },
             "OxyPlot.Wpf": {
               "target": "Package",
@@ -135,6 +135,12 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -201,6 +207,10 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "FftSharp": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "MathNet.Numerics": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -208,6 +218,10 @@
             "NAudio": {
               "target": "Package",
               "version": "[2.2.1, )"
+            },
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
             }
           },
           "imports": [

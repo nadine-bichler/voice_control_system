@@ -17,7 +17,7 @@ namespace Spritzgusslogik
      
 
         // 
-        public Complex[] Transform(Int16[] signal)
+        public double[] Transform(Int16[] signal)
         {
                 // Audiodaten im Byte-Array signal verarbeiten
                 int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
@@ -38,8 +38,13 @@ namespace Spritzgusslogik
               {
                 //Console.Write(FFTBuffer[i].ToString());
               }
+            double[] signalsMagnitude = new double[sampleCount];
+              for(int j = 0; j<sampleCount; j++)
+            {
+                signalsMagnitude[j] = FFTBuffer[j].Magnitude;
+            }
 
-              return FFTBuffer;
+              return signalsMagnitude;
             
            
 
