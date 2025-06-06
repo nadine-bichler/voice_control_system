@@ -15,4 +15,8 @@
     <Folder Include="wavTest\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NDtw" Version="0.2.3" />
+  </ItemGroup>
+
 </Project>

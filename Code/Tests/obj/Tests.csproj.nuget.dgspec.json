@@ -54,6 +54,10 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
+            },
             "OxyPlot.Wpf": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -131,6 +135,12 @@
       "frameworks": {
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
+          "dependencies": {
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -204,6 +214,10 @@
             "NAudio": {
               "target": "Package",
               "version": "[2.2.1, )"
+            },
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
             }
           },
           "imports": [
@@ -292,6 +306,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.12.0, )"
+            },
+            "NDtw": {
+              "target": "Package",
+              "version": "[0.2.3, )"
             }
           },
           "imports": [
