@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using Complex = System.Numerics.Complex;
-/*
+
 SignalTransformer transformer = new SignalTransformer();
 
 
@@ -36,7 +36,8 @@ foreach (var file in files)
 
 
 
-    audioConvert.SaveComplexArrayCsv(Path.ChangeExtension(file,".csv"),fft);
+    //audioConvert.SaveComplexArrayCsv(Path.ChangeExtension(file,".csv"),fft);
+    audioConvert.SaveDoubleArrayCsv(Path.ChangeExtension(file, ".csv"),fft);
 
 }
 
@@ -99,6 +100,17 @@ class audioConvert
         }
     }
 
+    public static void SaveDoubleArrayCsv(string filePath, Double[] data)
+    {
+        using (var writer = new StreamWriter(filePath))
+        {
+            foreach (var c in data)
+            {
+                writer.WriteLine($"{c}");
+            }
+        }
+    }
+
     public static Complex[] LoadComplexArrayCsv(string filePath)
     {
         var result = new List<Complex>();
@@ -121,4 +133,16 @@ class audioConvert
 
         return result.ToArray();
     }
-}*/
+
+    public static Double[] LoadDoubleArrayCsv(string filePath)
+    {
+        var result = new List<Double>();
+
+        foreach (var line in File.ReadLines(filePath))
+        {
+            result.Add(Convert.ToDouble(line));
+        }
+
+        return result.ToArray();
+    }
+}
