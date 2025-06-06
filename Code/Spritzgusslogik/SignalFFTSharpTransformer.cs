@@ -8,7 +8,7 @@ using FftSharp;
 
 namespace Spritzgusslogik
 {
-    public class SignalFFTSharpTransformer : IFFTransformer
+    public class SignalFFTSharpTransformer : IFFTTransformer
     {
         public double[] Transform(Int16[] signal)
         {

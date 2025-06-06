@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Spritzgusslogik
 {
-    public  interface IFFTransformer
+    public  interface IFFTTransformer
     {
         public double[] Transform(Int16[] signal);
     }
