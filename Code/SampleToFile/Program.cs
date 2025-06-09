@@ -10,7 +10,7 @@ using Complex = System.Numerics.Complex;
 
 SignalTransformer transformer = new SignalTransformer();
 
-
+//brauchen wir nicht mehr dank Tests
 var array = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
 var array2 = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/Test3.csv");
 Console.WriteLine(array.Length);
@@ -18,11 +18,9 @@ Console.WriteLine(array.Length);
 
 
 
-var result = Identify.compare2(array, array2);
+var result = Identify.compare(array, array2);
 
 Console.WriteLine(result);
-
-
 
 
 var files = Directory.GetFiles("../../../samples", "*.mp3");
@@ -103,6 +101,7 @@ namespace SampleToFile
             }
         }
 
+        //brauchen wir überhaupt?
         public static void SaveInt16ArrayAsWav(short[] samples, string outputFilePath, int sampleRate = 44100, int channels = 1)
         {
             // Erstelle ein WaveFormat (z.B. 44100 Hz, 16-bit, mono)
@@ -120,6 +119,7 @@ namespace SampleToFile
             }
         }
 
+        //brauchen wir überhaupt?
         public static void SaveComplexArrayCsv(string filePath, Complex[] data)
         {
             using (var writer = new StreamWriter(filePath))
@@ -142,6 +142,7 @@ namespace SampleToFile
             }
         }
 
+        //?brauchen wir überhaupt?
         public static Complex[] LoadComplexArrayCsv(string filePath)
         {
             var result = new List<Complex>();
@@ -165,6 +166,7 @@ namespace SampleToFile
             return result.ToArray();
         }
 
+        //? brauchen wir überhaupt?
         public static Double[] LoadDoubleArrayCsv(string filePath)
         {
             var result = new List<Double>();
