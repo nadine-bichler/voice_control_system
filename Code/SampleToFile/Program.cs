@@ -8,9 +8,9 @@ using Complex = System.Numerics.Complex;
 
 SignalTransformer transformer = new SignalTransformer();
 
-/*
-var array = audioConvert.LoadDoubleArrayCsv("../../../mfcc_input.csv");
-var array2 = audioConvert.LoadDoubleArrayCsv("../../../csv/3.csv");
+
+var array = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
+var array2 = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
 Console.WriteLine(array.Length);
 //Console.WriteLine(array);
 
@@ -19,7 +19,7 @@ Console.WriteLine(array.Length);
 var result = Identify.compare2(array, array2);
 
 Console.WriteLine(result);
-*/
+
 
 
 
@@ -41,6 +41,7 @@ foreach (var file in files)
 
 }
 
+/*
 //run python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis
 string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;            //geht 3 Ebenen hoch zur Projektwurzel
@@ -69,7 +70,7 @@ using (var process = Process.Start(psi))
         Console.WriteLine("Fehler:\n" + errors);
     }
 }
-
+*/
 
 
 class audioConvert
@@ -171,5 +172,14 @@ class audioConvert
         }
 
         return result.ToArray();
+    }
+
+    public static double[] LoadDoubleArrayCSV(string filePath)
+    {
+        var line = File.ReadLines(filePath).First(); // erste Zeile mit allen Werten
+        return line
+            .Split(',')                              // Trenne an Kommas
+            .Select(v => Convert.ToDouble(v.Trim(), CultureInfo.InvariantCulture))  // Umwandeln in double
+            .ToArray();
     }
 }

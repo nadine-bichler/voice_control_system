@@ -3,10 +3,12 @@ import numpy as np
 import csv
 import os
 
-input_folder = "./WAV_samples"                              #hier liegen WAV-Dateien
-output_folder = "./mfcc_csv"                                #hier werden csv gespeichert
+# Basisverzeichnis ermitteln → dort wo mfcss.py liegt
+base_path = os.path.dirname(os.path.abspath(__file__))
 
-os.makedirs(output_folder, exist_ok = True)
+# Ordner relativ zu diesem Pfad setzen
+input_folder = os.path.join(base_path, "WAV_samples")
+
 
 for filename in os.listdir(input_folder):                   #Schleife über alle Dateien im Eingabeordner
     if filename.endswith(".wav"):                           #nur WAV-Dateien verarbeiten
@@ -16,7 +18,7 @@ for filename in os.listdir(input_folder):                   #Schleife über alle
         mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)  #MFCCs berechnen
         mfcc_mean = np.mean(mfcc, axis=1)                   #13 dimensionaler vektor, mittelfeld über alle Zeitfenster berechnen
 
-        output_path = os.path.join(output_folder, filename.replace(".wav", ".csv"))
+        output_path = os.path.join(input_folder, filename.replace(".wav", ".csv"))
         #in csv-datei schreiben
         with open(output_path, "w", newline="") as f:
             writer = csv.writer(f)
