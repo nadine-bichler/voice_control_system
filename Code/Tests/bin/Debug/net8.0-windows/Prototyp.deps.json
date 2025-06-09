@@ -174,7 +174,10 @@
           "NDtw": "0.2.3"
         },
         "runtime": {
-          "Spritzgusslogik.dll": {}
+          "Spritzgusslogik.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
