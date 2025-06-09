@@ -14,7 +14,7 @@ namespace Spritzgusslogik
 {
     public class Identify
     {
-        //Correlation
+        //Correlation (FFT)
         public static double compare(Complex[] arrayA, Complex[] arrayB)
         {
             Console.WriteLine(arrayA.Length);
@@ -81,32 +81,22 @@ namespace Spritzgusslogik
             return result.ToArray();
         }
 
-        //DTW
+        //MFCC (Cosine Similarity)
         public static double compare2(double[] arrayA, double[] arrayB)
         {
-            return new Dtw(arrayA, arrayB).GetCost() + 1.0;
+            double dot = 0, normA = 0, normB = 0;
+            for (int i = 0; i < arrayA.Length; i++)
+            {
+                dot += arrayA[i] * arrayB[i];       //Skalarprodukt
+                normA += arrayA[i] * arrayA[i];     //aufsummierte Quadrate = Länge von a^2
+                normB += arrayB[i] * arrayB[i];     //aufsummierte Quadrate = Länge von b^2
+            }
+
+            //Cosine-Similarity
+            return dot / (Math.Sqrt(normA) * Math.Sqrt(normB));
         }
 
 
-        //DTW with Chat(normalizing & scaling)
-        public static double compare3(double[] arrayA, double[] arrayB)
-        {
-            if (arrayA == null || arrayB == null || arrayA.Length == 0 || arrayB.Length == 0)
-                throw new ArgumentException("Input arrays must not be null or empty.");
-
-            var normA = Normalize(arrayA);
-            var normB = Normalize(arrayB);
-
-            var dtw = new Dtw(normA, normB);
-            return dtw.GetCost() + 1.0;
-        }
-
-        //Normalizing
-        private static double[] Normalize(double[] input)
-        {
-            double max = input.Max();
-            if (max == 0) return input;
-            return input.Select(x => x / max).ToArray();
-        }
+        //FFT + MFCC?
     }
 }

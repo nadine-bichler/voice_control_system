@@ -50,3 +50,31 @@ C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.exe
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.deps.json
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.runtimeconfig.json
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\FftSharp.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\MathNet.Numerics.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NDtw.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.AssemblyReference.cache
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfoInputs.cache
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfo.cs
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.CoreCompileInputs.cache
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleTo.C33F8823.Up2Date
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\refint\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll

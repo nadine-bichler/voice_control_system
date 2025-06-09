@@ -1,25 +1,25 @@
 ﻿using NAudio.Wave;
 using Spritzgusslogik;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using Complex = System.Numerics.Complex;
 
 SignalTransformer transformer = new SignalTransformer();
 
-
-var array = Identify.LoadComplexArrayCsv("../../../samples/armin11.csv");
-var array2 = Identify.LoadComplexArrayCsv("../../../samples/armin21.csv");
+/*
+var array = audioConvert.LoadDoubleArrayCsv("../../../mfcc_input.csv");
+var array2 = audioConvert.LoadDoubleArrayCsv("../../../csv/3.csv");
 Console.WriteLine(array.Length);
 //Console.WriteLine(array);
 
 
 
-var result = Identify.compare(array, array2);
+var result = Identify.compare2(array, array2);
 
 Console.WriteLine(result);
-
-
+*/
 
 
 
@@ -41,7 +41,33 @@ foreach (var file in files)
 
 }
 
+//run python code
+// Absoluter Pfad basierend auf dem aktuellen Verzeichnis
+string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+string scriptPath = Path.Combine(baseDir, "mfcss.py");
 
+var psi = new ProcessStartInfo
+{
+    FileName = "python",  // oder vollständiger Pfad zur python.exe
+    Arguments = $"\"{scriptPath}\"",
+    UseShellExecute = false,
+    RedirectStandardOutput = true,
+    RedirectStandardError = true,
+    CreateNoWindow = true
+};
+
+using (var process = Process.Start(psi))
+{
+    string output = process.StandardOutput.ReadToEnd();
+    string errors = process.StandardError.ReadToEnd();
+    process.WaitForExit();
+
+    Console.WriteLine("Python-Ausgabe:\n" + output);
+    if (!string.IsNullOrWhiteSpace(errors))
+    {
+        Console.WriteLine("Fehler:\n" + errors);
+    }
+}
 
 
 
