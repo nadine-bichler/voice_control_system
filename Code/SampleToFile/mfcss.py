@@ -1,4 +1,4 @@
-import librosa
+﻿import librosa
 import numpy as np
 import csv
 import os
@@ -6,7 +6,7 @@ import os
 input_folder = "./WAV_samples"  #hier liegen WAV-Dateien
 output_folder = "./mfcc_csv"    #hier werden csv gespeichert
 
-os.makedirs(output_folder, exist_ok = true)
+os.makedirs(output_folder, exist_ok = True)
 
 for filename in os.listdir(input_folder):
     if filename.endswith(".wav"):

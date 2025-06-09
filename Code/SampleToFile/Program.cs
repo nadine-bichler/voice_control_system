@@ -43,8 +43,9 @@ foreach (var file in files)
 
 //run python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis
-string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-string scriptPath = Path.Combine(baseDir, "mfcss.py");
+string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;            //geht 3 Ebenen hoch zur Projektwurzel
+string scriptPath = Path.Combine(projectDir, "mfcss.py");
+
 
 var psi = new ProcessStartInfo
 {
