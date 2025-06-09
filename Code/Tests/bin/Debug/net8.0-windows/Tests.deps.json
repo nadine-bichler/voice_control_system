@@ -19,6 +19,14 @@
           "Tests.dll": {}
         }
       },
+      "FftSharp/2.2.0": {
+        "runtime": {
+          "lib/net8.0/FftSharp.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
       "MathNet.Numerics/5.0.0": {
         "runtime": {
           "lib/net6.0/MathNet.Numerics.dll": {
@@ -671,6 +679,14 @@
           }
         }
       },
+      "NDtw/0.2.3": {
+        "runtime": {
+          "lib/net40/NDtw.dll": {
+            "assemblyVersion": "0.2.3.0",
+            "fileVersion": "0.2.3.0"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -721,37 +737,32 @@
       "System.Security.Principal.Windows/4.7.0": {},
       "Prototyp/1.0.0": {
         "dependencies": {
+          "NDtw": "0.2.3",
           "OxyPlot.Wpf": "2.2.0",
           "Spritzgusslogik": "1.0.0"
         },
         "runtime": {
-          "Prototyp.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Prototyp.dll": {}
         }
       },
       "SampleToFile/1.0.0": {
         "dependencies": {
+          "NDtw": "0.2.3",
           "Spritzgusslogik": "1.0.0"
         },
         "runtime": {
-          "SampleToFile.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SampleToFile.dll": {}
         }
       },
       "Spritzgusslogik/1.0.0": {
         "dependencies": {
+          "FftSharp": "2.2.0",
           "MathNet.Numerics": "5.0.0",
-          "NAudio": "2.2.1"
+          "NAudio": "2.2.1",
+          "NDtw": "0.2.3"
         },
         "runtime": {
-          "Spritzgusslogik.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Spritzgusslogik.dll": {}
         }
       },
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
@@ -769,6 +780,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FftSharp/2.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TMdujVhp5qPCo8qABBxWJAS+sUFHR7XBX1U/v9l9vDosx8CqKWTttW4fpetroTGrqOfq/jRBRi8zthpoe7a+Qg==",
+      "path": "fftsharp/2.2.0",
+      "hashPath": "fftsharp.2.2.0.nupkg.sha512"
     },
     "MathNet.Numerics/5.0.0": {
       "type": "package",
@@ -937,6 +955,13 @@
       "sha512": "sha512-xFHRFwH4x6aq3IxRbewvO33ugJRvZFEOfO62i7uQJRUNW2cnu6BeBTHUS0JD5KBucZbHZaYqxQG8dwZ47ezQuQ==",
       "path": "naudio.winmm/2.2.1",
       "hashPath": "naudio.winmm.2.2.1.nupkg.sha512"
+    },
+    "NDtw/0.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tcHAt3y1znwsICl82hYEzh2nVpZ7rBQjxPxOQIjpdrcZR5ugMe3EP/PR1m7DCKTCsygi3rvSGSM5q+i6jPmsoQ==",
+      "path": "ndtw/0.2.3",
+      "hashPath": "ndtw.0.2.3.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",

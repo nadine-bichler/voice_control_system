@@ -50,6 +50,7 @@ C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\aranm\Desktop\Github Workspace\projekt1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
+<<<<<<< HEAD
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.exe
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.deps.json
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.runtimeconfig.json
@@ -78,3 +79,23 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
+=======
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\FftSharp.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NDtw.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\cs\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\de\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\es\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\fr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\it\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\ja\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\ko\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\pl\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\pt-BR\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\ru\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\tr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\zh-Hant\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+>>>>>>> 35d96d2a250bb36271c95318b44b6f9703da8ca5

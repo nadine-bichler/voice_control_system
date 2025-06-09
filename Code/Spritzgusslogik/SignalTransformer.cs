@@ -11,7 +11,7 @@ using Complex = System.Numerics.Complex;
 
 namespace Spritzgusslogik
 {
-    public class SignalTransformer : IFFTransformer
+    public class SignalTransformer : IFFTTransformer
     {
      
      
