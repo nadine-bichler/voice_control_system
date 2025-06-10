@@ -59,13 +59,14 @@ public class TestCompareMFCC
     }
 
 
+    //Vergleicht 1 Ziffer mit allen Ziffern
     [DataTestMethod]
     [DataRow(3)]
     [DataRow(5)]
     [DataRow(9)]
     public void TestCompareToAllDigits(int expectedDigit)
     {
-        var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
+        var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");   
         var referencePath = Path.Combine(basePath, $"Test{expectedDigit}.csv");
         var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
 
@@ -75,21 +76,21 @@ public class TestCompareMFCC
 
         for (int i = 1; i <= 9; i++)
         {
-            var scores = new List<double>();
+            var scores = new List<double>();        //Liste aller Gewichtungen der Referenzdaten
 
             var files = Directory.GetFiles(basePath, $"*{i}.csv");
 
             foreach (var file in files)
             {
                 var test = audioConvert.LoadDoubleArrayCSV(file);
-                var sim = Identify.compare(reference, test);
-                scores.Add(sim);
+                var sim = Identify.Compare(reference, test);
+                scores.Add(sim);        //Wert in Liste einfügen
             }
 
             if (scores.Count == 0)
                 continue;
 
-            var avgScore = scores.Average();
+            var avgScore = scores.Average();    //Durchschnitt aller Listenwerte ermitteln
 
             if (i == expectedDigit)
                 simExpected = avgScore;

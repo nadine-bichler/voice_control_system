@@ -10,10 +10,9 @@ namespace Spritzgusslogik
 {
     public class SignalFFTSharpTransformer : IFFTTransformer
     {
+        //PCM ideal für FFT, MFCC, Filter, etc.
         public double[] Transform(Int16[] signal)
         {
-           
-
             // Audiodaten im Byte-Array signal verarbeiten
             int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
             int sampleCount = signal.Length / bytesPerSample;

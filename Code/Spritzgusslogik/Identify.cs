@@ -86,6 +86,8 @@ namespace Spritzgusslogik
         }
 
         //Richtungs-/Winkel-Sensitiv
+        //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
+        //Ergebnis von 0-1 (je höher desto besser)
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             double dot = 0, normA = 0, normB = 0;
@@ -101,6 +103,8 @@ namespace Spritzgusslogik
         }
 
         //Absoluter-Abstand-Sensitiv
+        //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
+        //Ergebnis mit Zahlen (je näher an 0 desto besser)
         public static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0;
@@ -110,6 +114,8 @@ namespace Spritzgusslogik
         }
 
         //Lineare-Korrelation-Sensitiv
+        //liefert absolute Abweichung, sensibel auf Störgeräusche!!!
+        //Ergebnis von -1 - 1 (Je näher an 1 desto besser)
         public static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
@@ -131,7 +137,8 @@ namespace Spritzgusslogik
             return numerator / Math.Sqrt(denomA * denomB);
         }
 
-        public static double compare(double[] a, double[] b)
+        //Zusammenfügen aller Compare-Methoden
+        public static double Compare(double[] a, double[] b)
         {
             double cosine = CosineSimilarity(a, b);
             double pearson = (PearsonCorrelation(a, b) + 1) / 2;

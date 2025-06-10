@@ -18,7 +18,7 @@ Console.WriteLine(array.Length);
 
 
 
-var result = Identify.compare(array, array2);
+var result = Identify.Compare(array, array2);
 
 Console.WriteLine(result);
 
