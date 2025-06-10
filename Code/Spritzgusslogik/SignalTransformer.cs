@@ -19,8 +19,11 @@ namespace Spritzgusslogik
         // 
         public double[] Transform(Int16[] signal)
         {
-                // Audiodaten im Byte-Array signal verarbeiten
-                int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
+            if (signal == null) throw new ArgumentNullException("SignalTransformer: Signal is Null!");
+
+
+            // Audiodaten im Byte-Array signal verarbeiten
+            int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
                 int sampleCount = signal.Length / bytesPerSample;
 
                 // In Complex-Werte umwandeln (normalisiert auf [-1, 1])
@@ -34,10 +37,10 @@ namespace Spritzgusslogik
               Fourier.Forward(FFTBuffer, FourierOptions.Matlab);
 
               //Console.Write("Transformed Signals: ");
-              for (int i = 0; i < sampleCount; i++)
-              {
+             // for (int i = 0; i < sampleCount; i++)
+             /// {
                 //Console.Write(FFTBuffer[i].ToString());
-              }
+              //}
             double[] signalsMagnitude = new double[sampleCount];
               for(int j = 0; j<sampleCount; j++)
             {

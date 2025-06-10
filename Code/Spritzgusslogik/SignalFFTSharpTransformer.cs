@@ -13,6 +13,7 @@ namespace Spritzgusslogik
         public double[] Transform(Int16[] signal)
         {
            
+            if(signal == null) throw new ArgumentNullException("SignalFFTSharpTransformer: Signal is Null!");
 
             // Audiodaten im Byte-Array signal verarbeiten
             int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
