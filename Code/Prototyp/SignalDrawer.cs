@@ -1,10 +1,11 @@
 ﻿using OxyPlot.Series;
 using OxyPlot.Wpf;
 using OxyPlot;
+using Spritzgusslogik;
 
 class SignalDrawer
 {
-    private const int SampleRate = 44100;
+    private const int SampleRate = Microphone.SampleRate;
     private const double DisplaySeconds = 0.5;
     private const int MaxSamples = (int)(SampleRate * DisplaySeconds);
 
@@ -13,11 +14,10 @@ class SignalDrawer
     private OxyPlot.Axes.LinearAxis timeAxis;
 
     private double[] amplitudeBuffer = new double[MaxSamples];
-    private int writePosition = 0;
 
     public SignalDrawer(PlotView plotView)
     {
-        plotModel = new PlotModel { Title = "Zeitsignal" };
+        plotModel = new PlotModel { Title = "" };
 
         timeAxis = new OxyPlot.Axes.LinearAxis
         {

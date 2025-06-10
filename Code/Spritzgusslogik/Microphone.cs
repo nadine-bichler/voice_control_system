@@ -5,6 +5,8 @@ namespace Spritzgusslogik;
 
 public class Microphone
 {
+    public const int SampleRate = 44100;
+
     private WaveInEvent waveIn;
     private Int16[] values;
 
@@ -15,7 +17,7 @@ public class Microphone
         waveIn = new WaveInEvent
         {
             DeviceNumber = 0,
-            WaveFormat = new WaveFormat(rate: 44100, bits: 16, channels: 1),
+            WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
             BufferMilliseconds = 20
         };
         waveIn.DataAvailable += WaveIn_DataAvailable;
