@@ -1,11 +1,11 @@
 using Microsoft.VisualStudio.CodeCoverage;
-using SampleToFile;
 using Spritzgusslogik;
+using Common;
 
 namespace Tests;
 
 [TestClass]
-public class TestCompareMFCC
+public class TestIdentify
 {
     [TestMethod]
     //vergleicht nur einen Wert(3) ob erkannt wird
@@ -58,51 +58,35 @@ public class TestCompareMFCC
         Assert.IsTrue(result >= 0.75, $"Similarity is too low: {result}");
     }
 
+    [TestMethod]
+    public void TestCompare()
+    {
+        var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
+        var referencePath = Path.Combine(basePath, "3.csv");
+        var testPath = Path.Combine(basePath, "Test3.csv");
+
+        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
+        var test = audioConvert.LoadDoubleArrayCSV(testPath);
+
+        var result = Identify.Compare(reference, test);
+
+        Assert.IsTrue(result >= 0.75, $"Combined similarity score is too low: {result}");
+    }
 
     //Vergleicht 1 Ziffer mit allen Ziffern
     [DataTestMethod]
     [DataRow(3)]
     [DataRow(5)]
     [DataRow(9)]
-    public void TestCompareToAllDigits(int expectedDigit)
+    public void TestRecognize(int expectedDigit)
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");   
         var referencePath = Path.Combine(basePath, $"Test{expectedDigit}.csv");
         var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
 
-        var bestMatch = -1;
-        var bestSimilarity = 0.0;
-        var simExpected = 0.0;
+        var result = Identify.Recognize(reference, out double similarity);
 
-        for (int i = 1; i <= 9; i++)
-        {
-            var scores = new List<double>();        //Liste aller Gewichtungen der Referenzdaten
-
-            var files = Directory.GetFiles(basePath, $"*{i}.csv");
-
-            foreach (var file in files)
-            {
-                var test = audioConvert.LoadDoubleArrayCSV(file);
-                var sim = Identify.Compare(reference, test);
-                scores.Add(sim);        //Wert in Liste einfügen
-            }
-
-            if (scores.Count == 0)
-                continue;
-
-            var avgScore = scores.Average();    //Durchschnitt aller Listenwerte ermitteln
-
-            if (i == expectedDigit)
-                simExpected = avgScore;
-
-            if (avgScore > bestSimilarity)
-            {
-                bestSimilarity = avgScore;
-                bestMatch = i;
-            }
-        }
-
-        Assert.AreEqual(expectedDigit, bestMatch,
-            $"Vergleich stimmt nicht: {expectedDigit} = {simExpected:F3}, {bestMatch} = {bestSimilarity:F3}");
+        Assert.AreEqual(expectedDigit, result,
+            $"Vergleich stimmt nicht, statt: {expectedDigit} = {result} mit {similarity}");
     }
 }

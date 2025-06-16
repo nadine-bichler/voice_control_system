@@ -3,6 +3,9 @@ using NAudio.Wave;
 
 namespace Spritzgusslogik;
 
+
+//Diese Klasse speichert die Audiodaten der Aufnahme in ein int16-Array
+
 public class Microphone
 {
     public const int SampleRate = 44100;
@@ -12,6 +15,9 @@ public class Microphone
 
     private Boolean muted = true;
 
+    //damit Eingabe gleich groﬂ wie Samples
+    private const int TargetSampleCount = SampleRate * 1;
+    private List<short> buffer = new();
     public Microphone()
     {
         waveIn = new WaveInEvent
@@ -43,10 +49,28 @@ public class Microphone
         muted = true;
     }
 
+
+    //Benachrichtigung sobald neue Audiodatei
+    //EventHandler
+    public event Action<Int16[]>? AudioReceived;
+
     void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
     {
         values = new Int16[e.Buffer.Length / 2];
         Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
+
+        //neue samples anh‰ngen
+        buffer.AddRange(values);
+
+        //wenn genug daten gesammelt -> verarbeiten
+        if (buffer.Count >= TargetSampleCount)
+        {
+            var fixedBlock = buffer.Take(TargetSampleCount).ToArray();
+            //Clear?
+            buffer.RemoveRange(0, TargetSampleCount);
+
+            AudioReceived?.Invoke(fixedBlock) ;
+        }
     }
 
     public Boolean IsMuted()

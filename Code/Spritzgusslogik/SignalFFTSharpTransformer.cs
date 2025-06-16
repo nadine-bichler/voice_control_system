@@ -21,9 +21,11 @@ namespace Spritzgusslogik
             Complex[] FFTBuffer = new Complex[sampleCount];
             for (int i = 0; i < sampleCount; i++)
             {
-                // short sample = BitConverter.ToInt16(signal, i * bytesPerSample);
+                //short sample = BitConverter.ToInt16(signal, i * bytesPerSample);
                 double normalized = signal[i] / 32768.0;
-                FFTBuffer[i] = new Complex(normalized, 0.0);
+                //Hamming-Fenster reduziert Rundartefakte = sanfte ein- und ausblendung
+                double window = 0.54 - 0.46 * Math.Cos(2 * Math.PI * i / (sampleCount - 1)); 
+                FFTBuffer[i] = new Complex(normalized * window, 0.0);
             }
 
             //tranform with FFT and get the Magnitude
