@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\Prototyp\Prototyp.csproj" />
     <ProjectReference Include="..\Spritzgusslogik\Spritzgusslogik.csproj" />
   </ItemGroup>

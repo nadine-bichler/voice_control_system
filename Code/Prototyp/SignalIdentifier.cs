@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Common;
-using NWaves.Utils;
 using Spritzgusslogik;
 
 namespace Prototyp
@@ -13,8 +12,7 @@ namespace Prototyp
     internal class SignalIdentifier
     {
         private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.75;
-        private Identify2 identify2 = new Identify2();
+        private readonly double threshold = 0.80;
 
         //Event declaration
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
@@ -23,13 +21,20 @@ namespace Prototyp
         {
             if (pcm == null || pcm.Length == 0)
                 return;
-           
 
-           //  float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
-            // var mfcc = audioConvert.MfccFromFloat(floatInput);
-            // int result = Identify.Recognize(mfcc, out double sim);
-            double[] fft = transformer.Transform(pcm);
-            int result = identify2.Recognize(fft, out double sim);
+            
+            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
+
+            if (audioConvert.IsSilent(floatInput))
+            {
+                Console.WriteLine("Stille");
+                return;
+            }
+
+            //float[] trimmed = audioConvert.ExtractLoudestRegion(floatInput);
+            var mfcc = audioConvert.MfccFromFloat(floatInput);
+
+            int result = Identify.Recognize(mfcc, out double sim);
 
             if (sim >= threshold)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));

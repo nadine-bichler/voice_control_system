@@ -2397,6 +2397,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "Common >= 1.0.0",
       "MSTest >= 3.6.4",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "Prototyp >= 1.0.0",
@@ -2435,6 +2436,9 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
+            "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj"
+            },
             "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
               "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Prototyp\\Prototyp.csproj"
             },

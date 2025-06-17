@@ -18,6 +18,8 @@ public class Microphone
     //damit Eingabe gleich groﬂ wie Samples
     private const int TargetSampleCount = SampleRate * 1;
     private List<short> buffer = new();
+
+
     public Microphone()
     {
         waveIn = new WaveInEvent
@@ -66,8 +68,8 @@ public class Microphone
         if (buffer.Count >= TargetSampleCount)
         {
             var fixedBlock = buffer.Take(TargetSampleCount).ToArray();
-            //Clear?
-            buffer.RemoveRange(0, TargetSampleCount);
+            buffer.Clear();
+            //buffer.RemoveRange(0, TargetSampleCount);
 
             AudioReceived?.Invoke(fixedBlock) ;
         }
