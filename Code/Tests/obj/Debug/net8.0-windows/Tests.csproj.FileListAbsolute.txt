@@ -382,3 +382,4 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows\ref\Tests.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
