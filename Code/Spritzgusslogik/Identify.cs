@@ -162,7 +162,7 @@ namespace Spritzgusslogik
             Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
 
             //Cosine & Pearson wichtig, euclidean nur ergänzend
-            return (0.45 * cosine) + (0.45 * pearson) + (0.1 * euclidean); //je höher desto besser
+            return (0.4 * cosine) + (0.5 * pearson) + (0.1 * euclidean); //je höher desto besser
         }
 
         //vergleicht input mit allen Ziffern und gibt erkannte Zahl zurück
