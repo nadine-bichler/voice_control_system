@@ -186,10 +186,10 @@ namespace Common
             return signal.Skip(bestStart).Take(windowSize).ToArray();
         }
 
-        public static bool IsSilent(float[] signal, float threshold = 0.1f)
+        public static bool IsSilent(float[] signal, float threshold = 0.02f)
         {
             float avg = signal.Select(x => Math.Abs(x)).Average();
-            return avg > threshold;
+            return avg < threshold;
         }
     }
 }

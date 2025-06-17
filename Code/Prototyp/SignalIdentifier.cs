@@ -12,7 +12,7 @@ namespace Prototyp
     internal class SignalIdentifier
     {
         private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.85;
+        private readonly double threshold = 0.80;
 
         //Event declaration
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
@@ -31,8 +31,9 @@ namespace Prototyp
                 return;
             }
 
-            float[] trimmed = audioConvert.ExtractLoudestRegion(floatInput);
-            var mfcc = audioConvert.MfccFromFloat(trimmed);
+            //float[] trimmed = audioConvert.ExtractLoudestRegion(floatInput);
+            var mfcc = audioConvert.MfccFromFloat(floatInput);
+
             int result = Identify.Recognize(mfcc, out double sim);
 
             if (sim >= threshold)
