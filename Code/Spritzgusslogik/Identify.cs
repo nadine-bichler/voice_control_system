@@ -18,7 +18,7 @@ namespace Spritzgusslogik
 
     public class Identify
     {
-        const int targetLength = 2048;
+        const int TargetLength = 2048;
 
         //Brauchen wir eig nicht mehr
         public static double PearsonCorrelation(Complex[] arrayA, Complex[] arrayB)

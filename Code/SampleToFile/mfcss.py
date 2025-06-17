@@ -13,9 +13,9 @@ input_folder = os.path.join(base_path, "WAV_samples")
 for filename in os.listdir(input_folder):                   #Schleife über alle Dateien im Eingabeordner
     if filename.endswith(".wav"):                           #nur WAV-Dateien verarbeiten
         file_path = os.path.join(input_folder, filename)    #vollständiger Pfad zur WAV-Datei erstellen  
-        y, sr = librosa.load(file_path, sr=16000)           #audio mit librosa laden (y = audio als numpy-Array, sr = samplingrate auf 10kHz)
+        y, sr = librosa.load(file_path, sr=44100)           #audio mit librosa laden (y = audio als numpy-Array, sr = samplingrate auf 10kHz)
 
-        mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=220) #MFCCs berechnen mit 220 Koeffizienten pro frame
+        mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13) #MFCCs berechnen mit 13 Koeffizienten pro frame
         mfcc_mean = np.mean(mfcc, axis=1)                   #arithmetisches mittel aller 220 werte
 
         output_path = os.path.join(input_folder, filename.replace(".wav", ".csv"))
