@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using Common;
+using NWaves.Utils;
 using Spritzgusslogik;
 
 namespace Prototyp
@@ -13,6 +14,7 @@ namespace Prototyp
     {
         private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
         private readonly double threshold = 0.75;
+        private Identify2 identify2 = new Identify2();
 
         //Event declaration
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
