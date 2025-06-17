@@ -9,7 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using Microsoft.VisualBasic;
 using Spritzgusslogik;
 
 namespace Prototyp
@@ -24,6 +24,13 @@ namespace Prototyp
         private SignalDrawer signalDrawer;
         private SignalGuiUpdater signalGuiUpdater;
         private History _history;
+        private SignalIdentifier identifier;
+
+
+        //Cooldown, um AudioWiederholung zu verhindern
+        TimeSpan minDelay = TimeSpan.FromSeconds(2);
+        DateTime lastRecognized = DateTime.MinValue;
+
 
         public MainWindow()
         {
@@ -33,8 +40,13 @@ namespace Prototyp
             signalDrawer = new SignalDrawer(PlotView);
             signalGuiUpdater = new SignalGuiUpdater(microphone, signalDrawer);
             _history = new History();
+            identifier = new SignalIdentifier();
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
+
+            identifier.DigitRecognized += OnDigitRecognized;
+
+            microphone.AudioReceived += OnAudioReceived;
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -68,10 +80,9 @@ namespace Prototyp
 
         public void UpdateCurrentCommand(int value, double confidence)
         {
-            _history.AddEntry(value);
-            AddToHistory();
+            AddToHistory(value);
             SetCurrentCommand(value);
-            SetCommandConfidence(confidence);
+            SetCommandConfidence(confidence * 100);
         }
 
         private void SetCurrentCommand(int value)
@@ -105,11 +116,10 @@ namespace Prototyp
             commandConfidence.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
         }
 
-        // TODO: Objektorientierte History einbauen
-        //EventHandler?
-        private void AddToHistory()
+        //
+        private void AddToHistory(int digit)
         {
-            var lastEntry = _history.entries.Last();
+            _history.AddEntry(digit);
             StackPanel horizontalPanel = new StackPanel
             {
                 Orientation = Orientation.Horizontal
@@ -117,7 +127,7 @@ namespace Prototyp
 
             TextBlock timeText = new TextBlock
             {
-                Text = lastEntry.time.ToString("HH:mm:ss"),
+                Text = _history.entries.Last().time.ToString("HH:mm:ss"),
                 FontSize = 16,
                 Foreground = Brushes.DimGray
             };
@@ -129,7 +139,7 @@ namespace Prototyp
 
             TextBlock valueText = new TextBlock
             {
-                Text = lastEntry.command.ToString(),
+                Text = digit.ToString(),
                 FontSize = 16,
                 FontWeight = FontWeights.SemiBold
             };
@@ -139,6 +149,22 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Insert(0, horizontalPanel);
+        }
+
+        private void OnAudioReceived(Int16[] pcm)
+        {
+            if ((DateTime.Now - lastRecognized) < minDelay) return;
+
+            identifier.Process(pcm);
+        }
+
+        private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
+        {
+            lastRecognized = DateTime.Now;
+            Dispatcher.Invoke(() =>
+            {
+                UpdateCurrentCommand(e.Digit, e.Confidence);
+            });
         }
     }
 }

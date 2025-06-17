@@ -12,7 +12,6 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinForms.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinMM.dll
-C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NDtw.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.AssemblyReference.cache
@@ -26,3 +25,6 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Common.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Common.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NWaves.dll

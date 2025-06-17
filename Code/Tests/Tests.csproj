@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Prototyp\Prototyp.csproj" />
-    <ProjectReference Include="..\SampleToFile\SampleToFile.csproj" />
     <ProjectReference Include="..\Spritzgusslogik\Spritzgusslogik.csproj" />
   </ItemGroup>
 

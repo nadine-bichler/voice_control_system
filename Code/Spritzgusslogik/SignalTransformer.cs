@@ -13,10 +13,6 @@ namespace Spritzgusslogik
 {
     public class SignalTransformer : IFFTTransformer
     {
-     
-     
-
-        // 
         public double[] Transform(Int16[] signal)
         {
             if (signal == null) throw new ArgumentNullException("SignalTransformer: Signal is Null!");
@@ -26,6 +22,7 @@ namespace Spritzgusslogik
             int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
                 int sampleCount = signal.Length / bytesPerSample;
 
+                //Brauchen wir nicht mehr?
                 // In Complex-Werte umwandeln (normalisiert auf [-1, 1])
                 Complex[] FFTBuffer = new Complex[sampleCount];
                 for (int i = 0; i < sampleCount; i++)

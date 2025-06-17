@@ -7,14 +7,19 @@ using System;
 using System.IO;
 using System.Runtime.Intrinsics;
 using FftSharp.Windows;
-using NDtw;
 using Complex = System.Numerics.Complex;
+using Common;
+
 
 
 namespace Spritzgusslogik
 {
+    //Diese Klasse ist für die Identifikation des Sprachbefehls verantwortlich
+
     public class Identify
     {
+        const int targetLength = 2048;
+
         //Brauchen wir eig nicht mehr
         public static double PearsonCorrelation(Complex[] arrayA, Complex[] arrayB)
         {
@@ -86,8 +91,15 @@ namespace Spritzgusslogik
         }
 
         //Richtungs-/Winkel-Sensitiv
+        //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
+        //Ergebnis von 0-1 (je höher desto besser)
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
+            if (arrayA.Length != arrayB.Length)
+            {
+                throw new ArgumentException("Arrays must be the same length");
+            }
+
             double dot = 0, normA = 0, normB = 0;
             for (int i = 0; i < arrayA.Length; i++)
             {
@@ -101,6 +113,8 @@ namespace Spritzgusslogik
         }
 
         //Absoluter-Abstand-Sensitiv
+        //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
+        //Ergebnis mit Zahlen (je näher an 0 desto besser)
         public static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0;
@@ -110,6 +124,8 @@ namespace Spritzgusslogik
         }
 
         //Lineare-Korrelation-Sensitiv
+        //liefert absolute Abweichung, sensibel auf Störgeräusche!!!
+        //Ergebnis von -1 - 1 (Je näher an 1 desto besser)
         public static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
@@ -131,8 +147,14 @@ namespace Spritzgusslogik
             return numerator / Math.Sqrt(denomA * denomB);
         }
 
-        public static double compare(double[] a, double[] b)
+        //Zusammenfügen aller Compare-Methoden
+        public static double Compare(double[] a, double[] b)
         {
+            int aLength = a.Length;
+            int bLength = b.Length;
+            //Normiere Längen der Eingaben
+            //audioConvert.NormalizeLength(ref a, ref b);
+
             double cosine = CosineSimilarity(a, b);
             double pearson = (PearsonCorrelation(a, b) + 1) / 2;
             double euclidean = 1.0 / (1.0 + EuclideanDistance(a, b)); // Abstand zu Ähnlichkeit
@@ -141,6 +163,40 @@ namespace Spritzgusslogik
 
             //Cosine & Pearson wichtig, euclidean nur ergänzend
             return (0.45 * cosine) + (0.45 * pearson) + (0.1 * euclidean); //je höher desto besser
+        }
+
+        //vergleicht input mit allen Ziffern und gibt erkannte Zahl zurück
+        public static int Recognize(double[] input, out double bestSimilarity)
+        {
+            var bestMatch = -1;
+            bestSimilarity = 0.0;
+
+            for (int i = 1; i <= 9; i++)
+            {
+                var scores = new List<double>(); //Liste aller Gewichtungen der Referenzdaten
+
+                var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
+
+                var files = Directory.GetFiles(basePath, $"*{i}.csv");
+
+                foreach (var file in files)
+                {
+                    var test = audioConvert.LoadDoubleArrayCSV(file);
+                    var sim = Compare(input, test);
+                    scores.Add(sim); //Wert in Liste einfügen
+                }
+
+                if (scores.Count == 0) continue;
+
+                var avgScore = scores.Average(); //Durchschnitt aller Listenwerte ermitteln
+
+                if (avgScore > bestSimilarity)
+                {
+                    bestSimilarity = avgScore;
+                    bestMatch = i;
+                }
+            }
+            return bestMatch;
         }
     }
 }

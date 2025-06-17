@@ -12,9 +12,11 @@ namespace Spritzgusslogik
     {
         public readonly List<HistoryEntry> entries = new();
 
-        public void AddEntry(int command)
+        public HistoryEntry AddEntry(int command)
         {
-            entries.Add(new HistoryEntry(command));
+            var entry = new HistoryEntry(command);
+            entries.Add(entry);
+            return entry;
         }
     }
 }
