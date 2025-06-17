@@ -26,7 +26,7 @@ public class Microphone
         {
             DeviceNumber = 0,
             WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
-            BufferMilliseconds = 20
+            BufferMilliseconds = 30
         };
         waveIn.DataAvailable += WaveIn_DataAvailable;
     }
