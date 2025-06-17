@@ -22,10 +22,10 @@ namespace Prototyp
             if (pcm == null || pcm.Length == 0)
                 return;
 
-            var features = transformer.Transform(pcm);
-            //float[] floatInput = features.Select(x => (float)x).ToArray();
-            //var mfcc = audioConvert.MfccFromDouble(floatInput);
-            int result = Identify.Recognize(features, out double sim);
+            
+            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
+            var mfcc = audioConvert.MfccFromFloat(floatInput);
+            int result = Identify.Recognize(mfcc, out double sim);
 
             if (sim >= threshold)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));

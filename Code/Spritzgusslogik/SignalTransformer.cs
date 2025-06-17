@@ -19,8 +19,8 @@ namespace Spritzgusslogik
 
 
             // Audiodaten im Byte-Array signal verarbeiten
-            int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
-                int sampleCount = signal.Length / bytesPerSample;
+           // int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
+            int sampleCount = signal.Length;// / bytesPerSample;
 
                 //Brauchen wir nicht mehr?
                 // In Complex-Werte umwandeln (normalisiert auf [-1, 1])

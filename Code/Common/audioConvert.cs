@@ -125,13 +125,13 @@ namespace Common
                 .ToArray();
         }
 
-        public static double[] MfccFromDouble(float[] input, int inputRate = 16000)
+        public static double[] MfccFromFloat(float[] input, int sampleRate = 44100)
         {
-            var signal = new DiscreteSignal(inputRate, input);
+            var signal = new DiscreteSignal(sampleRate, input);
 
             var mfccOptions = new MfccOptions
             {
-                SamplingRate = inputRate,
+                SamplingRate = sampleRate,
                 FeatureCount = 13,               // wie in deinem Python-Code
                 FrameDuration = 0.025,           // 25ms Frames
                 HopDuration = 0.01,              // 10ms Schrittweite
