@@ -81,7 +81,7 @@ public class TestIdentify
     public void TestRecognize(int expectedDigit)
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");   
-        var referencePath = Path.Combine(basePath, $"Test{expectedDigit}.csv");
+        var referencePath = Path.Combine(basePath, $"{expectedDigit}.csv");
         var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
 
         var result = Identify.Recognize(reference, out double similarity);

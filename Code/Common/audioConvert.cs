@@ -162,6 +162,35 @@ namespace Common
 
             return meanVector;
         }
+
+        public static float[] ExtractLoudestRegion(float[] signal, int windowSize = 2048, int stride = 512)
+        {
+            int bestStart = 0;
+            float maxEnergy = 0;
+
+            for(int i = 0; i < signal.Length - windowSize; i += stride)
+            {
+                float energy = 0;
+                for (int j = 0; j < windowSize; j++)
+                {
+                    energy += signal[i + j] * signal[i + j];
+                }
+
+                if (energy > maxEnergy)
+                {
+                    maxEnergy = energy;
+                    bestStart = i;
+                }
+            }
+
+            return signal.Skip(bestStart).Take(windowSize).ToArray();
+        }
+
+        public static bool IsSilent(float[] signal, float threshold = 0.1f)
+        {
+            float avg = signal.Select(x => Math.Abs(x)).Average();
+            return avg > threshold;
+        }
     }
 }
 
