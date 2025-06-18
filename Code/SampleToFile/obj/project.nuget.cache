@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6mh/9OlE8XznL4Le0YNXP73oWZnXm06oHcR88PPb+KXbx0KbskcqU31EQGf1uSbzI424ORii+asddNMVt4ee2Q==",
+  "dgSpecHash": "1FcvKRBTysud9V7RmjTuB/T8kV7f93WFGYCz5F1iue1gmo8hjLe05bct8dJQrmYbiwDsA8q3w61x+qeJFJqznA==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\donar\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

@@ -10,6 +10,8 @@ using System.Windows.Shapes;
 using Path = System.IO.Path;
 using Debug = System.Diagnostics.Debug;
 using MathNet.Numerics.LinearAlgebra;
+using Accord.Math.Distances;
+using Accord.Math.Metrics;
 
 namespace Spritzgusslogik
 {
@@ -89,63 +91,99 @@ namespace Spritzgusslogik
         }
 
 
-        public int Recognize(double[] input, out double bestSimilarity)
+        // Führt einen Bitmuster-Vergleich zwischen den Referenzdaten und dem aktuellen Eingabesignal durch.
+        // Die Befehle werden leider trotzdem nicht richtig erkannt.
+        public int Recognize(double[] rawInput, out double bestSimilarity)
         {
-            if (input == null) throw new ArgumentNullException(" Input is NULL!!");
 
-            double[] mfcc = ConvertFftToMfcc(input);
+            Debug.WriteLine("References: " + referenceData[1].Count);
+
+
+
+            if (rawInput == null) throw new ArgumentNullException(" Input is NULL!!");
+
+             var input = NormalizeMax(rawInput);
+
+           // double[] mfcc = rawInput;// ConvertFftToMfcc(rawInput);
             int bestCmd = -1;
             bestSimilarity = 0.0;
 
             double bestDist = double.MaxValue;
 
             // Schwellwert bestimmen (z. B. 10% vom Maximum)
-            double threshold = 1e-7;
+            double threshold = 0.03;//1e-7;
 
-            double normFactor = mfcc.Max();
+            /*double normFactor = mfcc.Max();
             if (normFactor > 0)
-                mfcc = mfcc.Select(x => x / normFactor).ToArray();
+                mfcc = mfcc.Select(x => x / normFactor).ToArray();*/
+           /// var mfccN = NormalizeMax(mfcc);
 
             // Eingabespektrum in Bitmuster wandeln
-            bool[] inputBits = mfcc.Select(x => x > threshold).ToArray();
-            Debug.WriteLine("FFT Input: " + string.Join(", ", mfcc.Take(10)));
-            Debug.WriteLine("Max: " + mfcc.Max());
-            Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
-            foreach (var kv in referenceData)
+            bool[] inputBits = input.Select(x => x > threshold).ToArray();
+            Debug.WriteLine("FFT Input: " + string.Join(", ", input.Take(10)));
+           // Debug.WriteLine("Max: " + mfcc.Max());
+           // Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
+            
+            for (var kv = 1; kv < 10; kv++ )
             {
+                double avgSim = 0.0;
+                int c = 0;
                 //int cmd = kv.Key;
-                foreach (var refVec in kv.Value)
+                foreach (var rawRefVec in referenceData[kv])
                 {
-                    Debug.WriteLine("Länge: refVec: " + refVec.Length + " Input: " + mfcc.Length);
-                    if (refVec.Length != mfcc.Length)
+                   // Debug.WriteLine("Länge: refVec: " + rawRefVec.Length + " Input: " + mfcc.Length);
+                    if (rawRefVec.Length != input.Length)
                         continue; // Optional: Mit DTW vergleichen, wenn Längen verschieden
 
-                    // double dist = EuclideanDistance(mfcc, refVec);
+                    
+                    var refVec = NormalizeMax(rawRefVec);
+                    // Referenz in Bitmuster wandeln
+                       bool[] refBits = refVec.Select(x => x > threshold).ToArray();
 
-                      // Referenz in Bitmuster wandeln
-                      bool[] refBits = refVec.Select(x => x > threshold).ToArray();
-
-                      int same = 0;
-                      for (int i = 0; i < inputBits.Length; i++)
-                      {
-                          if (inputBits[i] == refBits[i])
-                              same++;
-                      }
+                     int same = 0;
+                     for (int i = 0; i < inputBits.Length; i++)
+                     {
+                         if (inputBits[i] == refBits[i])
+                             same++;
+                     }
 
 
-                    double similarity = (double)same / inputBits.Length;
-                    if (similarity > bestSimilarity)
-                    {
-                        bestSimilarity = similarity;
-                        bestCmd = kv.Key;
-                    }
+
+
+
+
+               
+
+                   // double similarity = (double) same / inputBits.Length;
+
+                    // double simCosine = CosineSimilarity(refVec, mfccN);
+                   //  double dist = EuclideanDistance(mfcc, refVec);
+                  //    double simHybrid = 0.5  * similarity + 0.5 * simCosine;
+                  
+                  var simHybrid = (double)same/ refBits.Length;
+                    avgSim += simHybrid;
+                    c++;
+                   
+                    
+                }
+
+                avgSim /= c;
+                Debug.WriteLine("Sim: " + avgSim + " bei Key: " + kv);
+                if (avgSim > bestSimilarity)
+                {
+                    bestSimilarity = avgSim;
+                    bestCmd = kv;
+                    Debug.WriteLine("Best Command: " + bestCmd + " Best Similarity: " + bestSimilarity);
+                    // Debug.WriteLine("Reference Daten: " + string.Join(", ", refVec.Take(10)) + "\n Input Daten: " + string.Join(", ", mfccN.Take(10)));
+
                 }
             }
 
             // Ähnlichkeit aus Abstand berechnen (normalisiert auf 0.0 bis 1.0)
             // Annahme: dist = 0 bedeutet perfekt ähnlich, große dist = unähnlich
-           // bestSimilarity = 1.0 / (1.0 + bestDist); // z.B. dist=0 => sim=1.0, dist=9 => sim~0.1
-
+            // bestSimilarity = 1.0 / (1.0 + bestDist); // z.B. dist=0 => sim=1.0, dist=9 => sim~0.1
+            //var d = referenceData[bestCmd];
+            
             return bestCmd;
         }
 
@@ -224,6 +262,74 @@ namespace Spritzgusslogik
 
         }
 
+        private double[] NormalizeMax(double[] v)
+        {
+            double m = v.Select(x => Math.Abs(x)).DefaultIfEmpty(0).Max();
+            if (m <= 0) return v;
+            return v.Select(x => x / m).ToArray();
         }
+
+
+        double ComputeItakuraSaito(double[] X, double[] Y)
+        {
+            double sum = 0;
+            for (int i = 0; i < X.Length; i++)
+            {
+                if (Y[i] == 0) return double.PositiveInfinity;
+                double r = X[i] / Y[i];
+                if (r <= 0 || double.IsNaN(r))  return double.PositiveInfinity;
+                sum += r - Math.Log(r) - 1;
+            }
+            return sum;
+        }
+
+        // Levinson-Durbin Algorithmus zur Berechnung der LPC-Koeffizienten
+        public static double[] ComputeLPC(double[] signal, int order)
+        {
+            int n = signal.Length;
+            double[] autocorr = new double[order + 1];
+
+            // Autokorrelation berechnen
+            for (int i = 0; i <= order; i++)
+            {
+                for (int j = 0; j < n - i; j++)
+                {
+                    autocorr[i] += signal[j] * signal[j + i];
+                }
+            }
+
+            double[] a = new double[order + 1];
+            double[] e = new double[order + 1];
+            double[] k = new double[order + 1];
+
+            a[0] = 1.0;
+            e[0] = autocorr[0];
+
+            for (int i = 1; i <= order; i++)
+            {
+                double sum = 0.0;
+                for (int j = 1; j < i; j++)
+                {
+                    sum += a[j] * autocorr[i - j];
+                }
+
+                k[i] = (autocorr[i] - sum) / e[i - 1];
+                a[i] = k[i];
+
+                for (int j = 1; j < i; j++)
+                {
+                    a[j] = a[j] - k[i] * a[i - j];
+                }
+
+                e[i] = e[i - 1] * (1.0 - k[i] * k[i]);
+            }
+
+            // Nur die Koeffizienten zurückgeben (ohne a[0])
+            double[] result = new double[order];
+            Array.Copy(a, 1, result, 0, order);
+            return result;
+        }
+
+    }
 }
 

@@ -201,6 +201,14 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
+            "Accord": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
+            "Accord.Math": {
+              "target": "Package",
+              "version": "[3.8.0, )"
+            },
             "FftSharp": {
               "target": "Package",
               "version": "[2.2.0, )"

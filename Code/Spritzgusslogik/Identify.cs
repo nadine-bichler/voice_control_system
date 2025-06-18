@@ -9,6 +9,7 @@ using System.Runtime.Intrinsics;
 using FftSharp.Windows;
 using Complex = System.Numerics.Complex;
 using Common;
+using System.Diagnostics;
 
 
 
@@ -194,6 +195,10 @@ namespace Spritzgusslogik
                 {
                     bestSimilarity = avgScore;
                     bestMatch = i;
+                    //Ausgabe. Console.WriteLine() funktioniert nicht deswegen Debug.WriteLine().
+                    //Wenn das Programm in Debug Mode ausgeführt wird, wird das unten in Output Window ausgegeben.
+                    var d = audioConvert.LoadDoubleArrayCSV(files[0]);
+                    Debug.WriteLine("Reference Daten: " + string.Join(", ", d.Take(10)) + "\n Input Daten: " + string.Join(", ", input.Take(10)));
                 }
             }
             return bestMatch;

@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "JT/Q/SGCq1WU8/IBe6R6X3BdfYcp/gs1DoA99qAEP8r4YO8n6f7Q2EAJ17fwywcEeHRFz4Fl68kn1EbdcwWdNw==",
+  "dgSpecHash": "hHFSwv97iBJrehojaqTawSQGn7I4Fdwd+3/WLbDfE6r2W4/6yiC1Xctm6iEP3MtpDJXdi+uZIRRorMJeaPZL9A==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\donar\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.applicationinsights\\2.22.0\\microsoft.applicationinsights.2.22.0.nupkg.sha512",
