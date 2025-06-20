@@ -155,7 +155,18 @@ namespace Prototyp
         {
             if ((DateTime.Now - lastRecognized) < minDelay) return;
 
-            identifier.Process(pcm);
+            Task.Run(() =>
+            {
+                try
+                {
+                    identifier.Recognition(pcm);
+                }
+                catch (Exception e)
+                {
+                        Console.WriteLine(e);
+                }
+                { }
+            });
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
