@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.Marshalling;
+﻿using System.Diagnostics;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -44,9 +45,11 @@ namespace Prototyp
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
 
-            identifier.DigitRecognized += OnDigitRecognized;
-
-            microphone.AudioReceived += OnAudioReceived;
+            microphone.AudioReceived += (s, pcm) => identifier.Enqueue(pcm);
+            identifier.DigitRecognized += (s, args) =>
+            {
+                Debug.WriteLine($"Digit recognized: {args.Digit}, Confidence: {args.Confidence}");
+            };
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -149,24 +152,6 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Insert(0, horizontalPanel);
-        }
-
-        private void OnAudioReceived(Int16[] pcm)
-        {
-            if ((DateTime.Now - lastRecognized) < minDelay) return;
-
-            Task.Run(() =>
-            {
-                try
-                {
-                    identifier.Recognition(pcm);
-                }
-                catch (Exception e)
-                {
-                        Console.WriteLine(e);
-                }
-                { }
-            });
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
