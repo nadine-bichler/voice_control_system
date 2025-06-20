@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
@@ -12,7 +12,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using Spritzgusslogik;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Prototyp
 {
@@ -33,13 +32,6 @@ namespace Prototyp
         TimeSpan minDelay = TimeSpan.FromSeconds(2);
         DateTime lastRecognized = DateTime.MinValue;
 
-        List<short> pcmBuffer = new();       // sammelt Audioblöcke
-        bool isSpeaking = false;             // merkt ob jemand gerade spricht
-        DateTime lastVoiceTime;              // wann war zuletzt ein starker Ton
-        readonly TimeSpan maxSilence = TimeSpan.FromMilliseconds(800); // Ende wenn länger still
-        readonly double voiceThreshold = 300; // Pegel für Stimme (anpassbar)
-        readonly int minSamples = 2048;       // Mindestlänge für Analyse
-
 
         public MainWindow()
         {
@@ -53,9 +45,11 @@ namespace Prototyp
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
 
-            identifier.DigitRecognized += OnDigitRecognized;
-
-            microphone.AudioReceived += OnAudioReceived;
+            microphone.AudioReceived += (s, pcm) => identifier.Enqueue(pcm);
+            identifier.DigitRecognized += (s, args) =>
+            {
+                Debug.WriteLine($"Digit recognized: {args.Digit}, Confidence: {args.Confidence}");
+            };
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -158,59 +152,6 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Insert(0, horizontalPanel);
-        }
-
-        private void OnAudioReceived(Int16[] pcm)
-        {
-            if ((DateTime.Now - lastRecognized) < minDelay) return;
-
-            // identifier.Process(pcm);
-
-
-            // Erkennt automatisch den Anfang und das Ende eines Sprachbefehls im Live-Audiostream.
-            // Falls ihr diese Funktionalität bereits an anderer Stelle implementiert habt, könnt ihr diesen Codeabschnitt löschen.
-            short[] chunk = pcm;
-                double sum = 0;
-            for (int i = 0; i < chunk.Length; i++)
-            {
-                sum += Math.Abs(chunk[i]);
-            }
-
-                    double avgVolume = sum / chunk.Length;
- 
-
-                if (avgVolume > voiceThreshold)
-                 {
-                if (!isSpeaking)
-                 {
-                   isSpeaking = true;
-                      pcmBuffer.Clear(); // Start neuer Sprachbefehl
-                 }
-
-                 pcmBuffer.AddRange(chunk);
-                lastVoiceTime = DateTime.Now;
- }
-            else if (isSpeaking)
-            {
-             // war Sprache, jetzt vielleicht still
-             pcmBuffer.AddRange(chunk);
-
-            if ((DateTime.Now - lastVoiceTime) > maxSilence)
-            {
-              isSpeaking = false;
-            if (pcmBuffer.Count >= minSamples)
-              identifier.Process(pcmBuffer.ToArray());
-                 pcmBuffer.Clear();
-        }
- }
-
- 
-
-
-
-
-
-
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)

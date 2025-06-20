@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic;
 using System.Globalization;
 using System.Numerics;
 using System.Globalization;
@@ -190,6 +191,32 @@ namespace Common
         {
             float avg = signal.Select(x => Math.Abs(x)).Average();
             return avg < threshold;
+        }
+
+        public static float[] SilenceTrimmer(float[] signal, float threshold = 0.02f)
+        {
+            int start = 0;
+            int end = signal.Length - 1;
+
+            while (start < signal.Length && Math.Abs(signal[start]) < threshold)
+            {
+                start++;
+            }
+
+            while (end > start && Math.Abs(signal[end]) < threshold)
+            {
+                end--;
+            }
+
+            int length = end - start + 1;
+            if (length > 0)
+            {
+                return signal[start..(end + 1)];
+            }
+            else
+            {
+                return Array.Empty<float>();
+            }
         }
     }
 }

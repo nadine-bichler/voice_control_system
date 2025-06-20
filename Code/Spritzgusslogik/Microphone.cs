@@ -1,98 +1,126 @@
+Ôªøusing NAudio.Wave;
+using NAudio.CoreAudioApi;
+using System;
+using System.Timers;
 
-using NAudio.Wave;
-
-namespace Spritzgusslogik;
-
-
-//Diese Klasse speichert die Audiodaten der Aufnahme in ein int16-Array
-
-public class Microphone
+namespace Spritzgusslogik
 {
-    public const int SampleRate = 44100;
-
-    private WaveInEvent waveIn;
-    private Int16[] values;
-
-    private Boolean muted = true;
-
-    //damit Eingabe gleich groﬂ wie Samples
-    private const int TargetSampleCount = SampleRate * 1;
-    private List<short> buffer = new();
-
-
-    public Microphone()
+    public class Microphone
     {
-        waveIn = new WaveInEvent
+        public const int SampleRate = 44100;
+
+        private WasapiCapture? capture;
+        private WaveFileWriter? writer;
+        private bool muted = true;
+
+        private short[]? lastAudioData;
+
+        private const int BufferSize = SampleRate / 2; // 0.5 Sekunden
+        private short[] audioBuffer = new short[BufferSize];
+        private int writePos = 0;
+        private int samplesInBuffer = 0;
+
+        // Event to notify when new audio data is available
+        public event EventHandler<short[]>? AudioReceived;
+
+        public Microphone()
         {
-            DeviceNumber = 0,
-            WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
-            BufferMilliseconds = 20
-        };
-        waveIn.DataAvailable += WaveIn_DataAvailable;
-    }
+            try
+            {
+                var device = new MMDeviceEnumerator().GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
 
-    public void Start()
-    {
-        try
-        {
-            waveIn.StartRecording();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
-        }
-        //waveIn.StartRecording();
-        muted = false;
-    }
+                capture = new WasapiCapture(device)
+                {
+                    WaveFormat = new WaveFormat(SampleRate, 1) // Mono, 16-bit
+                };
 
-    public void Stop()
-    {
-        waveIn.StopRecording();
-        muted = true;
-    }
+                System.Diagnostics.Debug.WriteLine($"Capture Format: {capture.WaveFormat.Encoding}, {capture.WaveFormat.BitsPerSample} bit, {capture.WaveFormat.SampleRate} Hz, {capture.WaveFormat.Channels} Kanal(e)");
 
-
-    //Benachrichtigung sobald neue Audiodatei
-    //EventHandler
-    public event Action<Int16[]>? AudioReceived;
-
-    void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
-    {
-        values = new Int16[e.Buffer.Length / 2];
-        Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
-
-        //neue samples anh‰ngen
-        buffer.AddRange(values);
-
-        //wenn genug daten gesammelt -> verarbeiten
-        if (buffer.Count >= TargetSampleCount)
-        {
-            var fixedBlock = buffer.Take(TargetSampleCount).ToArray();
-            buffer.Clear();
-            //buffer.RemoveRange(0, TargetSampleCount);
-
-            AudioReceived?.Invoke(fixedBlock) ;
-        }
-    }
-
-    public Boolean IsMuted()
-    {
-        return muted;
-    }
-
-    public String GetStandardMicrophoneName()
-    {
-        if (WaveIn.DeviceCount == 0)
-        {
-            return "No microphone found";
+                capture.DataAvailable += OnDataAvailable;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Initialisieren des Mikrofons: " + ex.Message);
+            }
         }
 
-        var caps = WaveIn.GetCapabilities(0);
-        return caps.ProductName;
-    }
+        public void Start()
+        {
+            if (capture == null) return;
 
-    public Int16[] GetValues()
-    {
-        return values;
+            try
+            {
+                capture.StartRecording();
+                muted = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
+            }
+        }
+
+        public void Stop()
+        {
+            if (!muted && capture != null)
+            {
+                capture.StopRecording(); // Triggert OnRecordingStopped
+                muted = true;
+            }
+        }
+
+        private void OnDataAvailable(object? sender, WaveInEventArgs e)
+        {
+            int samples = e.BytesRecorded / 2;
+            short[] chunk = new short[samples];
+            Buffer.BlockCopy(e.Buffer, 0, chunk, 0, e.BytesRecorded);
+
+            // Schreibe Samples in Ringpuffer
+            for (int i = 0; i < samples; i++)
+            {
+                audioBuffer[writePos] = chunk[i];
+                writePos = (writePos + 1) % BufferSize;
+            }
+
+            samplesInBuffer = Math.Min(samplesInBuffer + samples, BufferSize);
+
+            if (samplesInBuffer == BufferSize)
+            {
+                // Voller Puffer, sende 2 Sekunden Audio raus
+                short[] output = new short[BufferSize];
+
+                // Kopiere in korrekter Reihenfolge aus Ringpuffer
+                int startPos = (writePos) % BufferSize;
+                int firstPartLen = BufferSize - startPos;
+
+                Array.Copy(audioBuffer, startPos, output, 0, firstPartLen);
+                if (startPos > 0)
+                    Array.Copy(audioBuffer, 0, output, firstPartLen, startPos);
+
+                AudioReceived?.Invoke(this, output);
+            }
+        }
+
+        public bool IsMuted()
+        {
+            return muted;
+        }
+
+        public string GetStandardMicrophoneName()
+        {
+            try
+            {
+                var device = new MMDeviceEnumerator().GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
+                return device.FriendlyName;
+            }
+            catch
+            {
+                return "Kein Mikrofon gefunden";
+            }
+        }
+
+        public short[]? GetValues()
+        {
+            return lastAudioData;
+        }
     }
 }
