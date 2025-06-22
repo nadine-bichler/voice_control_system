@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.Marshalling;
+﻿using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using Spritzgusslogik;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Prototyp
 {
@@ -30,6 +32,13 @@ namespace Prototyp
         //Cooldown, um AudioWiederholung zu verhindern
         TimeSpan minDelay = TimeSpan.FromSeconds(2);
         DateTime lastRecognized = DateTime.MinValue;
+
+        List<short> pcmBuffer = new();       // sammelt Audioblöcke
+        bool isSpeaking = false;             // merkt ob jemand gerade spricht
+        DateTime lastVoiceTime;              // wann war zuletzt ein starker Ton
+        readonly TimeSpan maxSilence = TimeSpan.FromMilliseconds(800); // Ende wenn länger still
+        readonly double voiceThreshold = 300; // Pegel für Stimme (anpassbar)
+        readonly int minSamples = 2048;       // Mindestlänge für Analyse
 
 
         public MainWindow()
@@ -155,18 +164,7 @@ namespace Prototyp
         {
             if ((DateTime.Now - lastRecognized) < minDelay) return;
 
-            Task.Run(() =>
-            {
-                try
-                {
-                    identifier.Recognition(pcm);
-                }
-                catch (Exception e)
-                {
-                        Console.WriteLine(e);
-                }
-                { }
-            });
+            identifier.Process(pcm);
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
