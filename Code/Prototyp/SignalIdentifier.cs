@@ -13,7 +13,7 @@ namespace Prototyp
     internal class SignalIdentifier
     {
         private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.80;
+        private readonly double threshold = 0.60;
 
         //Event declaration
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
@@ -23,8 +23,9 @@ namespace Prototyp
             if (pcm == null || pcm.Length == 0)
                 return;
 
-            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
+            audioConvert.SavePcmAsWav(pcm, "input_temp.wav");
 
+            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
 
             if (floatInput.Length < 200)  // z. B. zu kurz
             {

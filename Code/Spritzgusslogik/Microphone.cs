@@ -18,7 +18,7 @@ namespace Spritzgusslogik
 
 
         //dynamische Spracherkennung
-        private const float VoiceStartThreshold = 0.025f; // Lautstaerkeschwelle zum Start
+        private const float VoiceStartThreshold = 0.02f; // Lautstaerkeschwelle zum Start
         private const float VoiceEndThreshold = 0.015f; // Lautstaerkeschwelle zum Stoppen
         private const int SilenceDurationMs = 500; // Zeit ohne Stimme, bis gestoppt wird
 

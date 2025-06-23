@@ -5,7 +5,23 @@ import soundfile as sf
 from scipy.signal import butter, lfilter
 import csv
 
-def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
+# Fix fuer numba/librosa Caching-Probleme in geschaetzten Ordnern
+os.environ["NUMBA_CACHE_DIR"] = os.path.join(os.getcwd(), "numba_cache")
+
+def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):
+    y, sr = librosa.load(file_path, sr=sr)
+    y = bandpass(y)
+    if np.max(np.abs(y)) > 0:
+        y = y / np.max(np.abs(y))
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
+ 
+    mfcc_mean = np.mean(mfcc, axis=1)
+    mfcc_std = np.std(mfcc, axis=1)
+    mfcc_vector = np.concatenate([mfcc_mean, mfcc_std])  # 26-dim statt 12
+
+    return mfcc_vector
+
+def bandpass(signal, sr = 44100, lowcut = 500.0, highcut = 3000.0, order = 6):
     nyquist = 0.5 * sr
     low = lowcut / nyquist
     high = highcut / nyquist
@@ -21,24 +37,14 @@ input_folder = os.path.join(base_path, "WAV_samples")
 
 
 for filename in os.listdir(input_folder):                   #Schleife über alle Dateien im Eingabeordner
-    print("in python script")
     if filename.endswith(".wav"):                           #nur WAV-Dateien verarbeiten
         file_path = os.path.join(input_folder, filename)    #vollständiger Pfad zur WAV-Datei erstellen  
-        y, sr = librosa.load(file_path, sr=44100)           #audio mit librosa laden (y = audio als numpy-Array, sr = samplingrate auf 10kHz)
-
-        y = bandpass(y)
-
-        if np.max(np.abs(y)) > 0:
-            y = y / np.max(np.abs(y))
-
-        mfcc = librosa.feature.mfcc(y=y, sr=44100, n_mfcc=13) #MFCCs berechnen mit 13 Koeffizienten pro frame
-        mfcc = mfcc[1:, :]  # Ignoriere die erste Zeile
-        mfcc_mean = np.mean(mfcc, axis=1)                   #arithmetisches mittel aller 220 werte
+        mfcc_vector=extract_mfcc_from_wav(file_path)
 
         output_path = os.path.join(input_folder, filename.replace(".wav", ".csv"))
         #in csv-datei schreiben
         with open(output_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(mfcc_mean)                           
+            writer.writerow(mfcc_vector)                           
         #bestätigungsausgabe
         print(f"Exported {output_path}")

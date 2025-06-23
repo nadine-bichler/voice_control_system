@@ -14,17 +14,19 @@ def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):
     if np.max(np.abs(y)) > 0:
         y = y / np.max(np.abs(y))
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
-    mfcc = mfcc[1:, :]  # Ignoriere die erste Zeile
+ 
     mfcc_mean = np.mean(mfcc, axis=1)
-    print("y shape:", y.shape, "sr:", sr)
-    return mfcc_mean
+    mfcc_std = np.std(mfcc, axis=1)
+    mfcc_vector = np.concatenate([mfcc_mean, mfcc_std])  # 26-dim statt 12
+
+    return mfcc_vector
 
 def save_mfcc_to_csv(mfcc_vector, output_path="mfcc_vector.csv"):
     with open(output_path, "w", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(mfcc_vector)
 
-def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
+def bandpass(signal, sr = 44100, lowcut = 500.0, highcut = 3000.0, order = 6):
     nyquist = 0.5 * sr
     low = lowcut / nyquist
     high = highcut / nyquist

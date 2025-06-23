@@ -93,61 +93,62 @@ namespace Spritzgusslogik
 
         // Führt einen Bitmuster-Vergleich zwischen den Referenzdaten und dem aktuellen Eingabesignal durch.
         // Die Befehle werden leider trotzdem nicht richtig erkannt.
-        public int Recognize(Int16[] rawInput, out double bestSimilarity)
-        {
-            SignalFFTSharpTransformer st = new SignalFFTSharpTransformer();
+        
+        //public int Recognize(Int16[] rawInput, out double bestSimilarity)
+        //{
+        //    SignalFFTSharpTransformer st = new SignalFFTSharpTransformer();
 
-            Debug.WriteLine("References: " + referenceData[1].Count);
+        //    Debug.WriteLine("References: " + referenceData[1].Count);
 
 
 
-            if (rawInput == null) throw new ArgumentNullException(" Input is NULL!!");
+        //    if (rawInput == null) throw new ArgumentNullException(" Input is NULL!!");
 
-            //var inpT = st.Transform(rawInput);
-             //var input = NormalizeMax(inpT);
-            float[] floatInput = rawInput.Select(x => x / 32768f).ToArray();
-            double[] mfcc = audioConvert.MfccFromFloat(floatInput);
-            int bestCmd = -1;
-            bestSimilarity = 0.0;
+        //    //var inpT = st.Transform(rawInput);
+        //     //var input = NormalizeMax(inpT);
+        //    float[] floatInput = rawInput.Select(x => x / 32768f).ToArray();
+        //    double[] mfcc = audioConvert.MfccFromFloat(floatInput);
+        //    int bestCmd = -1;
+        //    bestSimilarity = 0.0;
 
-            double bestDist = double.MaxValue;
+        //    double bestDist = double.MaxValue;
 
-            // Schwellwert bestimmen (z. B. 10% vom Maximum)
-            double threshold = 0.03;//1e-7;
+        //    // Schwellwert bestimmen (z. B. 10% vom Maximum)
+        //    double threshold = 0.03;//1e-7;
 
-            /*double normFactor = mfcc.Max();
-            if (normFactor > 0)
-                mfcc = mfcc.Select(x => x / normFactor).ToArray();*/
-          var mfccN = NormalizeMax(mfcc);
+        //    /*double normFactor = mfcc.Max();
+        //    if (normFactor > 0)
+        //        mfcc = mfcc.Select(x => x / normFactor).ToArray();*/
+        //  var mfccN = NormalizeMax(mfcc);
 
-            // Eingabespektrum in Bitmuster wandeln
-            bool[] inputBits = mfccN.Select(x => x > threshold).ToArray();
-            Debug.WriteLine("FFT Input: " + string.Join(", ", mfccN.Take(10)));
-           // Debug.WriteLine("Max: " + mfcc.Max());
-           // Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
+        //    // Eingabespektrum in Bitmuster wandeln
+        //    bool[] inputBits = mfccN.Select(x => x > threshold).ToArray();
+        //    Debug.WriteLine("FFT Input: " + string.Join(", ", mfccN.Take(10)));
+        //   // Debug.WriteLine("Max: " + mfcc.Max());
+        //   // Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
             
-            for (var kv = 1; kv < 10; kv++ )
-            {
-                double avgSim = 0.0;
-                int c = 0;
-                //int cmd = kv.Key;
-                foreach (var rawRefVec in referenceData[kv])
-                {
-                   // Debug.WriteLine("Länge: refVec: " + rawRefVec.Length + " Input: " + mfcc.Length);
-                    if (rawRefVec.Length != mfccN.Length)
-                        continue; // Optional: Mit DTW vergleichen, wenn Längen verschieden
+        //    for (var kv = 1; kv < 10; kv++ )
+        //    {
+        //        double avgSim = 0.0;
+        //        int c = 0;
+        //        //int cmd = kv.Key;
+        //        foreach (var rawRefVec in referenceData[kv])
+        //        {
+        //           // Debug.WriteLine("Länge: refVec: " + rawRefVec.Length + " Input: " + mfcc.Length);
+        //            if (rawRefVec.Length != mfccN.Length)
+        //                continue; // Optional: Mit DTW vergleichen, wenn Längen verschieden
 
                     
-                    var refVec = NormalizeMax(rawRefVec);
-                    // Referenz in Bitmuster wandeln
-                       bool[] refBits = refVec.Select(x => x > threshold).ToArray();
+        //            var refVec = NormalizeMax(rawRefVec);
+        //            // Referenz in Bitmuster wandeln
+        //               bool[] refBits = refVec.Select(x => x > threshold).ToArray();
 
-                     int same = 0;
-                     for (int i = 0; i < inputBits.Length; i++)
-                     {
-                         if (inputBits[i] == refBits[i])
-                             same++;
-                     }
+        //             int same = 0;
+        //             for (int i = 0; i < inputBits.Length; i++)
+        //             {
+        //                 if (inputBits[i] == refBits[i])
+        //                     same++;
+        //             }
 
 
 
@@ -156,40 +157,39 @@ namespace Spritzgusslogik
 
                
 
-                   // double similarity = (double) same / inputBits.Length;
+        //           // double similarity = (double) same / inputBits.Length;
 
-                    // double simCosine = CosineSimilarity(refVec, mfccN);
-                   //  double dist = EuclideanDistance(mfcc, refVec);
-                  //    double simHybrid = 0.5  * similarity + 0.5 * simCosine;
+        //            // double simCosine = CosineSimilarity(refVec, mfccN);
+        //           //  double dist = EuclideanDistance(mfcc, refVec);
+        //          //    double simHybrid = 0.5  * similarity + 0.5 * simCosine;
                   
-                  var simHybrid = (double)same/ refBits.Length;
-                    avgSim += simHybrid;
-                    c++;
+        //          var simHybrid = (double)same/ refBits.Length;
+        //            avgSim += simHybrid;
+        //            c++;
                    
                     
-                }
+        //        }
 
-                avgSim /= c;
-                Debug.WriteLine("Sim: " + avgSim + " bei Key: " + kv);
-                if (avgSim >= bestSimilarity)
-                {
-                    bestSimilarity = avgSim;
-                    bestCmd = kv;
-                    Debug.WriteLine("Best Command: " + bestCmd + " Best Similarity: " + bestSimilarity);
-                    // Debug.WriteLine("Reference Daten: " + string.Join(", ", refVec.Take(10)) + "\n Input Daten: " + string.Join(", ", mfccN.Take(10)));
+        //        avgSim /= c;
+        //        Debug.WriteLine("Sim: " + avgSim + " bei Key: " + kv);
+        //        if (avgSim >= bestSimilarity)
+        //        {
+        //            bestSimilarity = avgSim;
+        //            bestCmd = kv;
+        //            Debug.WriteLine("Best Command: " + bestCmd + " Best Similarity: " + bestSimilarity);
+        //            // Debug.WriteLine("Reference Daten: " + string.Join(", ", refVec.Take(10)) + "\n Input Daten: " + string.Join(", ", mfccN.Take(10)));
 
-                }
-            }
+        //        }
+        //    }
 
-            // Ähnlichkeit aus Abstand berechnen (normalisiert auf 0.0 bis 1.0)
-            // Annahme: dist = 0 bedeutet perfekt ähnlich, große dist = unähnlich
-            // bestSimilarity = 1.0 / (1.0 + bestDist); // z.B. dist=0 => sim=1.0, dist=9 => sim~0.1
-            //var d = referenceData[bestCmd];
+        //    // Ähnlichkeit aus Abstand berechnen (normalisiert auf 0.0 bis 1.0)
+        //    // Annahme: dist = 0 bedeutet perfekt ähnlich, große dist = unähnlich
+        //    // bestSimilarity = 1.0 / (1.0 + bestDist); // z.B. dist=0 => sim=1.0, dist=9 => sim~0.1
+        //    //var d = referenceData[bestCmd];
             
-            return bestCmd;
-        }
-
-
+        //    return bestCmd;
+        //}
+        
 
 
 
