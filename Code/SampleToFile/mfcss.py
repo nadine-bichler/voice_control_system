@@ -1,7 +1,9 @@
-﻿import librosa
+﻿import os
 import numpy as np
+import librosa
+import soundfile as sf
+from scipy.signal import butter, lfilter
 import csv
-import os
 
 def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
     nyquist = 0.5 * sr
@@ -22,7 +24,7 @@ for filename in os.listdir(input_folder):                   #Schleife über alle
     print("in python script")
     if filename.endswith(".wav"):                           #nur WAV-Dateien verarbeiten
         file_path = os.path.join(input_folder, filename)    #vollständiger Pfad zur WAV-Datei erstellen  
-        y = librosa.load(file_path, sr=44100)           #audio mit librosa laden (y = audio als numpy-Array, sr = samplingrate auf 10kHz)
+        y, sr = librosa.load(file_path, sr=44100)           #audio mit librosa laden (y = audio als numpy-Array, sr = samplingrate auf 10kHz)
 
         y = bandpass(y)
 

@@ -5,7 +5,7 @@ import soundfile as sf
 from scipy.signal import butter, lfilter
 import csv
 
-# 🛠 Fix fuer numba/librosa Caching-Probleme in geschaetzten Ordnern
+# Fix fuer numba/librosa Caching-Probleme in geschaetzten Ordnern
 os.environ["NUMBA_CACHE_DIR"] = os.path.join(os.getcwd(), "numba_cache")
 
 def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):

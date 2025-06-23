@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Runtime.InteropServices.Marshalling;
+﻿using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +11,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using Spritzgusslogik;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Prototyp
 {
@@ -28,17 +26,12 @@ namespace Prototyp
         private History _history;
         private SignalIdentifier identifier;
 
+        private bool _isProcessing = false;
+
 
         //Cooldown, um AudioWiederholung zu verhindern
         TimeSpan minDelay = TimeSpan.FromSeconds(2);
         DateTime lastRecognized = DateTime.MinValue;
-
-        List<short> pcmBuffer = new();       // sammelt Audioblöcke
-        bool isSpeaking = false;             // merkt ob jemand gerade spricht
-        DateTime lastVoiceTime;              // wann war zuletzt ein starker Ton
-        readonly TimeSpan maxSilence = TimeSpan.FromMilliseconds(800); // Ende wenn länger still
-        readonly double voiceThreshold = 300; // Pegel für Stimme (anpassbar)
-        readonly int minSamples = 2048;       // Mindestlänge für Analyse
 
 
         public MainWindow()
@@ -53,11 +46,9 @@ namespace Prototyp
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
 
-            microphone.AudioReceived += (s, pcm) => identifier.Enqueue(pcm);
-            identifier.DigitRecognized += (s, args) =>
-            {
-                Debug.WriteLine($"Digit recognized: {args.Digit}, Confidence: {args.Confidence}");
-            };
+            identifier.DigitRecognized += OnDigitRecognized;
+
+            microphone.AudioReceived += OnAudioReceived;
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -113,7 +104,7 @@ namespace Prototyp
 
             if (confidence < 50)
             {
-               color = "#cf241b";
+                color = "#cf241b";
             }
             else if (confidence < 80)
             {
@@ -145,7 +136,7 @@ namespace Prototyp
 
             Rectangle spacer = new Rectangle
             {
-                Width = 5 
+                Width = 5
             };
 
             TextBlock valueText = new TextBlock
@@ -164,9 +155,26 @@ namespace Prototyp
 
         private void OnAudioReceived(Int16[] pcm)
         {
-            if ((DateTime.Now - lastRecognized) < minDelay) return;
+            if (_isProcessing || (DateTime.Now - lastRecognized) < minDelay)
+                return;
 
-            identifier.Recognition(pcm);
+            _isProcessing = true;
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    identifier.Recognition(pcm);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                finally
+                {
+                    _isProcessing = false;
+                }
+            });
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
