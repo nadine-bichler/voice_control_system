@@ -15,6 +15,8 @@ namespace Tests
         {
             SignalTransformer sT = new SignalTransformer();
 
+            
+
 
             Int16[] signal = new Int16[] { 0, 1000, -1000, 0 };
 
@@ -76,6 +78,8 @@ namespace Tests
         {
             SignalFFTSharpTransformer ssharpT = new SignalFFTSharpTransformer();
             SignalTransformer sT = new SignalTransformer();
+
+
 
             Int16[] signal = { 0, 100, -100,0 };
 
