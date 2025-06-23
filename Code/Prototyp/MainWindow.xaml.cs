@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.InteropServices.Marshalling;
+﻿using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -27,6 +26,8 @@ namespace Prototyp
         private History _history;
         private SignalIdentifier identifier;
 
+        private bool _isProcessing = false;
+
 
         //Cooldown, um AudioWiederholung zu verhindern
         TimeSpan minDelay = TimeSpan.FromSeconds(2);
@@ -45,11 +46,9 @@ namespace Prototyp
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
 
-            microphone.AudioReceived += (s, pcm) => identifier.Enqueue(pcm);
-            identifier.DigitRecognized += (s, args) =>
-            {
-                Debug.WriteLine($"Digit recognized: {args.Digit}, Confidence: {args.Confidence}");
-            };
+            identifier.DigitRecognized += OnDigitRecognized;
+
+            microphone.AudioReceived += OnAudioReceived;
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
@@ -105,7 +104,7 @@ namespace Prototyp
 
             if (confidence < 50)
             {
-               color = "#cf241b";
+                color = "#cf241b";
             }
             else if (confidence < 80)
             {
@@ -137,7 +136,7 @@ namespace Prototyp
 
             Rectangle spacer = new Rectangle
             {
-                Width = 5 
+                Width = 5
             };
 
             TextBlock valueText = new TextBlock
@@ -152,6 +151,30 @@ namespace Prototyp
             horizontalPanel.Children.Add(valueText);
 
             HistoryPanel.Children.Insert(0, horizontalPanel);
+        }
+
+        private void OnAudioReceived(Int16[] pcm)
+        {
+            if (_isProcessing || (DateTime.Now - lastRecognized) < minDelay)
+                return;
+
+            _isProcessing = true;
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    identifier.Recognition(pcm);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                finally
+                {
+                    _isProcessing = false;
+                }
+            });
         }
 
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)

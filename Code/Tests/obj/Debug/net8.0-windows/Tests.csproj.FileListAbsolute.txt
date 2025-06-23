@@ -377,6 +377,7 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
+<<<<<<< HEAD
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll.config
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.Core.dll
@@ -384,3 +385,9 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
+=======
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll.config
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.Core.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.dll
+>>>>>>> d64cee593cbe0258bf37392a613877c718c5326d

@@ -13,18 +13,6 @@ using System.Globalization;
 
 SignalTransformer transformer = new SignalTransformer();
 
-//brauchen wir nicht mehr dank Tests
-var array = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
-var array2 = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/Test3.csv");
-Console.WriteLine(array.Length);
-Console.WriteLine(array2.Length);
-
-
-
-var result = Identify.Compare(array, array2);
-
-Console.WriteLine(result);
-
 
 var files = Directory.GetFiles("../../../samples", "*.mp3");
 
@@ -67,9 +55,21 @@ using (var process = Process.Start(psi))
     string errors = process.StandardError.ReadToEnd();
     process.WaitForExit();
 
-    Console.WriteLine("Python-Ausgabe:\n" + output);
+    System.Diagnostics.Debug.WriteLine("Python-Ausgabe:\n" + output);
     if (!string.IsNullOrWhiteSpace(errors))
     {
-        Console.WriteLine("Fehler:\n" + errors);
+        System.Diagnostics.Debug.WriteLine("Fehler:\n" + errors);
     }
 }
+
+//brauchen wir nicht mehr dank Tests
+var array = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
+var array2 = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/Test3.csv");
+Console.WriteLine(array.Length);
+Console.WriteLine(array2.Length);
+
+
+
+var result = Identify.Compare(array, array2);
+
+Console.WriteLine(result);
