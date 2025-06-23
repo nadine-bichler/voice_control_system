@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,14 +29,12 @@ namespace Prototyp
             
             float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
 
-            if (audioConvert.IsSilent(floatInput))
-            {
-                Console.WriteLine("Stille");
-                return;
-            }
+            // Debug WAV speichern
+            short[] debugPcm = floatInput.Select(x => (short)(x * 32767)).ToArray();
+            audioConvert.SavePcmAsWav(debugPcm, "input_temp.wav");
 
             //schreibe input
-            File.WriteAllText("input_signal.csv", string.Join(",", floatInput));
+            //File.WriteAllText("input_signal.csv", string.Join(",", floatInput));
 
             string pythonScriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "InputToMfcc.py");
             pythonScriptPath = Path.GetFullPath(pythonScriptPath); // ergibt z. B. .../Prototyp/InputToMfcc.py
@@ -63,9 +63,9 @@ namespace Prototyp
             //lade ergebnis aus csv datei
             double[] mfcc = audioConvert.LoadDoubleArrayCSV("mfcc_vector.csv");
 
-            // int result = Identify.Recognize(mfcc, out double sim);
-           // double[] fft = transformer.Transform(pcm);
-            int result = identify2.Recognize(mfcc, out double sim);
+            int result = Identify.Recognize(mfcc, out double sim);
+            // double[] fft = transformer.Transform(pcm);
+            //int result = identify2.Recognize(mfcc, out double sim);
 
             if (sim >= threshold)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));

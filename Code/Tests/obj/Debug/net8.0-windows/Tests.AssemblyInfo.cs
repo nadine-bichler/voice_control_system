@@ -3,7 +3,7 @@
 //     Dieser Code wurde von einem Tool generiert.
 //     Laufzeitversion:4.0.30319.42000
 //
-//     �nderungen an dieser Datei k�nnen falsches Verhalten verursachen und gehen verloren, wenn
+//     Änderungen an dieser Datei können falsches Verhalten verursachen und gehen verloren, wenn
 //     der Code erneut generiert wird.
 // </auto-generated>
 //------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8faffac03bb055c6589afc36661d28c9bf3d63ec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+023de8e13e3951d7aa4f805a72cbe4c62f1db8e7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

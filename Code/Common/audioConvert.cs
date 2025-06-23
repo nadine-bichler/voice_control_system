@@ -9,6 +9,7 @@ using NAudio.Wave;
 using NWaves.FeatureExtractors.Options;
 using NWaves.FeatureExtractors;
 using NWaves.Signals;
+using System.Xml.Linq;
 
 namespace Common
 {
@@ -126,96 +127,17 @@ namespace Common
                 .ToArray();
         }
 
-        public static double[] MfccFromFloat(float[] input, int sampleRate = 44100)
+        public static void SavePcmAsWav(short[] pcm, string outputPath, int sampleRate = 44100)
         {
-            var signal = new DiscreteSignal(sampleRate, input);
-
-            var mfccOptions = new MfccOptions
+            using (var memoryStream = new MemoryStream())
             {
-                SamplingRate = sampleRate,
-                FeatureCount = 13,               // wie in deinem Python-Code
-                FrameDuration = 0.025,           // 25ms Frames
-                HopDuration = 0.01,              // 10ms Schrittweite
-                PreEmphasis = 0.97,
-                FilterBankSize = 26,
-                //NWaves nutzt automatisch einen Bereich zwischen 300-8000(Besser für Sprachverarbeitung)
-            };
-
-            var extractor = new MfccExtractor(mfccOptions);
-
-            //Merkmalmatrix berechnen
-            var mfccVectors = extractor.ComputeFrom(signal);
-
-            //Mittelwert-Vektor = 13Werte
-            var meanVector = new double[13];
-            for (int i = 0; i < mfccVectors.Count; i++)
-            {
-                for (int j = 0; j < 13; j++)
+                // WAV-Datei schreiben
+                using (var writer = new WaveFileWriter(outputPath, new WaveFormat(sampleRate, 16, 1)))
                 {
-                    meanVector[j] += mfccVectors[i][j];
+                    byte[] byteBuffer = new byte[pcm.Length * sizeof(short)];
+                    Buffer.BlockCopy(pcm, 0, byteBuffer, 0, byteBuffer.Length);
+                    writer.Write(byteBuffer, 0, byteBuffer.Length);
                 }
-            }
-
-            for (int i = 0; i < 13; i++)
-            {
-                meanVector[i] /= mfccVectors.Count;
-            }
-
-            return meanVector;
-        }
-
-        public static float[] ExtractLoudestRegion(float[] signal, int windowSize = 2048, int stride = 512)
-        {
-            int bestStart = 0;
-            float maxEnergy = 0;
-
-            for(int i = 0; i < signal.Length - windowSize; i += stride)
-            {
-                float energy = 0;
-                for (int j = 0; j < windowSize; j++)
-                {
-                    energy += signal[i + j] * signal[i + j];
-                }
-
-                if (energy > maxEnergy)
-                {
-                    maxEnergy = energy;
-                    bestStart = i;
-                }
-            }
-
-            return signal.Skip(bestStart).Take(windowSize).ToArray();
-        }
-
-        public static bool IsSilent(float[] signal, float threshold = 0.02f)
-        {
-            float avg = signal.Select(x => Math.Abs(x)).Average();
-            return avg < threshold;
-        }
-
-        public static float[] SilenceTrimmer(float[] signal, float threshold = 0.02f)
-        {
-            int start = 0;
-            int end = signal.Length - 1;
-
-            while (start < signal.Length && Math.Abs(signal[start]) < threshold)
-            {
-                start++;
-            }
-
-            while (end > start && Math.Abs(signal[end]) < threshold)
-            {
-                end--;
-            }
-
-            int length = end - start + 1;
-            if (length > 0)
-            {
-                return signal[start..(end + 1)];
-            }
-            else
-            {
-                return Array.Empty<float>();
             }
         }
     }

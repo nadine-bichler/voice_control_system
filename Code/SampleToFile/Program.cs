@@ -67,9 +67,9 @@ using (var process = Process.Start(psi))
     string errors = process.StandardError.ReadToEnd();
     process.WaitForExit();
 
-    Console.WriteLine("Python-Ausgabe:\n" + output);
+    System.Diagnostics.Debug.WriteLine("Python-Ausgabe:\n" + output);
     if (!string.IsNullOrWhiteSpace(errors))
     {
-        Console.WriteLine("Fehler:\n" + errors);
+        System.Diagnostics.Debug.WriteLine("Fehler:\n" + errors);
     }
 }

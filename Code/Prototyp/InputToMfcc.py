@@ -3,15 +3,23 @@ import librosa
 import os
 import soundfile as sf
 from scipy.signal import butter, lfilter
+import csv
 
 def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):
     y, sr = librosa.load(file_path, sr=sr)
-    mfcc = librosa.feature.mfcc(
-        y=y,
-        sr=sr,
-        n_mfcc=n_mfcc
-    )
-    return np.mean(mfcc, axis=1)
+    y = bandpass(y)
+    if np.max(np.abs(y)) > 0:
+        y = y / np.max(np.abs(y))
+    mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=n_mfcc)
+    mfcc = mfcc[1:, :]  # Ignoriere die erste Zeile
+    mfcc_mean = np.mean(mfcc, axis=1)
+    print("y shape:", y.shape, "sr:", sr)
+    return mfcc_mean
+
+def save_mfcc_to_csv(mfcc_vector, output_path="mfcc_vector.csv"):
+    with open(output_path, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(mfcc_vector)
 
 def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
     nyquist = 0.5 * sr
@@ -23,37 +31,11 @@ def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
 
 
 if __name__ == "__main__":
-    # PCM-Werte aus CSV laden (eine Zeile mit Float-Werten)
-    pcm = np.loadtxt("input_signal.csv", delimiter=",", dtype=np.float32)
 
-    #normalisierung auf [-1, 1] (wie librosa.load)
-    #if np.max(np.abs(pcm)) > 0:
-        #pcm = pcm / np.max(np.abs(pcm))
-
-    #bandpass
-    #pcm_filtered = bandpass(pcm)
-
-    #WAV speichern
-    sf.write("input_temp.wav", pcm, 44100)
-
-    #mfcc aus WAV
-    mfcc_vector = extract_mfcc_from_wav("input_temp.wav")
-    print("MFCC:", mfcc_vector)
-
-
-    
-    # als CSV speichern
-    with open("mfcc_vector.csv", "w") as f:
-        f.write(",".join(map(str, mfcc_vector)))
-
-
-# Nach dem Schreiben:
-print("MFCC geschrieben in mfcc_vector.csv")
-
-# Optional: prüfe wirkliches Schreiben
-if os.path.exists("mfcc_vector.csv"):
-    print("Datei existiert.")
-else:
-    print("Datei NICHT gefunden.")
-
-
+    input_wav = "input_temp.wav"
+    if os.path.exists(input_wav):
+        mfcc_vector = extract_mfcc_from_wav(input_wav)
+        save_mfcc_to_csv(mfcc_vector)
+        print("MFCC geschrieben in mfcc_vector.csv")
+    else:
+        print("Datei nicht gefunden:", input_wav)

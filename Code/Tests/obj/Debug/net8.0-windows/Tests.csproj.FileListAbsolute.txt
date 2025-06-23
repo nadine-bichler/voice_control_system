@@ -383,3 +383,7 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll.config
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.Core.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.dll

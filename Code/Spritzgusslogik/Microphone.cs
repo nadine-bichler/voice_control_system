@@ -15,9 +15,14 @@ public class Microphone
 
     private Boolean muted = true;
 
-    //damit Eingabe gleich groﬂ wie Samples
-    private const int TargetSampleCount = SampleRate * 1;
-    private List<short> buffer = new();
+    //dynaische Spracherkennung
+    private const float VoiceStartThreshold = 0.025f;  // Lautst‰rkeschwelle zum Start
+    private const float VoiceEndThreshold = 0.015f;   // Lautst‰rkeschwelle zum Stoppen
+    private const int SilenceDurationMs = 500;        // Zeit ohne Stimme, bis gestoppt wird
+
+    private bool isRecording = false;
+    private DateTime lastVoiceTime = DateTime.MinValue;
+    private List<short> activeRecordingBuffer = new();
 
 
     public Microphone()
@@ -26,7 +31,7 @@ public class Microphone
         {
             DeviceNumber = 0,
             WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
-            BufferMilliseconds = 30
+            BufferMilliseconds = 20
         };
         waveIn.DataAvailable += WaveIn_DataAvailable;
     }
@@ -61,17 +66,38 @@ public class Microphone
         values = new Int16[e.Buffer.Length / 2];
         Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
 
-        //neue samples anh‰ngen
-        buffer.AddRange(values);
+        float rms = CalculateRMS(values);
 
-        //wenn genug daten gesammelt -> verarbeiten
-        if (buffer.Count >= TargetSampleCount)
+        if (isRecording)
         {
-            var fixedBlock = buffer.Take(TargetSampleCount).ToArray();
-            buffer.Clear();
-            //buffer.RemoveRange(0, TargetSampleCount);
+            activeRecordingBuffer.AddRange(values);
 
-            AudioReceived?.Invoke(fixedBlock) ;
+            if (rms > VoiceEndThreshold)
+            {
+                lastVoiceTime = DateTime.Now;
+            }
+
+            if ((DateTime.Now - lastVoiceTime).TotalMilliseconds > SilenceDurationMs)
+            {
+                isRecording = false;
+
+                if (activeRecordingBuffer.Count > 1000)
+                {
+                    AudioReceived?.Invoke(activeRecordingBuffer.ToArray());
+                }
+
+                activeRecordingBuffer.Clear();
+            }
+        }
+        else
+        {
+            if (rms > VoiceStartThreshold)
+            {
+                isRecording = true;
+                lastVoiceTime = DateTime.Now;
+                activeRecordingBuffer.Clear();
+                activeRecordingBuffer.AddRange(values);
+            }
         }
     }
 
@@ -94,5 +120,19 @@ public class Microphone
     public Int16[] GetValues()
     {
         return values;
+    }
+
+    private float CalculateRMS(short[] samples)
+    {
+        if (samples.Length == 0) return 0f;
+
+        double sum = 0;
+        foreach (short s in samples)
+        {
+            float norm = s / 32768f;
+            sum += norm * norm;
+        }
+
+        return (float)Math.Sqrt(sum / samples.Length);
     }
 }
