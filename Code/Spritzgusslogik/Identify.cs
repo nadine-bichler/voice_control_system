@@ -70,6 +70,9 @@ namespace Spritzgusslogik
         //Brauchen wir eig nicht mehr
         public static Complex[] LoadComplexArrayCsv(string filePath)
         {
+            if (!File.Exists(filePath))
+                return null;
+
             var result = new List<Complex>();
 
             foreach (var line in File.ReadLines(filePath))
