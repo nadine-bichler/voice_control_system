@@ -4,9 +4,6 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.AssemblyInfoInputs.cache
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.AssemblyInfo.cs
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.csproj.CoreCompileInputs.cache
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.deps.json
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.runtimeconfig.json
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.exe
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\testhost.exe
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\testhost.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
@@ -165,10 +162,8 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\zh-Hant\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Prototyp.dll
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Spritzgusslogik.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Prototyp.pdb
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Spritzgusslogik.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.csproj.Up2Date
@@ -178,7 +173,6 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.genruntimeconfig.cache
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\ref\Tests.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.Testing.Platform.MSBuild.dll
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\NDtw.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\cs\Microsoft.Testing.Platform.MSBuild.resources.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\de\Microsoft.Testing.Platform.MSBuild.resources.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\es\Microsoft.Testing.Platform.MSBuild.resources.dll
@@ -383,3 +377,10 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll.config
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.Core.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Accord.Math.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\NWaves.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
+C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb

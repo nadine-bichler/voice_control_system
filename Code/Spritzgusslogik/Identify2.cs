@@ -93,8 +93,9 @@ namespace Spritzgusslogik
 
         // Führt einen Bitmuster-Vergleich zwischen den Referenzdaten und dem aktuellen Eingabesignal durch.
         // Die Befehle werden leider trotzdem nicht richtig erkannt.
-        public int Recognize(double[] rawInput, out double bestSimilarity)
+        public int Recognize(Int16[] rawInput, out double bestSimilarity)
         {
+            SignalFFTSharpTransformer st = new SignalFFTSharpTransformer();
 
             Debug.WriteLine("References: " + referenceData[1].Count);
 
@@ -102,9 +103,10 @@ namespace Spritzgusslogik
 
             if (rawInput == null) throw new ArgumentNullException(" Input is NULL!!");
 
-             var input = NormalizeMax(rawInput);
-
-           // double[] mfcc = rawInput;// ConvertFftToMfcc(rawInput);
+            //var inpT = st.Transform(rawInput);
+             //var input = NormalizeMax(inpT);
+            float[] floatInput = rawInput.Select(x => x / 32768f).ToArray();
+            double[] mfcc = audioConvert.MfccFromFloat(floatInput);
             int bestCmd = -1;
             bestSimilarity = 0.0;
 
@@ -116,11 +118,11 @@ namespace Spritzgusslogik
             /*double normFactor = mfcc.Max();
             if (normFactor > 0)
                 mfcc = mfcc.Select(x => x / normFactor).ToArray();*/
-           /// var mfccN = NormalizeMax(mfcc);
+          var mfccN = NormalizeMax(mfcc);
 
             // Eingabespektrum in Bitmuster wandeln
-            bool[] inputBits = input.Select(x => x > threshold).ToArray();
-            Debug.WriteLine("FFT Input: " + string.Join(", ", input.Take(10)));
+            bool[] inputBits = mfccN.Select(x => x > threshold).ToArray();
+            Debug.WriteLine("FFT Input: " + string.Join(", ", mfccN.Take(10)));
            // Debug.WriteLine("Max: " + mfcc.Max());
            // Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
             
@@ -132,7 +134,7 @@ namespace Spritzgusslogik
                 foreach (var rawRefVec in referenceData[kv])
                 {
                    // Debug.WriteLine("Länge: refVec: " + rawRefVec.Length + " Input: " + mfcc.Length);
-                    if (rawRefVec.Length != input.Length)
+                    if (rawRefVec.Length != mfccN.Length)
                         continue; // Optional: Mit DTW vergleichen, wenn Längen verschieden
 
                     
@@ -169,7 +171,7 @@ namespace Spritzgusslogik
 
                 avgSim /= c;
                 Debug.WriteLine("Sim: " + avgSim + " bei Key: " + kv);
-                if (avgSim > bestSimilarity)
+                if (avgSim >= bestSimilarity)
                 {
                     bestSimilarity = avgSim;
                     bestCmd = kv;

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Common\\Common.csproj": {}
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Common\\Common.csproj": {
+    "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Source\\Repos\\projekt_1_team_1\\Code\\Common\\obj\\",
+        "projectPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\donar\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\donar\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -43,8 +43,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -75,7 +74,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -82,10 +82,17 @@ namespace Tests
             double[] result1 = sT.Transform(signal);
             double[] result2 = ssharpT.Transform(signal);
 
-            Assert.IsTrue (result1.Length == result2.Length);
-            Assert.AreEqual(result1[1], result2[1]);
-            Assert.AreEqual(result1[result1.Length-1], result2[result2.Length-1]);
-        
+            Assert.AreEqual(result1.Length, result2.Length, "Array-Längen müssen übereinstimmen");
+
+            const double epsilon = 1e-6;
+            Assert.AreEqual(result1[1], result2[1], epsilon, "Wert an Index 1 stimmt nicht überein");
+            Assert.AreEqual(
+                result1[result1.Length - 1],
+                result2[result2.Length - 1],
+                epsilon,
+                "Wert am letzten Index stimmt nicht überein"
+            );
+
         }
 
         [TestMethod]
@@ -99,9 +106,11 @@ namespace Tests
             double[] result1 = ssharpT.Transform(signal);
             double[] result2 = sT.Transform(signal);
 
-            Assert.IsFalse(result1 == null);
-            Assert.IsFalse(result2 == null);
-            Assert.AreEqual(result1.Length, result2.Length);
+            // Assert
+            Assert.IsNotNull(result1, "Erstes Ergebnis darf nicht null sein");
+            Assert.IsNotNull(result2, "Zweites Ergebnis darf nicht null sein");
+            Assert.AreEqual(result1.Length, result2.Length, "Array-Längen müssen übereinstimmen");
+            
            
 
         }

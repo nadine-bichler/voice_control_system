@@ -12,10 +12,11 @@ namespace Prototyp
 {
     internal class SignalIdentifier
     {
+        private Identify2 identify2 = new Identify2();
         private readonly BlockingCollection<short[]> pcmQueue = new();
         private readonly Thread recognitionThread;
         private readonly SignalFFTSharpTransformer transformer = new();
-        private readonly double threshold = 0.80;
+        private readonly double threshold = 0.0;//0.80;
         private readonly TimeSpan recognitionCooldown = TimeSpan.FromMilliseconds(500);
 
         private DateTime lastRecognitionTime = DateTime.MinValue;
@@ -74,7 +75,7 @@ namespace Prototyp
         {
             float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
 
-            if (audioConvert.IsSilent(floatInput))
+           if (audioConvert.IsSilent(floatInput))
             {
                 System.Diagnostics.Debug.WriteLine("Stille erkannt");
                 return;
@@ -132,8 +133,8 @@ namespace Prototyp
             System.Diagnostics.Debug.WriteLine("MFCC-Länge: " + mfcc.Length);
             System.Diagnostics.Debug.WriteLine("MFCC-Daten: " + string.Join(", ", mfcc.Take(10)) + "...");
 
-            int result = Identify.Recognize(mfcc, out double sim);
-
+              int result = Identify.Recognize(mfcc, out double sim);
+           // int result = identify2.Recognize(pcm,out double sim);
             if (sim >= threshold)
             {
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));
