@@ -23,8 +23,9 @@ namespace Prototyp
             if (pcm == null || pcm.Length == 0)
                 return;
 
-            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
+            audioConvert.SavePcmAsWav(pcm, "input_temp.wav");
 
+            float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
 
             if (floatInput.Length < 200)  // z. B. zu kurz
             {
