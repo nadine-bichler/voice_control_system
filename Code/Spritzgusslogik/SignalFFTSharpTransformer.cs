@@ -13,8 +13,11 @@ namespace Spritzgusslogik
         //PCM ideal für FFT, MFCC, Filter, etc.
         public double[] Transform(Int16[] signal)
         {
+
+            if (signal == null) throw new ArgumentNullException("SignalTransformer: Signal is Null!");
+
             // Audiodaten im Byte-Array signal verarbeiten
-           // int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
+            // int bytesPerSample = 2; // 16-bit PCM = 2 Bytes
             int sampleCount = signal.Length;// / bytesPerSample;
 
             // In Complex-Werte umwandeln (normalisiert auf [-1, 1])
@@ -29,9 +32,23 @@ namespace Spritzgusslogik
             }
 
             //tranform with FFT and get the Magnitude
-            double[] fftMagnitude = FFT.Magnitude(FFTBuffer);
+           // double[] fftMagnitude = FFT.Magnitude(FFTBuffer);
 
-            return fftMagnitude;
+            FFT.Forward(FFTBuffer);
+
+            double[] fftMagnitudes = new double[sampleCount];
+            for (int j = 0; j < sampleCount; j++)
+            {
+                fftMagnitudes[j] = FFTBuffer[j].Magnitude;
+            }
+
+
+
+           /* double scale = Math.Sqrt(2.0 * sampleCount);
+            for (int i = 0; i < fftMagnitudes.Length; i++)
+                fftMagnitudes[i] *= scale;*/
+
+            return fftMagnitudes;
         }
     }
 }
