@@ -32,13 +32,14 @@ for filename in os.listdir(input_folder):                   #Schleife über alle
             y = y / np.max(np.abs(y))
 
         mfcc = librosa.feature.mfcc(y=y, sr=44100, n_mfcc=13) #MFCCs berechnen mit 13 Koeffizienten pro frame
-        mfcc = mfcc[1:, :]  # Ignoriere die erste Zeile
-        mfcc_mean = np.mean(mfcc, axis=1)                   #arithmetisches mittel aller 220 werte
+        mfcc_mean = np.mean(mfcc, axis=1)
+        mfcc_std = np.std(mfcc, axis=1)
+        mfcc_vector = np.concatenate([mfcc_mean, mfcc_std])  # 24-dim statt 12
 
         output_path = os.path.join(input_folder, filename.replace(".wav", ".csv"))
         #in csv-datei schreiben
         with open(output_path, "w", newline="") as f:
             writer = csv.writer(f)
-            writer.writerow(mfcc_mean)                           
+            writer.writerow(mfcc_vector)                           
         #bestätigungsausgabe
         print(f"Exported {output_path}")
