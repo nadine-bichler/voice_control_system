@@ -1,78 +1,150 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Threading;
 using Common;
 using Spritzgusslogik;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Prototyp
 {
     internal class SignalIdentifier
     {
-        private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.70;//0.80;
-        private Identify2 identify2 = new Identify2();
-        //Event declaration
+        private readonly BlockingCollection<short[]> pcmQueue = new();
+        private readonly Thread recognitionThread;
+        private readonly SignalFFTSharpTransformer transformer = new();
+        private readonly double threshold = 0.80;
+        private readonly TimeSpan recognitionCooldown = TimeSpan.FromMilliseconds(500);
+
+        private DateTime lastRecognitionTime = DateTime.MinValue;
+
+        private volatile bool isRunning = true;
+
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
 
-
-        public void Recognition(Int16[] pcm)
+        public SignalIdentifier()
         {
-            if (pcm == null || pcm.Length == 0)
-                return;
+            recognitionThread = new Thread(ProcessQueue)
+            {
+                IsBackground = true
+            };
+            recognitionThread.Start();
+        }
 
-            
+        public void Enqueue(short[] pcm)
+        {
+            if (!isRunning || pcm == null || pcm.Length == 0) return;
+
+            // optional: Begrenze Queue-Länge, um Speicher zu sparen
+            if (pcmQueue.Count < 100)
+                pcmQueue.Add(pcm);
+        }
+
+        public void Stop()
+        {
+            isRunning = false;
+            pcmQueue.CompleteAdding();
+        }
+
+        private void ProcessQueue()
+        {
+            while (isRunning)
+            {
+                try
+                {
+                    short[] pcm = pcmQueue.Take(); // Blockiert bei leerer Queue
+
+                    if ((DateTime.Now - lastRecognitionTime) < recognitionCooldown)
+                        continue;
+
+                    lastRecognitionTime = DateTime.Now;
+
+                    RunRecognition(pcm);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Fehler im Recognition-Thread: " + ex.Message);
+                }
+            }
+        }
+
+        private void RunRecognition(short[] pcm)
+        {
             float[] floatInput = pcm.Select(x => x / 32768f).ToArray();
 
-            // Debug WAV speichern
-            short[] debugPcm = floatInput.Select(x => (short)(x * 32767)).ToArray();
-            audioConvert.SavePcmAsWav(debugPcm, "input_temp.wav");
+            if (audioConvert.IsSilent(floatInput))
+            {
+                System.Diagnostics.Debug.WriteLine("Stille erkannt");
+                return;
+            }
 
-            //schreibe input
-            //File.WriteAllText("input_signal.csv", string.Join(",", floatInput));
+            if (floatInput.Length < 200)
+            {
+                System.Diagnostics.Debug.WriteLine("Signal zu kurz");
+                return;
+            }
 
-            string pythonScriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "InputToMfcc.py");
-            pythonScriptPath = Path.GetFullPath(pythonScriptPath); // ergibt z. B. .../Prototyp/InputToMfcc.py
+            // Schreibe CSV für Python
+            string inputPath = "input_signal.csv";
+            File.WriteAllText(inputPath, string.Join(",", floatInput));
 
+            string pythonScriptPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "InputToMfcc.py"));
 
-            //Starte Python Skript
             var psi = new ProcessStartInfo
             {
                 FileName = "python",
                 Arguments = $"\"{pythonScriptPath}\"",
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory  // Verzeichnis von .exe
+                WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory
             };
 
-            psi.RedirectStandardError = true;
-
-            using (var pythProcess = Process.Start(psi))
+            using (var pythProcess = new Process())
             {
-                string error = pythProcess.StandardError.ReadToEnd();
-                pythProcess.WaitForExit();
-                System.Diagnostics.Debug.WriteLine("PYTHON-FEHLER:\n" + error);  // <-- zeigt dir Probleme z. B. in NumPy, Librosa etc.
+                pythProcess.StartInfo = psi;
+                pythProcess.OutputDataReceived += (s, e) => System.Diagnostics.Debug.WriteLine("PYTHON OUT: " + e.Data);
+                pythProcess.ErrorDataReceived += (s, e) => System.Diagnostics.Debug.WriteLine("PYTHON ERR: " + e.Data);
+
+                pythProcess.Start();
+                pythProcess.BeginOutputReadLine();
+                pythProcess.BeginErrorReadLine();
+
+                pythProcess.WaitForExit(5000); // max. 5 Sek. warten
+                if (!pythProcess.HasExited)
+                {
+                    System.Diagnostics.Debug.WriteLine("Python-Skript hängt! Beende Prozess.");
+                    pythProcess.Kill();
+                }
             }
 
-            //lade ergebnis aus csv datei
+            if (!File.Exists("mfcc_vector.csv"))
+            {
+                System.Diagnostics.Debug.WriteLine("MFCC-Datei nicht gefunden.");
+                return;
+            }
+
             double[] mfcc = audioConvert.LoadDoubleArrayCSV("mfcc_vector.csv");
+
+            System.Diagnostics.Debug.WriteLine("MFCC-Länge: " + mfcc.Length);
+            System.Diagnostics.Debug.WriteLine("MFCC-Daten: " + string.Join(", ", mfcc.Take(10)) + "...");
 
             int result = Identify.Recognize(mfcc, out double sim);
             // double[] fft = transformer.Transform(pcm);
             //int result = identify2.Recognize(mfcc, out double sim);
 
             if (sim >= threshold)
+            {
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("Keine gültige Ziffer erkannt.");
+            }
         }
-
-
-
     }
 
     internal class DigitRecognizedEventArgs : EventArgs
@@ -81,7 +153,7 @@ namespace Prototyp
         public double Confidence { get; }
 
         public DigitRecognizedEventArgs(int digit, double confidence)
-        { 
+        {
             Digit = digit;
             Confidence = confidence;
         }

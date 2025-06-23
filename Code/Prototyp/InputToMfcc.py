@@ -1,9 +1,12 @@
+import os
 import numpy as np
 import librosa
-import os
 import soundfile as sf
 from scipy.signal import butter, lfilter
 import csv
+
+# 🛠 Fix fuer numba/librosa Caching-Probleme in geschaetzten Ordnern
+os.environ["NUMBA_CACHE_DIR"] = os.path.join(os.getcwd(), "numba_cache")
 
 def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):
     y, sr = librosa.load(file_path, sr=sr)
@@ -25,10 +28,8 @@ def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
     nyquist = 0.5 * sr
     low = lowcut / nyquist
     high = highcut / nyquist
-    b,a = butter(order, [low, high], btype='band')
-    filtered_signal = lfilter(b,a,signal)
-    return filtered_signal
-
+    b, a = butter(order, [low, high], btype='band')
+    return lfilter(b, a, signal)
 
 if __name__ == "__main__":
 

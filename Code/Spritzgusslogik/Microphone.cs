@@ -1,31 +1,40 @@
+Ôªøusing NAudio.Wave;
+using NAudio.CoreAudioApi;
+using System;
+using System.Timers;
 
-using NAudio.Wave;
-
-namespace Spritzgusslogik;
-
-
-//Diese Klasse speichert die Audiodaten der Aufnahme in ein int16-Array
-
-public class Microphone
+namespace Spritzgusslogik
 {
-    public const int SampleRate = 44100;
+    public class Microphone
+    {
+        public const int SampleRate = 44100;
 
-    private WaveInEvent waveIn;
-    private Int16[] values;
+        private WasapiCapture? capture;
+        private WaveFileWriter? writer;
+        private bool muted = true;
 
-    private Boolean muted = true;
+        private short[]? lastAudioData;
 
-    //dynaische Spracherkennung
-    private const float VoiceStartThreshold = 0.025f;  // Lautst‰rkeschwelle zum Start
-    private const float VoiceEndThreshold = 0.015f;   // Lautst‰rkeschwelle zum Stoppen
-    private const int SilenceDurationMs = 500;        // Zeit ohne Stimme, bis gestoppt wird
+        private const int BufferSize = SampleRate / 2; // 0.5 Sekunden
+        private short[] audioBuffer = new short[BufferSize];
+        private int writePos = 0;
+        private int samplesInBuffer = 0;
 
-    private bool isRecording = false;
-    private DateTime lastVoiceTime = DateTime.MinValue;
-    private List<short> activeRecordingBuffer = new();
+        // Event to notify when new audio data is available
+        public event EventHandler<short[]>? AudioReceived;
 
+        //dynaische Spracherkennung
+        private const float VoiceStartThreshold = 0.025f;  // Lautst√§rkeschwelle zum Start
+        private const float VoiceEndThreshold = 0.015f;   // Lautst√§rkeschwelle zum Stoppen
+        private const int SilenceDurationMs = 500;        // Zeit ohne Stimme, bis gestoppt wird
 
-    public Microphone()
+        private bool isRecording = false;
+        private DateTime lastVoiceTime = DateTime.MinValue;
+        private List<short> activeRecordingBuffer = new();
+
+   
+
+        public Microphone()
     {
         waveIn = new WaveInEvent
         {
@@ -36,35 +45,49 @@ public class Microphone
         waveIn.DataAvailable += WaveIn_DataAvailable;
     }
 
-    public void Start()
-    {
-        try
+        public void Start()
         {
-            waveIn.StartRecording();
+            if (capture == null) return;
+
+            try
+            {
+                capture.StartRecording();
+                muted = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
+            }
         }
-        catch (Exception ex)
+
+        public void Stop()
         {
-            Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
+            if (!muted && capture != null)
+            {
+                capture.StopRecording(); // Triggert OnRecordingStopped
+                muted = true;
+            }
         }
-        //waveIn.StartRecording();
-        muted = false;
-    }
 
-    public void Stop()
-    {
-        waveIn.StopRecording();
-        muted = true;
-    }
+        private void OnDataAvailable(object? sender, WaveInEventArgs e)
+        {
+            int samples = e.BytesRecorded / 2;
+            short[] chunk = new short[samples];
+            Buffer.BlockCopy(e.Buffer, 0, chunk, 0, e.BytesRecorded);
 
+            // Schreibe Samples in Ringpuffer
+            for (int i = 0; i < samples; i++)
+            {
+                audioBuffer[writePos] = chunk[i];
+                writePos = (writePos + 1) % BufferSize;
+            }
 
-    //Benachrichtigung sobald neue Audiodatei
-    //EventHandler
-    public event Action<Int16[]>? AudioReceived;
+            samplesInBuffer = Math.Min(samplesInBuffer + samples, BufferSize);
 
-    void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
-    {
-        values = new Int16[e.Buffer.Length / 2];
-        Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
+            if (samplesInBuffer == BufferSize)
+            {
+                // Voller Puffer, sende 2 Sekunden Audio raus
+                short[] output = new short[BufferSize];
 
         float rms = CalculateRMS(values);
 
@@ -101,25 +124,28 @@ public class Microphone
         }
     }
 
-    public Boolean IsMuted()
-    {
-        return muted;
-    }
-
-    public String GetStandardMicrophoneName()
-    {
-        if (WaveIn.DeviceCount == 0)
+        public bool IsMuted()
         {
-            return "No microphone found";
+            return muted;
         }
 
-        var caps = WaveIn.GetCapabilities(0);
-        return caps.ProductName;
-    }
+        public string GetStandardMicrophoneName()
+        {
+            try
+            {
+                var device = new MMDeviceEnumerator().GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
+                return device.FriendlyName;
+            }
+            catch
+            {
+                return "Kein Mikrofon gefunden";
+            }
+        }
 
-    public Int16[] GetValues()
-    {
-        return values;
+        public short[]? GetValues()
+        {
+            return lastAudioData;
+        }
     }
 
     private float CalculateRMS(short[] samples)

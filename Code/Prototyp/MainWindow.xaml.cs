@@ -53,9 +53,11 @@ namespace Prototyp
 
             microphoneName.Text = microphone.GetStandardMicrophoneName();
 
-            identifier.DigitRecognized += OnDigitRecognized;
-
-            microphone.AudioReceived += OnAudioReceived;
+            microphone.AudioReceived += (s, pcm) => identifier.Enqueue(pcm);
+            identifier.DigitRecognized += (s, args) =>
+            {
+                Debug.WriteLine($"Digit recognized: {args.Digit}, Confidence: {args.Confidence}");
+            };
         }
 
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
