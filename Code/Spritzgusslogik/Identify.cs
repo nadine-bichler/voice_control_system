@@ -10,6 +10,7 @@ using FftSharp.Windows;
 using Complex = System.Numerics.Complex;
 using Common;
 using System.Diagnostics;
+using MathNet.Numerics.LinearRegression;
 
 
 
@@ -151,19 +152,16 @@ namespace Spritzgusslogik
         //Zusammenfügen aller Compare-Methoden
         public static double Compare(double[] a, double[] b)
         {
-            int aLength = a.Length;
-            int bLength = b.Length;
-            //Normiere Längen der Eingaben
-            //audioConvert.NormalizeLength(ref a, ref b);
-
             double cosine = CosineSimilarity(a, b);
             double pearson = (PearsonCorrelation(a, b) + 1) / 2;
             double euclidean = 1.0 / (1.0 + EuclideanDistance(a, b)); // Abstand zu Ähnlichkeit
 
+
             Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
 
             //Cosine & Pearson wichtig, euclidean nur ergänzend
-            return (0.4 * cosine) + (0.4 * pearson) + (0.2 * euclidean);
+            return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean); //=
+            //return (0.5 * cosine) + (0.2 * pearson) + (0.3 * euclidean); //=2,3,3,4,7,5,7,2,7
         }
 
         //vergleicht input mit allen Ziffern und gibt erkannte Zahl zurück

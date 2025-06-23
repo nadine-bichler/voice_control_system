@@ -17,7 +17,7 @@ def extract_mfcc_from_wav(file_path, sr=44100, n_mfcc=13):
  
     mfcc_mean = np.mean(mfcc, axis=1)
     mfcc_std = np.std(mfcc, axis=1)
-    mfcc_vector = np.concatenate([mfcc_mean, mfcc_std])  # 24-dim statt 12
+    mfcc_vector = np.concatenate([mfcc_mean, mfcc_std])  # 26-dim statt 12
 
     return mfcc_vector
 
@@ -26,7 +26,7 @@ def save_mfcc_to_csv(mfcc_vector, output_path="mfcc_vector.csv"):
             writer = csv.writer(f)
             writer.writerow(mfcc_vector)
 
-def bandpass(signal, sr = 44100, lowcut = 300.0, highcut = 1800.0, order = 6):
+def bandpass(signal, sr = 44100, lowcut = 500.0, highcut = 3000.0, order = 6):
     nyquist = 0.5 * sr
     low = lowcut / nyquist
     high = highcut / nyquist

@@ -13,7 +13,7 @@ namespace Prototyp
     internal class SignalIdentifier
     {
         private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.80;
+        private readonly double threshold = 0.60;
 
         //Event declaration
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;

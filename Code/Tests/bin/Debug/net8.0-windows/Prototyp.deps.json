@@ -196,7 +196,10 @@
           "NWaves": "0.9.6"
         },
         "runtime": {
-          "Common.dll": {}
+          "Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "Spritzgusslogik/1.0.0": {
@@ -209,7 +212,10 @@
           "NAudio": "2.2.1"
         },
         "runtime": {
-          "Spritzgusslogik.dll": {}
+          "Spritzgusslogik.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

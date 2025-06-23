@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using NAudio.Wave;
 using System.Globalization;
+using MathNet.Numerics.LinearRegression;
 
 
 
