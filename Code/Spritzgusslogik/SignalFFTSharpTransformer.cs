@@ -1,4 +1,12 @@
-﻿using System;
+﻿///
+/// @file    SignalFFTSharpTransformer
+/// @brief   transforms signal with Sharp Fourier transformation
+/// @author  Donart Bazai 
+/// @date    24.06.2025
+///
+///
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;

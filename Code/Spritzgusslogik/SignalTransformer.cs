@@ -1,3 +1,10 @@
+///
+/// @file    SignalTransformer
+/// @brief   transforms signal with Fourier transformation
+/// @author  Donart Bazai 
+/// @date    24.06.2025
+///
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +18,16 @@ using Complex = System.Numerics.Complex;
 
 namespace Spritzgusslogik
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class SignalTransformer : IFFTTransformer
     {
+        /// <summary
+        /// </summary>
+        /// <param name="signal"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public double[] Transform(Int16[] signal)
         {
             if (signal == null) throw new ArgumentNullException("SignalTransformer: Signal is Null!");

@@ -1,4 +1,12 @@
-﻿using System;
+﻿///
+/// @file    Identifier
+/// @brief   Identifies Digit from audio
+/// @author  Bichler Nadine, Anton Armin
+/// @date    24.06.2025
+///
+///
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +24,21 @@ using MathNet.Numerics.LinearRegression;
 
 namespace Spritzgusslogik
 {
-    //Diese Klasse ist für die Identifikation des Sprachbefehls verantwortlich
-
+    /// <summary>
+    /// Identifies voice command
+    /// </summary>
     public class Identify
     {
         const int TargetLength = 2048;
 
         //Brauchen wir eig nicht mehr
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="arrayA"></param>
+        /// <param name="arrayB"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static double PearsonCorrelation(Complex[] arrayA, Complex[] arrayB)
         {
             Console.WriteLine(arrayA.Length);
@@ -55,12 +71,23 @@ namespace Spritzgusslogik
         }
 
         //Brauchen wir eig nicht mehr
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fft"></param>
+        /// <returns></returns>
         private static double[] GetMagnitudeSpectrum(Complex[] fft)
         {
             return fft.Select(c => c.Magnitude).ToArray();
         }
 
         //Brauchen wir eig nicht mehr
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="targetLength"></param>
+        /// <returns></returns>
         private static Complex[] PadArray(Complex[] array, int targetLength)
         {
             var result = new Complex[targetLength];
@@ -68,7 +95,13 @@ namespace Spritzgusslogik
             return result; // Rest ist automatisch (0, 0)
         }
 
-        //Brauchen wir eig nicht mehr
+        //Brauchen wir eig nicht mehr = ist es nicht in audioConvert?
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        /// <exception cref="FormatException"></exception>
         public static Complex[] LoadComplexArrayCsv(string filePath)
         {
             if (!File.Exists(filePath))
@@ -97,7 +130,13 @@ namespace Spritzgusslogik
 
         //Richtungs-/Winkel-Sensitiv
         //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
-        //Ergebnis von 0-1 (je höher desto besser)
+        /// <summary>
+        /// CosineSimilarity of two digits as double arrays
+        /// </summary>
+        /// <param name="arrayA"></param>
+        /// <param name="arrayB"></param>
+        /// <returns>similarity from 0-1</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
@@ -119,7 +158,12 @@ namespace Spritzgusslogik
 
         //Absoluter-Abstand-Sensitiv
         //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
-        //Ergebnis mit Zahlen (je näher an 0 desto besser)
+        /// <summary>
+        /// Euclidean Distance from two digits as double arrays
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Distance (the closer to 0 the better)</returns>
         public static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0;
@@ -130,7 +174,13 @@ namespace Spritzgusslogik
 
         //Lineare-Korrelation-Sensitiv
         //liefert absolute Abweichung, sensibel auf Störgeräusche!!!
-        //Ergebnis von -1 - 1 (Je näher an 1 desto besser)
+        /// <summary>
+        /// Pearson Correlation of two digits as double arrays
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>Correlation from 1 to -1 (the closer to 1 the better)</returns>
+        /// <exception cref="ArgumentException"></exception>
         public static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
@@ -152,7 +202,14 @@ namespace Spritzgusslogik
             return numerator / Math.Sqrt(denomA * denomB);
         }
 
+
         //Zusammenfügen aller Compare-Methoden
+        /// <summary>
+        /// combines cosine similarity, pearson correlation and euclidean distance to compare two digits as double arrays
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <returns>probability that digit a is digit b</returns>
         public static double Compare(double[] a, double[] b)
         {
             double cosine = CosineSimilarity(a, b);
@@ -162,12 +219,19 @@ namespace Spritzgusslogik
 
             Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
 
-            //Cosine & Pearson wichtig, euclidean nur ergänzend
-            return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean); //=
+            //Cosine am wichtigsten, pearson und euclidean nur ergänzend
+            return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean);
             //return (0.5 * cosine) + (0.2 * pearson) + (0.3 * euclidean); //=2,3,3,4,7,5,7,2,7
         }
 
+
         //vergleicht input mit allen Ziffern und gibt erkannte Zahl zurück
+        /// <summary>
+        /// compares input digit with all samples two determine which digit input is
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="bestSimilarity"></param>
+        /// <returns>which digit input is and the average similarity with the samples of the same digit</returns>
         public static int Recognize(double[] input, out double bestSimilarity)
         {
             var bestMatch = -1;

@@ -1,15 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.VisualBasic;
+﻿/**
+ * @file MyFirstCFile.c
+ * @brief File contains the main program
+ * @author Daniel Fischer
+ * @date 01.08.2010
+ *
+ *  Additional Infos: This module is certified...
+ */
+
+
 using System.Globalization;
-using System.Numerics;
-using System.Globalization;
-using System.IO;
 using Complex = System.Numerics.Complex;
 using NAudio.Wave;
-using NWaves.FeatureExtractors.Options;
-using NWaves.FeatureExtractors;
-using NWaves.Signals;
-using System.Xml.Linq;
+
 
 namespace Common
 {

@@ -1,4 +1,12 @@
-﻿using System;
+﻿///
+/// @file    IFFTTransformer
+/// @brief   Interface for FFTTransformer
+/// @author  Bazai Donart
+/// @date    24.06.2025
+///
+///
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
