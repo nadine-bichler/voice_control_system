@@ -10,14 +10,22 @@ using Spritzgusslogik;
 
 namespace Prototyp
 {
+    /// <summary>
+    /// Identifies Signal
+    /// </summary>
     internal class SignalIdentifier
     {
-        private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.60;
+        private readonly double threshold = 0.60;   //threshold for signal similarity
 
-        //Event declaration
+        /// <summary>
+        /// new Event if Digit was Recognized
+        /// </summary>
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
 
+        /// <summary>
+        /// Recognizes digit from input pcm 
+        /// </summary>
+        /// <param name="pcm">pcm audio signal form input</param>
         public void Recognition(Int16[] pcm)
         {
             if (pcm == null || pcm.Length == 0)
@@ -67,11 +75,19 @@ namespace Prototyp
         }
     }
 
+    /// <summary>
+    /// new event arguments if digit is recognized
+    /// </summary>
     internal class DigitRecognizedEventArgs : EventArgs
     {
         public int Digit { get; }
         public double Confidence { get; }
 
+        /// <summary>
+        /// new event arguments if digit si recognized
+        /// </summary>
+        /// <param name="digit">digit from input signal</param>
+        /// <param name="confidence">avg similarity from input signal with all samples from the same digit</param>
         public DigitRecognizedEventArgs(int digit, double confidence)
         {
             Digit = digit;

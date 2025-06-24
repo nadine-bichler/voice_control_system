@@ -14,7 +14,7 @@ using System.Timers;
 namespace Spritzgusslogik
 {
     /// <summary>
-    /// 
+    /// instanciates a microphone
     /// </summary>
     public class Microphone
     {
@@ -38,6 +38,9 @@ namespace Spritzgusslogik
         private List<short> activeRecordingBuffer = new();
 
 
+        /// <summary>
+        /// creates a new microphone
+        /// </summary>
         public Microphone()
         {
             waveIn = new WaveInEvent
@@ -49,6 +52,9 @@ namespace Spritzgusslogik
             waveIn.DataAvailable += WaveIn_DataAvailable;
         }
 
+        /// <summary>
+        /// starts recording
+        /// </summary>
         public void Start()
         {
             try
@@ -63,17 +69,28 @@ namespace Spritzgusslogik
             muted = false;
         }
 
+        /// <summary>
+        /// ends recording
+        /// </summary>
         public void Stop()
         {
             waveIn.StopRecording();
             muted = true;
         }
 
+        /// <summary>
+        /// mutes the microphone
+        /// </summary>
+        /// <returns></returns>
         public Boolean IsMuted()
         {
             return muted;
         }
 
+        /// <summary>
+        /// gets standard microphone name
+        /// </summary>
+        /// <returns>microphone name</returns>
         public String GetStandardMicrophoneName()
         {
             if (WaveIn.DeviceCount == 0)
@@ -85,19 +102,28 @@ namespace Spritzgusslogik
             return caps.ProductName;
         }
 
+        /// <summary>
+        /// gets input from recording
+        /// </summary>
+        /// <returns>input from recording</returns>
         public Int16[] GetValues()
         {
             return values;
         }
 
 
-
-        //Benachrichtigung sobald neue Audiodatei
-        //EventHandler
+        /// <summary>
+        /// Event for new audio input
+        /// </summary>
         public event Action<Int16[]>? AudioReceived;
-        //Benachrichtigung sobald neue Audiodatei
-        //EventHandler
+        
 
+        /// <summary>
+        /// EventHandler for new audio input
+        /// if volume of a sample is bigger than startThreshold => record and if volume sinks under endThreshold => stop recording
+        /// </summary>
+        /// <param name="sender">sender object</param>
+        /// <param name="e">input buffer</param>
         void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
         {
             values = new Int16[e.Buffer.Length / 2];
@@ -138,7 +164,11 @@ namespace Spritzgusslogik
             }
         }
 
-
+        /// <summary>
+        /// calculates average audio volume
+        /// </summary>
+        /// <param name="samples">audio signal from input</param>
+        /// <returns>audio volume over sample durations</returns>
         private float CalculateRMS(short[] samples)
         {
             if (samples.Length == 0) return 0f;

@@ -118,7 +118,10 @@ namespace Prototyp
             commandConfidence.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
         }
 
-        //
+        /// <summary>
+        /// adds new entry to history and displays it on gui
+        /// </summary>
+        /// <param name="digit">digit command</param>
         private void AddToHistory(int digit)
         {
             _history.AddEntry(digit);
@@ -153,6 +156,10 @@ namespace Prototyp
             HistoryPanel.Children.Insert(0, horizontalPanel);
         }
 
+        /// <summary>
+        /// if audio is received the recognititon process is started
+        /// </summary>
+        /// <param name="pcm">input audio signal</param>
         private void OnAudioReceived(Int16[] pcm)
         {
             if (_isProcessing || (DateTime.Now - lastRecognized) < minDelay)
@@ -177,6 +184,11 @@ namespace Prototyp
             });
         }
 
+        /// <summary>
+        /// If digit is recognized gui should be updated
+        /// </summary>
+        /// <param name="sender">object sender</param>
+        /// <param name="e">Digit Arguments = Digit & Command</param>
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
         {
             lastRecognized = DateTime.Now;

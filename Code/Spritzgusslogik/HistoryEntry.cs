@@ -25,7 +25,7 @@ namespace Spritzgusslogik
         /// <summary>
         /// creates a new HistoryEntry
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="command">digit command</param>
         public HistoryEntry(int command)
         {
             this.command = command;

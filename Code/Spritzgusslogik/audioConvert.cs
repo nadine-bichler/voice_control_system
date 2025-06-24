@@ -160,8 +160,8 @@ namespace Common
         /// <summary>
         /// converts a csv file to a double array
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <returns>double array</returns>
+        /// <param name="filePath">file path to csv file</param>
+        /// <returns>values of csv to a double array</returns>
         public static double[] LoadDoubleArrayCSV(string filePath)
         {
             var line = File.ReadLines(filePath).First(); // erste Zeile mit allen Werten
@@ -174,9 +174,9 @@ namespace Common
         /// <summary>
         /// saves pcm to an wav
         /// </summary>
-        /// <param name="pcm"></param>
-        /// <param name="outputPath"></param>
-        /// <param name="sampleRate"></param>
+        /// <param name="pcm">pcm input array</param>
+        /// <param name="outputPath">path to output wav file</param>
+        /// <param name="sampleRate">sample rate for wav</param>
         public static void SavePcmAsWav(short[] pcm, string outputPath, int sampleRate = 44100)
         {
             using (var memoryStream = new MemoryStream())

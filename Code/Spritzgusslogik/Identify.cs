@@ -133,8 +133,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// CosineSimilarity of two digits as double arrays
         /// </summary>
-        /// <param name="arrayA"></param>
-        /// <param name="arrayB"></param>
+        /// <param name="arrayA">audio signal from input digit</param>
+        /// <param name="arrayB">audio signal from sample digit</param>
         /// <returns>similarity from 0-1</returns>
         /// <exception cref="ArgumentException"></exception>
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
@@ -161,8 +161,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// Euclidean Distance from two digits as double arrays
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">audio signal from input digit</param>
+        /// <param name="b">audio signal from sample digit</param>
         /// <returns>Distance (the closer to 0 the better)</returns>
         public static double EuclideanDistance(double[] a, double[] b)
         {
@@ -177,8 +177,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// Pearson Correlation of two digits as double arrays
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">audio signal from input digit</param>
+        /// <param name="b">audio signal from sample digit</param>
         /// <returns>Correlation from 1 to -1 (the closer to 1 the better)</returns>
         /// <exception cref="ArgumentException"></exception>
         public static double PearsonCorrelation(double[] a, double[] b)
@@ -207,8 +207,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// combines cosine similarity, pearson correlation and euclidean distance to compare two digits as double arrays
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
+        /// <param name="a">audio signal from input digit</param>
+        /// <param name="b">audio signal from sample digit</param>
         /// <returns>probability that digit a is digit b</returns>
         public static double Compare(double[] a, double[] b)
         {
@@ -229,8 +229,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// compares input digit with all samples two determine which digit input is
         /// </summary>
-        /// <param name="input"></param>
-        /// <param name="bestSimilarity"></param>
+        /// <param name="input">audio signal from input digit</param>
+        /// <param name="bestSimilarity">output value for similarity</param>
         /// <returns>which digit input is and the average similarity with the samples of the same digit</returns>
         public static int Recognize(double[] input, out double bestSimilarity)
         {

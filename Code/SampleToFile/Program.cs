@@ -15,10 +15,7 @@ using MathNet.Numerics.LinearRegression;
 
 
 
-// Diese Klasse ist für die Verarbeitung der Samples zu Files zuständig
-
-
-
+// Dieses Programm ist für die Verarbeitung der Samples zu Files zuständig
 SignalTransformer transformer = new SignalTransformer();
 
 

@@ -25,8 +25,8 @@ namespace Spritzgusslogik
         /// <summary>
         /// Creates a new HistoryEntry and adds it into the list
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
+        /// <param name="command">digit command</param>
+        /// <returns>new history entry</returns>
         public HistoryEntry AddEntry(int command)
         {
             var entry = new HistoryEntry(command);
