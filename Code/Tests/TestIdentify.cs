@@ -108,7 +108,19 @@ namespace Tests
         }
 
         /// <summary>
-        /// Tests if invalid digit results in Exception
+        /// Tests if no input results in Exception
+        /// </summary>
+        [TestMethod]
+        public void TestNoInput()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() =>
+            {
+                var result = Identify.Recognize(null, out _);
+            });
+        }
+
+        /// <summary>
+        /// Tests if invalid digit is recognized
         /// </summary>
         [TestMethod]
         public void TestInvalidCommand()
@@ -118,7 +130,22 @@ namespace Tests
             var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
 
             var result = Identify.Recognize(reference, out double similarity);
+            Assert.IsTrue(similarity < 0.8, "Similarity to high, 0 is recognized");
 
+        }
+
+        /// <summary>
+        /// Tests if different sized inputs are throwing an exception
+        /// </summary>
+        [TestMethod]
+        public void TestDifferentSizes()
+        {
+            var input = new double[] { 1.0, 2.0, 3.0 };
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                var result = Identify.Recognize(input, out _);
+            });
         }
     }
 }

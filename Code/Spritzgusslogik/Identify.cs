@@ -20,7 +20,6 @@ namespace Spritzgusslogik
     public class Identify
     {
         //const int TargetLength = 2048;
-        private static readonly double threshold = 0.60;   //threshold for signal similarity
 
         /// <deprecated>
         /// </deprecated>
@@ -215,11 +214,6 @@ namespace Spritzgusslogik
                     Debug.WriteLine("Reference Daten: " + string.Join(", ", d.Take(10)) + "\n Input Daten: " +
                                     string.Join(", ", input.Take(10)));
                 }
-            }
-
-            if (bestSimilarity < threshold)
-            {
-                throw new ArgumentOutOfRangeException();
             }
 
             return bestMatch;
