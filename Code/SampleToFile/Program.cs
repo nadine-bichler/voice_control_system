@@ -6,43 +6,37 @@
 ///
 
 using Spritzgusslogik;
-using Common;
 using System;
 using System.Diagnostics;
-using NAudio.Wave;
-using System.Globalization;
-using MathNet.Numerics.LinearRegression;
 
-
-
+/// <summary>
+/// @deprecated Dieser Block wurde durch das Python-Skript ersetzt.
+/// Verwende stattdessen den automatisierten MFCC-Prozess.
+/// </summary>
+/*
+[Obsolete("Deprecated: Manuelle Sample-Verarbeitung, ersetzt durch Python-Skript mfcss.py")]
 // Dieses Programm ist für die Verarbeitung der Samples zu Files zuständig
 SignalTransformer transformer = new SignalTransformer();
-
 
 var files = Directory.GetFiles("../../../samples", "*.mp3");
 
 foreach (var file in files)
 {
-
     var pcm = audioConvert.ConvertMp3ToInt16Array(file);
 
     //audioConvert.SaveInt16ArrayAsWav(pcm,"../../../wavTest/test.wav");
 
     var fft = transformer.Transform(pcm);
 
-
-
     //audioConvert.SaveComplexArrayCsv(Path.ChangeExtension(file,".csv"),fft);
-    audioConvert.SaveDoubleArrayCsv(Path.ChangeExtension(file, ".csv"),fft);
-
+    audioConvert.SaveDoubleArrayCsv(Path.ChangeExtension(file, ".csv"), fft);
 }
+*/
 
-
-//run python code
+// Run Python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis
-string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName;            //geht 3 Ebenen hoch zur Projektwurzel
+string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName; // geht 3 Ebenen hoch zur Projektwurzel
 string scriptPath = Path.Combine(projectDir, "mfcss.py");
-
 
 var psi = new ProcessStartInfo
 {
@@ -66,15 +60,3 @@ using (var process = Process.Start(psi))
         System.Diagnostics.Debug.WriteLine("Fehler:\n" + errors);
     }
 }
-
-//brauchen wir nicht mehr dank Tests
-var array = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/3.csv");
-var array2 = audioConvert.LoadDoubleArrayCSV("../../../WAV_samples/Test3.csv");
-Console.WriteLine(array.Length);
-Console.WriteLine(array2.Length);
-
-
-
-var result = Identify.Compare(array, array2);
-
-Console.WriteLine(result);

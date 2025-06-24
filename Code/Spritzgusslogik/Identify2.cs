@@ -6,7 +6,6 @@
 * 
 * Additional Infos: none
 */
-using Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -72,7 +71,7 @@ namespace Spritzgusslogik
 
                 foreach (var file in files)
                 {
-                    var cmd = audioConvert.LoadDoubleArrayCSV(file);
+                    var cmd = audioConvert.LoadDoubleArrayCsv(file);
                     cmds.Add(cmd);
 
                 }

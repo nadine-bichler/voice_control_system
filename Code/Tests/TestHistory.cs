@@ -5,9 +5,15 @@ using Spritzgusslogik;
 
 namespace Tests;
 
+/// <summary>
+/// This class tests the History
+/// </summary>
 [TestClass]
 public class TestHistory
 {
+    /// <summary>
+    /// tests adding one historyEntry
+    /// </summary>
     [TestMethod]
     public void Test_AddEntry()
     {
@@ -21,6 +27,9 @@ public class TestHistory
         Assert.IsTrue((DateTime.Now - history.entries[0].time).TotalSeconds < 2, "Nicht aktueller Zeitstempel");
     }
 
+    /// <summary>
+    /// tests adding multiple history entries
+    /// </summary>
     [TestMethod]
     public void TestMany_AddEntry()
     {
@@ -40,11 +49,39 @@ public class TestHistory
         }
     }
 
+    /// <summary>
+    /// tests if new history is empty
+    /// </summary>
     [TestMethod]
     public void TestEmpty_History()
     {
         var history = new History();
 
         Assert.AreEqual(0, history.entries.Count, "Es sollten keine Einträge vorhanden sein");
+    }
+
+    /// <summary>
+    /// tests if invalid commands throw exceptions
+    /// </summary>
+    [TestMethod]
+    public void TestInvalidCommand_History()
+    {
+        // Test: Ungültiger Befehl (0)
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        {
+            var entry = new HistoryEntry(0);
+        });
+
+        // Test: Ungültiger Befehl (10)
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        {
+            var entry = new HistoryEntry(10);
+        });
+
+        // Test: Ungültiger Befehl (-1)
+        Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
+        {
+            var entry = new HistoryEntry(-1);
+        });
     }
 }

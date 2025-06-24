@@ -6,11 +6,6 @@
 ///
 ///
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spritzgusslogik
 {
@@ -26,8 +21,13 @@ namespace Spritzgusslogik
         /// creates a new HistoryEntry
         /// </summary>
         /// <param name="command">digit command</param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public HistoryEntry(int command)
         {
+            if (command < 1 || command > 9)
+            {
+                throw new ArgumentOutOfRangeException(nameof(command), "Command must be a digit between 1 and 9.");
+            }
             this.command = command;
             time = DateTime.Now;
         }

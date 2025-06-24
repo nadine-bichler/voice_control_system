@@ -1,23 +1,25 @@
 using Microsoft.VisualStudio.CodeCoverage;
 using Spritzgusslogik;
-using Common;
 
 namespace Tests;
 
+/// <summary>
+/// this class tests the recognize method
+/// </summary>
 [TestClass]
 public class TestIdentify
 {
+    /*
     [TestMethod]
-    //vergleicht nur einen Wert(3) ob erkannt wird
-    //Ergebnis von 0-1 (je höher desto besser)
+    [Obsolete("Deprecated test, use TestRecognize instead")]
     public void TestCosine()
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
         var referencePath = Path.Combine(basePath, "3.csv");
         var testPath = Path.Combine(basePath, "Test3.csv");
 
-        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
-        var test = audioConvert.LoadDoubleArrayCSV(testPath);
+        var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
+        var test = audioConvert.LoadDoubleArrayCsv(testPath);
 
         var result = Identify.CosineSimilarity(reference, test);
 
@@ -25,16 +27,15 @@ public class TestIdentify
     }
 
     [TestMethod]
-    //vergleicht nur einen Wert(3) ob erkannt wird
-    //Ergebnis mit Zahlen (je näher an 0 desto besser)
+    [Obsolete("Deprecated test, use TestRecognize instead")]
     public void TestEuclidean()
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
         var referencePath = Path.Combine(basePath, "3.csv");
         var testPath = Path.Combine(basePath, "Test3.csv");
 
-        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
-        var test = audioConvert.LoadDoubleArrayCSV(testPath);
+        var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
+        var test = audioConvert.LoadDoubleArrayCsv(testPath);
 
         var result = Identify.EuclideanDistance(reference, test);
 
@@ -42,16 +43,15 @@ public class TestIdentify
     }
 
     [TestMethod]
-    //vergleicht nur einen Wert(3) ob erkannt wird
-    //Ergebnis von -1 - 1 (Je näher an 1 desto besser)
+    [Obsolete("Deprecated test, use TestRecognize instead")]
     public void TestPearson()
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
         var referencePath = Path.Combine(basePath, "3.csv");
         var testPath = Path.Combine(basePath, "Test3.csv");
 
-        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
-        var test = audioConvert.LoadDoubleArrayCSV(testPath);
+        var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
+        var test = audioConvert.LoadDoubleArrayCsv(testPath);
 
         var result = Identify.PearsonCorrelation(reference, test);
 
@@ -59,30 +59,36 @@ public class TestIdentify
     }
 
     [TestMethod]
+    [Obsolete("Deprecated test, use TestRecognize instead")]
     public void TestCompare()
     {
         var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
         var referencePath = Path.Combine(basePath, "3.csv");
         var testPath = Path.Combine(basePath, "Test3.csv");
 
-        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
-        var test = audioConvert.LoadDoubleArrayCSV(testPath);
+        var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
+        var test = audioConvert.LoadDoubleArrayCsv(testPath);
 
         var result = Identify.Compare(reference, test);
 
         Assert.IsTrue(result >= 0.75, $"Combined similarity score is too low: {result}");
     }
+    */
 
-    //Vergleicht 1 Ziffer mit allen Ziffern
+
+    /// <summary>
+    /// this method compares one digit with all samples to determine which digit is being said
+    /// </summary>
+    /// <param name="expectedDigit">expected digit</param>
     [DataTestMethod]
     [DataRow(3)]
     [DataRow(5)]
     [DataRow(9)]
     public void TestRecognize(int expectedDigit)
     {
-        var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");   
+        var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
         var referencePath = Path.Combine(basePath, $"{expectedDigit}.csv");
-        var reference = audioConvert.LoadDoubleArrayCSV(referencePath);
+        var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
 
         var result = Identify.Recognize(reference, out double similarity);
 

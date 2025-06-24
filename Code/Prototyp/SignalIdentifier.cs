@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common;
 using Spritzgusslogik;
 
 namespace Prototyp
@@ -66,7 +65,7 @@ namespace Prototyp
             }
 
             //lade ergebnis aus csv datei
-            double[] mfcc = audioConvert.LoadDoubleArrayCSV("mfcc_vector.csv");
+            double[] mfcc = audioConvert.LoadDoubleArrayCsv("mfcc_vector.csv");
 
             int result = Identify.Recognize(mfcc, out double sim);
 
