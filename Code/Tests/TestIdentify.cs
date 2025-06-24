@@ -106,5 +106,17 @@ namespace Tests
             Assert.AreEqual(expectedDigit, result,
                 $"Recognition mismatch: expected {expectedDigit}, got {result} with similarity {similarity}");
         }
+
+        [TestMethod]
+        public void TestInvalidCommand()
+        {
+            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "wavTest");
+            var referencePath = Path.Combine(basePath, "0.csv");
+            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
+
+            var result = Identify.Recognize(reference, out double similarity);
+
+            
+        }
     }
 }

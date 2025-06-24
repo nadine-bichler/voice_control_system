@@ -20,6 +20,7 @@ namespace Spritzgusslogik
     public class Identify
     {
         //const int TargetLength = 2048;
+        private static readonly double threshold = 0.60;   //threshold for signal similarity
 
         /// <deprecated>
         /// </deprecated>
@@ -170,6 +171,11 @@ namespace Spritzgusslogik
         /// <returns>The recognized digit (1-9), or -1 if no match is found.</returns>
         public static int Recognize(double[] input, out double bestSimilarity)
         {
+            if (input == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             var bestMatch = -1;
             bestSimilarity = 0.0;
 
@@ -185,6 +191,12 @@ namespace Spritzgusslogik
                 foreach (var file in files)
                 {
                     var test = audioConvert.LoadDoubleArrayCsv(file);
+
+                    if (test.Length != input.Length)
+                    {
+                        throw new ArgumentException();
+                    }
+
                     var sim = Compare(input, test);
                     scores.Add(sim);
                 }
@@ -201,6 +213,11 @@ namespace Spritzgusslogik
                     Debug.WriteLine("Reference Daten: " + string.Join(", ", d.Take(10)) + "\n Input Daten: " +
                                     string.Join(", ", input.Take(10)));
                 }
+            }
+
+            if (bestSimilarity < threshold)
+            {
+                throw new ArgumentOutOfRangeException();
             }
 
             return bestMatch;

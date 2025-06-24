@@ -33,7 +33,7 @@ def bandpass(signal, sr = 44100, lowcut = 500.0, highcut = 3000.0, order = 6):
 base_path = os.path.dirname(os.path.abspath(__file__))
 
 # Ordner relativ zu diesem Pfad setzen
-input_folder = os.path.join(base_path, "WAV_samples")
+input_folder = os.path.join(base_path, "wavTest")
 
 
 for filename in os.listdir(input_folder):                   #Schleife über alle Dateien im Eingabeordner

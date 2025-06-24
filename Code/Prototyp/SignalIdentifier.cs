@@ -14,8 +14,6 @@ namespace Prototyp
     /// </summary>
     internal class SignalIdentifier
     {
-        private readonly double threshold = 0.60;   //threshold for signal similarity
-
         /// <summary>
         /// new Event if Digit was Recognized
         /// </summary>
@@ -69,7 +67,7 @@ namespace Prototyp
 
             int result = Identify.Recognize(mfcc, out double sim);
 
-            if (sim >= threshold)
+            if (result != null)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));
         }
     }
