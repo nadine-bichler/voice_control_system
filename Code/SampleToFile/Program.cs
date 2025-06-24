@@ -29,7 +29,7 @@ foreach (var file in files)
 
 
 /// <summary>
-///Converts audio signals into csv as samples
+///Converts audio signals into csv as samples via an external python file
 /// </summary>
 // Run Python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis

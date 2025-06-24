@@ -6,7 +6,7 @@ using NAudio.Wave;
 namespace Spritzgusslogik
 {
     /// <summary>
-    /// Converting input to file or other way around 
+    ///Provides methods for converting audio input to and from file formats such as WAV and CSV.around 
     /// </summary>
     public class audioConvert
     {
@@ -120,10 +120,10 @@ namespace Spritzgusslogik
         */
 
         /// <summary>
-        /// converts a csv file to a double array
+        /// Converts a CSV file into a double array.
         /// </summary>
         /// <param name="filePath">file path to csv file</param>
-        /// <returns>values of csv to a double array</returns>
+        /// <returns>A double array with parsed values, or null if file is not found. Returns an empty array on parse errors.</returns>
         public static double[] LoadDoubleArrayCsv(string filePath)
         {
             if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
@@ -152,11 +152,11 @@ namespace Spritzgusslogik
         }
 
         /// <summary>
-        /// saves pcm to a wav
+        /// Saves a PCM short[] array as a .wav file.
         /// </summary>
-        /// <param name="pcm">pcm input array</param>
-        /// <param name="outputPath">path to output wav file</param>
-        /// <param name="sampleRate">sample rate for wav</param>
+        /// <param name="pcm">PCM audio data as short array.</param>
+        /// <param name="outputPath">Destination file path for WAV file</param>
+        /// <param name="sampleRate">Sampling rate in Hz (default: 44100)</param>
         public static void SavePcmAsWav(short[] pcm, string outputPath, int sampleRate = 44100)
         {
             using var memoryStream = new MemoryStream();

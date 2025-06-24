@@ -10,21 +10,22 @@ using Spritzgusslogik;
 namespace Prototyp
 {
     /// <summary>
-    /// Identifies Signal
+    /// Identifies spoken digits based on audio input.
+    /// Converts PCM audio input to MFCC features using a Python script and compares with stored digit profiles.
     /// </summary>
     internal class SignalIdentifier
     {
         private static readonly double threshold = 0.60;   //threshold for signal similarity
 
         /// <summary>
-        /// new Event if Digit was Recognized
+        /// event triggered we´hen a digit is recognized
         /// </summary>
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
 
         /// <summary>
-        /// Recognizes digit from input pcm 
+        /// Converts PCM to WAV, runs MFCC extraction via Python, loads the resulting vector, and performs recognition.
         /// </summary>
-        /// <param name="pcm">pcm audio signal form input</param>
+        /// <param name="pcm">pcm audio signal as Int16 array</param>
         public void Recognition(Int16[] pcm)
         {
             if (pcm == null || pcm.Length == 0)
@@ -75,7 +76,7 @@ namespace Prototyp
     }
 
     /// <summary>
-    /// new event arguments if digit is recognized
+    /// Event arguments for recognized digit results.
     /// </summary>
     internal class DigitRecognizedEventArgs : EventArgs
     {
@@ -83,10 +84,11 @@ namespace Prototyp
         public double Confidence { get; }
 
         /// <summary>
-        /// new event arguments if digit si recognized
+        /// Constructs a new DigitRecognizedEventArgs object.
         /// </summary>
-        /// <param name="digit">digit from input signal</param>
-        /// <param name="confidence">avg similarity from input signal with all samples from the same digit</param>
+        /// <param name="digit">Recognized digit from the input signal.</param>
+        /// <param name="confidence">confidence Similarity score for the recognized digit.
+        ///</param>
         public DigitRecognizedEventArgs(int digit, double confidence)
         {
             Digit = digit;
