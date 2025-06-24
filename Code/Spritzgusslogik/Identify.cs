@@ -76,6 +76,7 @@ namespace Spritzgusslogik
         */
 
         // Richtungs-/Winkel-Sensitiv
+        //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
         /// <summary>
         /// Calculates cosine similarity between two vectors.
         /// Measures directional similarity regardless of magnitude.
@@ -102,6 +103,7 @@ namespace Spritzgusslogik
         }
 
         // Absoluter-Abstand-Sensitiv
+        //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
         /// <summary>
         /// Calculates Euclidean distance between two vectors.
         /// Measures absolute difference between elements.

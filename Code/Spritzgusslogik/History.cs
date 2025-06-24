@@ -1,11 +1,4 @@
-﻿///
-/// @file    History.cs
-/// @brief   Maintains a list of digit command history entries with timestamps.
-/// @author  Bichler Nadine
-/// @date    24.06.2025
-///
-
-namespace Spritzgusslogik
+﻿namespace Spritzgusslogik
 {
     /// <summary>
     /// Manages a list of <see cref="HistoryEntry"/> objects representing command history.

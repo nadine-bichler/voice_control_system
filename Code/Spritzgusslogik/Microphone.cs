@@ -1,11 +1,4 @@
-﻿///
-/// @file    Microphone.cs
-/// @brief   Provides functionality for microphone input and dynamic voice detection.
-/// @author  Benz Jan, Bichler Nadine
-/// @date    24.06.2025
-///
-
-using NAudio.Wave;
+﻿using NAudio.Wave;
 using NAudio.CoreAudioApi;
 using System;
 using System.Timers;

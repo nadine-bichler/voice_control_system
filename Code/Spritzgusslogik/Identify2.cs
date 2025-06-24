@@ -1,12 +1,4 @@
-﻿/** 
-* @file Identify2.cs 
-* @brief File is a Program that Identifies Instructions (1-9).
-* @author Donart Bazaj 
-* @date 10.06.2025 
-* 
-* Additional Infos: none
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +14,9 @@ using Accord.Math.Metrics;
 
 namespace Spritzgusslogik
 {
+    /// <summary>
+    /// Identifies Instructions (1-9).
+    /// </summary>
     public class Identify2
     {
 
@@ -30,16 +25,9 @@ namespace Spritzgusslogik
 
         public double DistanceThreshold { get; set; } = 0.5;
 
-        /** 
-        * @fn Identify2()
-        * @brief Conctructor. 
-        * @param none 
-        * @return nothing 
-        * @author Donart Bazaj
-        * @date 10.06.2025 
-        * 
-        * 
-        */
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Identify2()
         {
             referenceData = loadReferenceData();
@@ -47,17 +35,12 @@ namespace Spritzgusslogik
 
         }
 
-        /** 
-        * @fn Dictionary<int, List<double[]>> loadReferenceData()
-        * @brief Loads the Reference Files. 
-        * @param void 
-        * @return  Dictionary<int, List<double[]>>, keyPairValue of int(1-9) and List of double[] , Reference Data.
-        * @author Donart Bazaj
-        * @date 10.06.2025 
-        * 
-        * This method reads all Reference Data and saves in creates an Dictionary<int, List<double[]>> where it saves all
-        *  Reference Data.
-        */
+
+        /// <summary>
+        /// This method reads all Reference Data and saves in creates an Dictionary<int, List<double[]>> where it saves all
+        ///  Reference Data.
+        /// </summary>
+        /// <returns>Dictionary<int, List<double[]>>, keyPairValue of int(1-9) and List of double[] , Reference Data.</returns>
         public Dictionary<int, List<double[]>> loadReferenceData()
         {
             Dictionary<int, List<double[]>> refData = new Dictionary<int, List<double[]>>();
@@ -84,18 +67,13 @@ namespace Spritzgusslogik
 
         //Richtungs-/Winkel-Sensitiv
         //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
-        //Ergebnis von 0-1 (je höher desto besser)
-        /** 
-        * @fn double CosineSimilarity(double[] arrayA, double[] arrayB)
-        * @brief Calculates Cosine Similarity. 
-        * @param  arrayA, double Array
-        * @param  arrayB, double Array
-        * @return  double Value, similarity
-        * @author Donart Bazaj
-        * @date 10.06.2025 
-        * 
-        * This Method Calculates the Cosine Similarity between 2 given double Arrays.
-        */
+        /// <summary>
+        /// Calculates cosine similarity between two vectors.
+        /// Measures directional similarity regardless of magnitude.
+        /// </summary>
+        /// <param name="arrayA">First feature vector.</param>
+        /// <param name="arrayB">Second feature vector.</param>
+        /// <returns>Cosine similarity score in [0,1].</returns>
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
@@ -117,18 +95,13 @@ namespace Spritzgusslogik
 
         //Absoluter-Abstand-Sensitiv
         //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
-        //Ergebnis mit Zahlen (je näher an 0 desto besser)
-        /** 
-        * @fn double EuclideanDistance(double[] a, double[] b)
-        * @brief Calculates Euclidean Distance. 
-        * @param  a, double Array
-        * @param  b, double Array
-        * @return  double Value, similarity
-        * @author Donart Bazaj
-        * @date 10.06.2025 
-        * 
-        * This Method Calculates the Euclidean Distance between 2 given double Arrays.
-        */
+        /// <summary>
+        /// Calculates Euclidean distance between two vectors.
+        /// Measures absolute difference between elements.
+        /// </summary>
+        /// <param name="a">First feature vector.</param>
+        /// <param name="b">Second feature vector.</param>
+        /// <returns>Euclidean distance (lower means more similar).</returns>
         public static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0.0;

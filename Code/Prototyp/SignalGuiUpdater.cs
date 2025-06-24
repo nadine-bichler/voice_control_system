@@ -1,6 +1,9 @@
 ﻿using Spritzgusslogik;
 using System.Windows.Threading;
 
+/// <summary>
+/// 
+/// </summary>
 class SignalGuiUpdater
 {
     private DispatcherTimer timer;

@@ -1,13 +1,7 @@
-﻿///
-/// @file    Program
-/// @brief   Converts audio signals into csv as samples
-/// @author  Anton Armin, Bichler Nadine
-/// @date    24.06.2025
-///
-
-using Spritzgusslogik;
+﻿using Spritzgusslogik;
 using System;
 using System.Diagnostics;
+using static System.Resources.ResXFileRef;
 
 /// <summary>
 /// @deprecated Dieser Block wurde durch das Python-Skript ersetzt.
@@ -33,6 +27,10 @@ foreach (var file in files)
 }
 */
 
+
+/// <summary>
+///Converts audio signals into csv as samples
+/// </summary>
 // Run Python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis
 string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName; // geht 3 Ebenen hoch zur Projektwurzel

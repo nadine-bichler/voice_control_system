@@ -107,6 +107,9 @@ namespace Tests
                 $"Recognition mismatch: expected {expectedDigit}, got {result} with similarity {similarity}");
         }
 
+        /// <summary>
+        /// Tests if invalid digit results in Exception
+        /// </summary>
         [TestMethod]
         public void TestInvalidCommand()
         {
@@ -116,7 +119,6 @@ namespace Tests
 
             var result = Identify.Recognize(reference, out double similarity);
 
-            
         }
     }
 }

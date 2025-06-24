@@ -1,14 +1,7 @@
-﻿/** 
-* @file TestFFTTransformer.cs 
-* @brief File is a Test Program.
-* @author Donart Bazaj 
-* @date 16.05.2025 
-* 
-* Additional Infos: none
-*/
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Spritzgusslogik;
+using System.Security.Policy;
 
 
 namespace Tests
@@ -18,26 +11,15 @@ namespace Tests
     {
         // FFTTransformer fftT = new FFTTransformer();
 
-        /** 
-        * @fn  void TestTransformerMathNet()
-        * @brief Tests Trans´former that uses MathNet. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
-        * It transforms the signal and checks if the result has more than 0 elements. 
-        * And if first element is smaller than 0.05
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instace of SignalTransformer and an dummy signal.
+        /// It transforms the signal and checks if the result has more than 0 elements.
+        /// And if first element is smaller than 0.05
+        /// </summary>
         [TestMethod]
         public void TestTransformerMathNet()
         {
             SignalTransformer sT = new SignalTransformer();
-
-            
-
 
             Int16[] signal = new Int16[] { 0, 1000, -1000, 0 };
 
@@ -49,18 +31,10 @@ namespace Tests
         }
 
 
-        /** 
-        * @fn  void TestTransformerMathNet2()
-        * @brief Tests Transformer that uses MathNet. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
-        * It calls Transform Method 2 times and compares both result if they are the same.
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instace of SignalTransformer and an dummy signal.
+        /// It calls Transform Method 2 times and compares both result if they are the same.
+        /// </summary>
         [TestMethod]
         public void TestTransformerMathNet2()
         {
@@ -75,19 +49,11 @@ namespace Tests
         }
 
 
-        /** 
-        * @fn  void TestTransformerFFTSharp()
-        * @brief Tests Transformer that uses FFTSharp. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
-        * It transforms the signal and checks if the result has more than 0 elements. 
-        * And if first element is smaller than 0.05
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instace of SignalTransformer and an dummy signal.
+        /// It transforms the signal and checks if the result has more than 0 elements.
+        /// And if first element is smaller than 0.05
+        /// </summary>
         [TestMethod]
         public void TestTransformerFFTSharp()
         {
@@ -104,18 +70,10 @@ namespace Tests
 
         }
 
-        /** 
-        * @fn  void TestTransformerFFTSharp2()
-        * @brief Tests Transformer that uses MathNet. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
-        * It calls Transform Method 2 times and compares both result if they are the same.
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instance of SignalTransformer and an dummy signal.
+        /// It calls Transform Method 2 times and compares both result if they are the same.
+        /// </summary>
         [TestMethod]
         public void TestTransformerFFTSharp2()
         {
@@ -133,18 +91,10 @@ namespace Tests
 
         }
 
-        /** 
-        * @fn  void TestBothTransformer()
-        * @brief Tests both Transformer. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
-        * It calls Transform Method of each Transformer  and compares both result if they are the same.
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instance of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
+        /// It calls Transform Method of each Transformer and compares both result if they are the same.
+        /// </summary>
         [TestMethod]
         public void TestBothTransformer() 
         {
@@ -171,18 +121,10 @@ namespace Tests
 
         }
 
-        /** 
-        * @fn  void TestBothTransformer2()
-        * @brief Tests both Transformer. 
-        * @param void
-        * @return void
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method Test Method creates an instaz of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
-        * It calls Transform Method of each Transformer  and compares both result if they are the same length and not null.
-        * 
-        */
+        /// <summary>
+        /// This method Test Method creates an instace of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
+        /// It calls Transform Method of each Transformer and compares both result if they are the same length and not null.
+        /// </summary>
         [TestMethod]
         public void TestBothTransformer2()   
         {
@@ -198,9 +140,6 @@ namespace Tests
             Assert.IsNotNull(result1, "Erstes Ergebnis darf nicht null sein");
             Assert.IsNotNull(result2, "Zweites Ergebnis darf nicht null sein");
             Assert.AreEqual(result1.Length, result2.Length, "Array-Längen müssen übereinstimmen");
-            
-           
-
         }
 
      

@@ -1,11 +1,4 @@
-﻿///
-/// @file    audioConvert
-/// @brief   Converting input to file or other way around
-/// @author  Anton Armin, Bichler Nadine
-/// @date    24.06.2025
-///
-
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using Complex = System.Numerics.Complex;
 using NAudio.Wave;

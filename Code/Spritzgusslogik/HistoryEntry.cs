@@ -1,11 +1,4 @@
-﻿///
-/// @file    HistoryEntry.cs
-/// @brief   Defines entries used to store recognized digit commands with timestamps.
-/// @author  Bichler Nadine
-/// @date    24.06.2025
-///
-
-namespace Spritzgusslogik
+﻿namespace Spritzgusslogik
 {
     /// <summary>
     /// Represents a single history entry consisting of a recognized digit command and the corresponding timestamp.
