@@ -2,6 +2,7 @@
 using System;
 using Spritzgusslogik;
 using NAudio.Wave;
+using System.Reflection;
 
 namespace Tests
 {
@@ -19,14 +20,25 @@ namespace Tests
 
             WaveInEventArgs eTest = new WaveInEventArgs(buffer, buffer.Length);
 
-            var privateObject = new PrivateObject(mic);
+            Int16[] shortBuffer = new short[buffer.Length/2];
+            for(int i = 0; i < shortBuffer.Length; i++)
+            {
+                shortBuffer[i] = BitConverter.ToInt16(buffer, i*2);
+            }
 
-            privateObject.Invoke("WaveIn_DataAvailable",mic,eTest);
-
+           
+            MethodInfo method = typeof(Microphone).GetMethod("WaveIn_DataAvailable", BindingFlags.NonPublic | BindingFlags.Instance);
+            method.Invoke( mic, new object[] { mic, eTest });
             mic.Stop();
 
             var result = mic.GetValues();
-            Assert.IsNotNull(result);
+            Assert.IsFalse(0 == result.Length, "Result Length is 0");
+            Assert.IsNotNull(result,"Result is Null");
+            Assert.AreEqual(shortBuffer[0], result[0],"Result and Buffer first elemment are not Equal");
+            Assert.AreEqual(shortBuffer[1], result[1], "Result and Buffer are not Equal Pos 1");
+            Assert.AreEqual(shortBuffer[2], result[2], "Result and Buffer are not Equal Pos 2 ");
+            Assert.AreEqual(shortBuffer[3], result[3], "Result and Buffer are not Equal Pos 3 ");
+
 
 
         }

@@ -1,4 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/** 
+* @file TestFFTTransformer.cs 
+* @brief File is a Test Program.
+* @author Donart Bazaj 
+* @date 16.05.2025 
+* 
+* Additional Infos: none
+*/
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Spritzgusslogik;
 
@@ -10,6 +18,19 @@ namespace Tests
     {
         // FFTTransformer fftT = new FFTTransformer();
 
+        /** 
+        * @fn  void TestTransformerMathNet()
+        * @brief Tests Trans´former that uses MathNet. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
+        * It transforms the signal and checks if the result has more than 0 elements. 
+        * And if first element is smaller than 0.05
+        * 
+        */
         [TestMethod]
         public void TestTransformerMathNet()
         {
@@ -27,6 +48,19 @@ namespace Tests
 
         }
 
+
+        /** 
+        * @fn  void TestTransformerMathNet2()
+        * @brief Tests Transformer that uses MathNet. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
+        * It calls Transform Method 2 times and compares both result if they are the same.
+        * 
+        */
         [TestMethod]
         public void TestTransformerMathNet2()
         {
@@ -40,6 +74,20 @@ namespace Tests
             Assert.AreEqual(result1[result1.Length - 1], result2[result2.Length - 1]);
         }
 
+
+        /** 
+        * @fn  void TestTransformerFFTSharp()
+        * @brief Tests Transformer that uses FFTSharp. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
+        * It transforms the signal and checks if the result has more than 0 elements. 
+        * And if first element is smaller than 0.05
+        * 
+        */
         [TestMethod]
         public void TestTransformerFFTSharp()
         {
@@ -56,6 +104,18 @@ namespace Tests
 
         }
 
+        /** 
+        * @fn  void TestTransformerFFTSharp2()
+        * @brief Tests Transformer that uses MathNet. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and an dummy signal.
+        * It calls Transform Method 2 times and compares both result if they are the same.
+        * 
+        */
         [TestMethod]
         public void TestTransformerFFTSharp2()
         {
@@ -73,6 +133,18 @@ namespace Tests
 
         }
 
+        /** 
+        * @fn  void TestBothTransformer()
+        * @brief Tests both Transformer. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
+        * It calls Transform Method of each Transformer  and compares both result if they are the same.
+        * 
+        */
         [TestMethod]
         public void TestBothTransformer() 
         {
@@ -99,6 +171,18 @@ namespace Tests
 
         }
 
+        /** 
+        * @fn  void TestBothTransformer2()
+        * @brief Tests both Transformer. 
+        * @param void
+        * @return void
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method Test Method creates an instaz of SignalTransformer and SignalFFTSharpTransformer  and an dummy signal.
+        * It calls Transform Method of each Transformer  and compares both result if they are the same length and not null.
+        * 
+        */
         [TestMethod]
         public void TestBothTransformer2()   
         {

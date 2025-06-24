@@ -1,4 +1,12 @@
-﻿using Common;
+﻿/** 
+* @file Identify2.cs 
+* @brief File is a Program that Identifies Instructions (1-9).
+* @author Donart Bazaj 
+* @date 10.06.2025 
+* 
+* Additional Infos: none
+*/
+using Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +31,16 @@ namespace Spritzgusslogik
 
         public double DistanceThreshold { get; set; } = 0.5;
 
+        /** 
+        * @fn Identify2()
+        * @brief Conctructor. 
+        * @param none 
+        * @return nothing 
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * 
+        */
         public Identify2()
         {
             referenceData = loadReferenceData();
@@ -30,6 +48,17 @@ namespace Spritzgusslogik
 
         }
 
+        /** 
+        * @fn Dictionary<int, List<double[]>> loadReferenceData()
+        * @brief Loads the Reference Files. 
+        * @param void 
+        * @return  Dictionary<int, List<double[]>>, keyPairValue of int(1-9) and List of double[] , Reference Data.
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * This method reads all Reference Data and saves in creates an Dictionary<int, List<double[]>> where it saves all
+        *  Reference Data.
+        */
         public Dictionary<int, List<double[]>> loadReferenceData()
         {
             Dictionary<int, List<double[]>> refData = new Dictionary<int, List<double[]>>();
@@ -57,6 +86,17 @@ namespace Spritzgusslogik
         //Richtungs-/Winkel-Sensitiv
         //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
         //Ergebnis von 0-1 (je höher desto besser)
+        /** 
+        * @fn double CosineSimilarity(double[] arrayA, double[] arrayB)
+        * @brief Calculates Cosine Similarity. 
+        * @param  arrayA, double Array
+        * @param  arrayB, double Array
+        * @return  double Value, similarity
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * This Method Calculates the Cosine Similarity between 2 given double Arrays.
+        */
         public static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
@@ -79,6 +119,17 @@ namespace Spritzgusslogik
         //Absoluter-Abstand-Sensitiv
         //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
         //Ergebnis mit Zahlen (je näher an 0 desto besser)
+        /** 
+        * @fn double EuclideanDistance(double[] a, double[] b)
+        * @brief Calculates Euclidean Distance. 
+        * @param  a, double Array
+        * @param  b, double Array
+        * @return  double Value, similarity
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * This Method Calculates the Euclidean Distance between 2 given double Arrays.
+        */
         public static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0.0;
@@ -93,7 +144,17 @@ namespace Spritzgusslogik
 
         // Führt einen Bitmuster-Vergleich zwischen den Referenzdaten und dem aktuellen Eingabesignal durch.
         // Die Befehle werden leider trotzdem nicht richtig erkannt.
-        
+        /** 
+        * @fn int Recognize(Int16[] rawInput, out double bestSimilarity)
+        * @brief Regonizes the  Instruction.
+        * @param  a, double Array
+        * @param  bestSimilarity
+        * @return  int, regonized Command.
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * This Method regonizes the spoken Command. It compares the given Values with Reference Data.
+        */
         //public int Recognize(Int16[] rawInput, out double bestSimilarity)
         //{
         //    SignalFFTSharpTransformer st = new SignalFFTSharpTransformer();
@@ -126,7 +187,7 @@ namespace Spritzgusslogik
         //    Debug.WriteLine("FFT Input: " + string.Join(", ", mfccN.Take(10)));
         //   // Debug.WriteLine("Max: " + mfcc.Max());
         //   // Debug.WriteLine("Bitmuster: " + string.Join("", inputBits.Select(b => b ? "1" : "0")));
-            
+
         //    for (var kv = 1; kv < 10; kv++ )
         //    {
         //        double avgSim = 0.0;
@@ -138,7 +199,7 @@ namespace Spritzgusslogik
         //            if (rawRefVec.Length != mfccN.Length)
         //                continue; // Optional: Mit DTW vergleichen, wenn Längen verschieden
 
-                    
+
         //            var refVec = NormalizeMax(rawRefVec);
         //            // Referenz in Bitmuster wandeln
         //               bool[] refBits = refVec.Select(x => x > threshold).ToArray();
@@ -155,19 +216,19 @@ namespace Spritzgusslogik
 
 
 
-               
+
 
         //           // double similarity = (double) same / inputBits.Length;
 
         //            // double simCosine = CosineSimilarity(refVec, mfccN);
         //           //  double dist = EuclideanDistance(mfcc, refVec);
         //          //    double simHybrid = 0.5  * similarity + 0.5 * simCosine;
-                  
+
         //          var simHybrid = (double)same/ refBits.Length;
         //            avgSim += simHybrid;
         //            c++;
-                   
-                    
+
+
         //        }
 
         //        avgSim /= c;
@@ -186,13 +247,24 @@ namespace Spritzgusslogik
         //    // Annahme: dist = 0 bedeutet perfekt ähnlich, große dist = unähnlich
         //    // bestSimilarity = 1.0 / (1.0 + bestDist); // z.B. dist=0 => sim=1.0, dist=9 => sim~0.1
         //    //var d = referenceData[bestCmd];
-            
+
         //    return bestCmd;
         //}
-        
 
 
 
+        /** 
+         * @fn double[] ConvertFftToMfcc(double[] fftMag, int numFilters = 26, int numCoeffs = 13)
+         * @brief It converts from Fft to Mfcc-Vectors of length 13.
+         * @param  fftMag, double Array
+         * @param  numFilters, 26
+         * @param  numCoeffs, 13
+         * @return  int, regonized Command.
+         * @author Donart Bazaj
+         * @date 10.06.2025 
+         * 
+         * It converts from Fft Values to Mfcc-Vectors of length 13. 
+         */
         public static double[] ConvertFftToMfcc(double[] fftMag, int numFilters = 26, int numCoeffs = 13)
         {
             int sampleRate = 44100;
@@ -211,6 +283,16 @@ namespace Spritzgusslogik
         }
 
         // Einfache eigene DCT-II Implementation
+        /** 
+        * @fn    double[] DctII(double[] input)
+        * @brief Easy DCT-II Implementiation
+        * @param  input, double Array
+        * @return  result
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * Easy DCT-II Implementiation
+        */
         private static double[] DctII(double[] input)
         {
             int N = input.Length;
@@ -231,6 +313,21 @@ namespace Spritzgusslogik
             return result;
         }
 
+
+
+        /** 
+        * @fn    double[] ApplyMelFilterbank(double[] fftMag, int sampleRate, int fftSize, int numFilters = 13)
+        * @brief It is needed to Convert From Fft to Mfcc
+        * @param  fftMag, double Array
+        * @param sampleRate
+        * @param  fftSize
+        * @param numFilters, 13
+        * @return  filterEnergies
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * It is needed to Convert From Fft to Mfcc
+        */
         public static double[] ApplyMelFilterbank(double[] fftMag, int sampleRate, int fftSize, int numFilters = 13)
         {
             double melMin = 0;
@@ -264,6 +361,19 @@ namespace Spritzgusslogik
 
         }
 
+        /** 
+        * @fn    double[] NormalizeMax(double[] v)
+        * @brief Normalizes an double Array.
+        * @param  v, double Array
+        * @return  normalised double []
+        * @author Donart Bazaj
+        * @date 10.06.2025 
+        * 
+        * Normalizes a vector of doubles by dividing each element by the maximum absolute value.
+        * This scales the values into the range [-1, 1].
+        * It Returns  a new double[] array where each value is divided by the maximum absolute value of v .
+        *   If all values are zero, the original array is returned.
+        */
         private double[] NormalizeMax(double[] v)
         {
             double m = v.Select(x => Math.Abs(x)).DefaultIfEmpty(0).Max();
@@ -271,7 +381,7 @@ namespace Spritzgusslogik
             return v.Select(x => x / m).ToArray();
         }
 
-
+        /*
         double ComputeItakuraSaito(double[] X, double[] Y)
         {
             double sum = 0;
@@ -331,7 +441,7 @@ namespace Spritzgusslogik
             Array.Copy(a, 1, result, 0, order);
             return result;
         }
-
+        */
     }
 }
 
