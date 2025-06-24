@@ -1,9 +1,8 @@
 ﻿///
-/// @file    Microphone
-/// @brief   Methods for Microphone and Input
+/// @file    Microphone.cs
+/// @brief   Provides functionality for microphone input and dynamic voice detection.
 /// @author  Benz Jan, Bichler Nadine
 /// @date    24.06.2025
-///
 ///
 
 using NAudio.Wave;
@@ -14,32 +13,33 @@ using System.Timers;
 namespace Spritzgusslogik
 {
     /// <summary>
-    /// instanciates a microphone
+    /// Represents a microphone interface with support for dynamic voice activation.
     /// </summary>
     public class Microphone
     {
+        /// <summary>
+        /// Sample rate for audio input.
+        /// </summary>
         public const int SampleRate = 44100;
 
         private WaveInEvent waveIn;
         private Int16[] values;
 
-        private Boolean muted = true;
+        private bool muted = true;
 
         private short[]? lastAudioData;
 
-
-        //dynamische Spracherkennung
-        private const float VoiceStartThreshold = 0.02f; // Lautstaerkeschwelle zum Start
-        private const float VoiceEndThreshold = 0.015f; // Lautstaerkeschwelle zum Stoppen
-        private const int SilenceDurationMs = 500; // Zeit ohne Stimme, bis gestoppt wird
+        // Dynamic voice activation parameters
+        private const float VoiceStartThreshold = 0.02f;
+        private const float VoiceEndThreshold = 0.015f;
+        private const int SilenceDurationMs = 500;
 
         private bool isRecording = false;
         private DateTime lastVoiceTime = DateTime.MinValue;
         private List<short> activeRecordingBuffer = new();
 
-
         /// <summary>
-        /// creates a new microphone
+        /// Initializes a new instance of the <see cref="Microphone"/> class.
         /// </summary>
         public Microphone()
         {
@@ -53,7 +53,7 @@ namespace Spritzgusslogik
         }
 
         /// <summary>
-        /// starts recording
+        /// Starts the audio recording.
         /// </summary>
         public void Start()
         {
@@ -63,14 +63,13 @@ namespace Spritzgusslogik
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fehler beim StartRecording: " + ex.Message);
+                Console.WriteLine("Error while starting recording: " + ex.Message);
             }
-            //waveIn.StartRecording();
             muted = false;
         }
 
         /// <summary>
-        /// ends recording
+        /// Stops the audio recording.
         /// </summary>
         public void Stop()
         {
@@ -79,19 +78,19 @@ namespace Spritzgusslogik
         }
 
         /// <summary>
-        /// mutes the microphone
+        /// Checks whether the microphone is muted.
         /// </summary>
-        /// <returns></returns>
-        public Boolean IsMuted()
+        /// <returns><c>true</c> if muted; otherwise, <c>false</c>.</returns>
+        public bool IsMuted()
         {
             return muted;
         }
 
         /// <summary>
-        /// gets standard microphone name
+        /// Retrieves the name of the default microphone device.
         /// </summary>
-        /// <returns>microphone name</returns>
-        public String GetStandardMicrophoneName()
+        /// <returns>The name of the microphone, or a message if none is found.</returns>
+        public string GetStandardMicrophoneName()
         {
             if (WaveIn.DeviceCount == 0)
             {
@@ -103,28 +102,26 @@ namespace Spritzgusslogik
         }
 
         /// <summary>
-        /// gets input from recording
+        /// Returns the last captured audio sample values.
         /// </summary>
-        /// <returns>input from recording</returns>
+        /// <returns>An array of 16-bit audio sample values.</returns>
         public Int16[] GetValues()
         {
             return values;
         }
 
-
         /// <summary>
-        /// Event for new audio input
+        /// Event triggered when valid audio input is received.
         /// </summary>
         public event Action<Int16[]>? AudioReceived;
-        
 
         /// <summary>
-        /// EventHandler for new audio input
-        /// if volume of a sample is bigger than startThreshold => record and if volume sinks under endThreshold => stop recording
+        /// Handles incoming audio buffers, performs voice activity detection,
+        /// and triggers <see cref="AudioReceived"/> when voice input is complete.
         /// </summary>
-        /// <param name="sender">sender object</param>
-        /// <param name="e">input buffer</param>
-        void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
+        /// <param name="sender">The source of the audio input event.</param>
+        /// <param name="e">Event arguments containing audio buffer data.</param>
+        private void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
         {
             values = new Int16[e.Buffer.Length / 2];
             Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
@@ -165,10 +162,10 @@ namespace Spritzgusslogik
         }
 
         /// <summary>
-        /// calculates average audio volume
+        /// Calculates the root mean square (RMS) value of an audio sample array.
         /// </summary>
-        /// <param name="samples">audio signal from input</param>
-        /// <returns>audio volume over sample durations</returns>
+        /// <param name="samples">The array of audio sample data.</param>
+        /// <returns>The RMS value representing the signal volume.</returns>
         private float CalculateRMS(short[] samples)
         {
             if (samples.Length == 0) return 0f;
@@ -177,7 +174,7 @@ namespace Spritzgusslogik
             foreach (short s in samples)
             {
                 float norm = s / 32768f;
-                sum += norm;
+                sum += norm * norm;
             }
 
             return (float)Math.Sqrt(sum / samples.Length);

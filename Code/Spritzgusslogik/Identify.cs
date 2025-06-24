@@ -1,6 +1,6 @@
 ﻿///
-/// @file    Identifier
-/// @brief   Identifies Digit from audio
+/// @file    Identify.cs
+/// Identifies digits from audio input using similarity metrics.
 /// @author  Bichler Nadine, Anton Armin
 /// @date    24.06.2025
 ///
@@ -15,14 +15,13 @@ using System.Diagnostics;
 namespace Spritzgusslogik
 {
     /// <summary>
-    /// Identifies voice command
+    /// Provides functionality to identify spoken digits based on extracted audio features.
     /// </summary>
     public class Identify
     {
         //const int TargetLength = 2048;
 
         /// <deprecated>
-        /// Brauchen wir eig nicht mehr
         /// </deprecated>
         /*
         public static double PearsonCorrelation(Complex[] arrayA, Complex[] arrayB)
@@ -56,7 +55,6 @@ namespace Spritzgusslogik
         */
 
         /// <deprecated>
-        /// Brauchen wir eig nicht mehr
         /// </deprecated>
         /*
         private static double[] GetMagnitudeSpectrum(Complex[] fft)
@@ -66,7 +64,6 @@ namespace Spritzgusslogik
         */
 
         /// <deprecated>
-        /// Brauchen wir eig nicht mehr
         /// </deprecated>
         /*
         private static Complex[] PadArray(Complex[] array, int targetLength)
@@ -78,6 +75,13 @@ namespace Spritzgusslogik
         */
 
         // Richtungs-/Winkel-Sensitiv
+        /// <summary>
+        /// Calculates cosine similarity between two vectors.
+        /// Measures directional similarity regardless of magnitude.
+        /// </summary>
+        /// <param name="arrayA">First feature vector.</param>
+        /// <param name="arrayB">Second feature vector.</param>
+        /// <returns>Cosine similarity score in [0,1].</returns>
         private static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
@@ -97,6 +101,13 @@ namespace Spritzgusslogik
         }
 
         // Absoluter-Abstand-Sensitiv
+        /// <summary>
+        /// Calculates Euclidean distance between two vectors.
+        /// Measures absolute difference between elements.
+        /// </summary>
+        /// <param name="a">First feature vector.</param>
+        /// <param name="b">Second feature vector.</param>
+        /// <returns>Euclidean distance (lower means more similar).</returns>
         private static double EuclideanDistance(double[] a, double[] b)
         {
             double sum = 0;
@@ -106,6 +117,13 @@ namespace Spritzgusslogik
         }
 
         // Lineare-Korrelation-Sensitiv
+        /// <summary>
+        /// Calculates Pearson correlation coefficient between two vectors.
+        /// Measures linear correlation and scale-invariant similarity.
+        /// </summary>
+        /// <param name="a">First feature vector.</param>
+        /// <param name="b">Second feature vector.</param>
+        /// <returns>Pearson correlation in range [-1, 1].</returns>
         private static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
@@ -127,7 +145,12 @@ namespace Spritzgusslogik
             return numerator / Math.Sqrt(denomA * denomB);
         }
 
-        // Vergleich aller Metriken
+        /// <summary>
+        // /// Combines multiple similarity metrics into a single composite score.
+        // /// </summary>
+        // /// <param name="a">First feature vector.</param>
+        // /// <param name="b">Second feature vector.</param>
+        // /// <returns>Aggregated similarity score.</returns>
         private static double Compare(double[] a, double[] b)
         {
             double cosine = CosineSimilarity(a, b);
@@ -139,6 +162,12 @@ namespace Spritzgusslogik
             return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean);
         }
 
+        /// <summary>
+        /// Attempts to recognize a digit from the provided audio feature vector by comparing it to stored samples.
+        /// </summary>
+        /// <param name="input">Audio feature vector of the recorded digit.</param>
+        /// <param name="bestSimilarity">Outputs the best similarity score found.</param>
+        /// <returns>The recognized digit (1-9), or -1 if no match is found.</returns>
         public static int Recognize(double[] input, out double bestSimilarity)
         {
             var bestMatch = -1;
