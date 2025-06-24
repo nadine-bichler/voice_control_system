@@ -765,10 +765,7 @@
           "NWaves": "0.9.6"
         },
         "runtime": {
-          "Common.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Common.dll": {}
         }
       },
       "Prototyp/1.0.0": {
@@ -779,10 +776,7 @@
           "Spritzgusslogik": "1.0.0"
         },
         "runtime": {
-          "Prototyp.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Prototyp.dll": {}
         }
       },
       "Spritzgusslogik/1.0.0": {
@@ -795,10 +789,7 @@
           "NAudio": "2.2.1"
         },
         "runtime": {
-          "Spritzgusslogik.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Spritzgusslogik.dll": {}
         }
       },
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {

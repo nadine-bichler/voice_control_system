@@ -1,11 +1,11 @@
-﻿///
-/// @file    SignalFFTSharpTransformer
-/// @brief   transforms signal with Sharp Fourier transformation
-/// @author  Donart Bazai 
-/// @date    24.06.2025
-///
-///
-
+﻿/** 
+* @file SignalFFTSharpTransformer.cs 
+* @brief File is a Program that Transforms Signals with Fast Furier Transformation using FftSharp.
+* @author Donart Bazaj 
+* @date 16.05.2025 
+* 
+* Additional Infos: none
+*/
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +16,27 @@ using FftSharp;
 
 namespace Spritzgusslogik
 {
+
+    
     public class SignalFFTSharpTransformer : IFFTTransformer
     {
+
         //PCM ideal für FFT, MFCC, Filter, etc.
+
+        /** 
+        * @fn double[] Transform(Int16[] signal)
+        * @brief Transforms that signal using FFT. 
+        * @param signal , signal werte 
+        * @return double [] , double-array of Magnitudes 
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method first converts that given signal array from type Int16 Array to Complex Array. 
+        * Then uses FFT.Forward() function from FftSharp to execute the Fast Fourier Transformation.
+        * Then iterates using for-loop through FFTBuffer and saves the Magnitudes to fftMagnitudes double Array.
+        * Then returns that fftMagnitudes double Array.
+        * 
+        */
         public double[] Transform(Int16[] signal)
         {
 
@@ -52,9 +70,6 @@ namespace Spritzgusslogik
 
 
 
-           /* double scale = Math.Sqrt(2.0 * sampleCount);
-            for (int i = 0; i < fftMagnitudes.Length; i++)
-                fftMagnitudes[i] *= scale;*/
 
             return fftMagnitudes;
         }

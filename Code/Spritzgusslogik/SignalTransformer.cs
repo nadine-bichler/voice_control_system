@@ -1,10 +1,11 @@
-///
-/// @file    SignalTransformer
-/// @brief   transforms signal with Fourier transformation
-/// @author  Donart Bazai 
-/// @date    24.06.2025
-///
-
+/** 
+* @file SignalTransformer.cs 
+* @brief File is a Program that Transforms Signals with Fast Furier Transformation using Mathnet.
+* @author Donart Bazaj 
+* @date 09.05.2025 
+* 
+* Additional Infos: none
+*/
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,22 @@ using Complex = System.Numerics.Complex;
 
 namespace Spritzgusslogik
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class SignalTransformer : IFFTTransformer
     {
-        /// <summary
-        /// </summary>
-        /// <param name="signal"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /** 
+        * @fn double[] Transform(Int16[] signal)
+        * @brief Transforms that signal using FFT. 
+        * @param signal , signal werte 
+        * @return double [] , double-array of Magnitudes 
+        * @author Donart Bazaj
+        * @date 09.05.2025 
+        * 
+        * This method first converts that given signal array from type Int16 to Complex Array. 
+        * Then uses Fourier.Forward() function from MathNet to execute the Fast Fourier Transformation.
+        * Then iterates using for-loop through FFTBuffer and saves the Magnitudes to signalsMagnitude double Array.
+        * Then returns that signalsMagnitude double Array.
+        * 
+        */
         public double[] Transform(Int16[] signal)
         {
             if (signal == null) throw new ArgumentNullException("SignalTransformer: Signal is Null!");
