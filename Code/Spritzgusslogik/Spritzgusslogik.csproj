@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -13,10 +13,6 @@
     <PackageReference Include="FftSharp" Version="2.2.0" />
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
     <PackageReference Include="NAudio" Version="2.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
 </Project>

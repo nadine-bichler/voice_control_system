@@ -1,4 +1,11 @@
-﻿using Spritzgusslogik;
+﻿///
+/// @file    Program
+/// @brief   Converts audio signals into csv as samples
+/// @author  Anton Armin, Bichler Nadine
+/// @date    24.06.2025
+///
+
+using Spritzgusslogik;
 using Common;
 using System;
 using System.Diagnostics;

@@ -1,10 +1,21 @@
-﻿using NAudio.Wave;
+﻿///
+/// @file    Microphone
+/// @brief   Methods for Microphone and Input
+/// @author  Benz Jan, Bichler Nadine
+/// @date    24.06.2025
+///
+///
+
+using NAudio.Wave;
 using NAudio.CoreAudioApi;
 using System;
 using System.Timers;
 
 namespace Spritzgusslogik
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Microphone
     {
         public const int SampleRate = 44100;
@@ -136,7 +147,7 @@ namespace Spritzgusslogik
             foreach (short s in samples)
             {
                 float norm = s / 32768f;
-                sum += norm * norm;
+                sum += norm;
             }
 
             return (float)Math.Sqrt(sum / samples.Length);
