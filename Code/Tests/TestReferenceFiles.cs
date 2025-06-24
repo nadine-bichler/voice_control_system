@@ -10,6 +10,7 @@ namespace Tests;
 [TestClass]
 public class TestReferenceFiles
 {
+    private String path = "../../../../SampleToFile/wavTest";
 
     /// <summary>
     /// Tests if valid reference file converts right
@@ -17,7 +18,7 @@ public class TestReferenceFiles
     [TestMethod]
     public void Test_Access_Reference_File()
     {
-        double[] result = audioConvert.LoadDoubleArrayCsv("wavTest/test.csv");
+        double[] result = audioConvert.LoadDoubleArrayCsv(path + "/test.csv");
         Assert.IsTrue(result.Length > 0);
     }
 
@@ -27,7 +28,7 @@ public class TestReferenceFiles
     [TestMethod]
     public void Test_Access_Unknown_File()
     {
-        double[] result = audioConvert.LoadDoubleArrayCsv("wavTest/unknown.csv");
+        double[] result = audioConvert.LoadDoubleArrayCsv(path + "/unknown.csv");
         Assert.IsNull(result);
     }
 
@@ -37,7 +38,7 @@ public class TestReferenceFiles
     [TestMethod]
     public void Test_Invalid_File()
     {
-        double[] result = audioConvert.LoadDoubleArrayCsv("wavTest/wrong.csv");
+        double[] result = audioConvert.LoadDoubleArrayCsv(path + "/wrong.csv");
         Assert.IsTrue(result.Length == 0);
     }
 }

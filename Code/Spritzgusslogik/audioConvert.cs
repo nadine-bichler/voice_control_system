@@ -126,11 +126,29 @@ namespace Spritzgusslogik
         /// <returns>values of csv to a double array</returns>
         public static double[] LoadDoubleArrayCsv(string filePath)
         {
-            var line = File.ReadLines(filePath).First();
-            return line
-                .Split(',')
-                .Select(v => Convert.ToDouble(v.Trim(), CultureInfo.InvariantCulture))
-                .ToArray();
+            if (string.IsNullOrWhiteSpace(filePath) || !File.Exists(filePath))
+                return null;
+
+            try
+            {
+                var line = File.ReadLines(filePath).FirstOrDefault();
+                if (string.IsNullOrWhiteSpace(line))
+                    return Array.Empty<double>();
+
+                var values = line
+                    .Split(',')
+                    .Select(v => double.TryParse(v.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out var d) ? (double?)d : null)
+                    .ToArray();
+
+                if (values.Any(v => v == null))
+                    return Array.Empty<double>();
+
+                return values.Select(v => v.Value).ToArray();
+            }
+            catch
+            {
+                return Array.Empty<double>();
+            }
         }
 
         /// <summary>
