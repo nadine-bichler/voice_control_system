@@ -135,6 +135,10 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "MSTest.Sdk": {
+              "target": "Package",
+              "version": "[3.9.3, )"
+            },
             "MathNet.Numerics": {
               "target": "Package",
               "version": "[5.0.0, )"

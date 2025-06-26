@@ -8,11 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "Tests/1.0.0": {
         "dependencies": {
-<<<<<<< HEAD
-          "MSTest": "3.6.4",
-=======
           "MSTest": "3.9.3",
->>>>>>> 5bb2d80c82c62475a802cf2382d60b8cdab74f95
           "MathNet.Numerics": "5.0.0",
           "Prototyp": "1.0.0",
           "Spritzgusslogik": "1.0.0",
@@ -992,6 +988,7 @@
         }
       },
       "MSTest.Analyzers/3.9.3": {},
+      "MSTest.Sdk/3.9.3": {},
       "MSTest.TestAdapter/3.9.3": {
         "dependencies": {
           "Microsoft.Testing.Extensions.VSTestBridge": "1.7.3",
@@ -1195,11 +1192,8 @@
         }
       },
       "System.Security.Principal.Windows/4.7.0": {},
-<<<<<<< HEAD
-=======
       "System.Text.Encodings.Web/6.0.1": {},
       "System.Text.Json/6.0.11": {},
->>>>>>> 5bb2d80c82c62475a802cf2382d60b8cdab74f95
       "Prototyp/1.0.0": {
         "dependencies": {
           "NWaves": "0.9.6",
@@ -1207,10 +1201,7 @@
           "Spritzgusslogik": "1.0.0"
         },
         "runtime": {
-          "Prototyp.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Prototyp.dll": {}
         }
       },
       "Spritzgusslogik/1.0.0": {
@@ -1218,14 +1209,12 @@
           "Accord": "3.8.0",
           "Accord.Math": "3.8.0",
           "FftSharp": "2.2.0",
+          "MSTest.Sdk": "3.9.3",
           "MathNet.Numerics": "5.0.0",
           "NAudio": "2.2.1"
         },
         "runtime": {
-          "Spritzgusslogik.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "Spritzgusslogik.dll": {}
         }
       },
       "Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions/14.0.0.0": {
@@ -1405,6 +1394,13 @@
       "path": "mstest.analyzers/3.9.3",
       "hashPath": "mstest.analyzers.3.9.3.nupkg.sha512"
     },
+    "MSTest.Sdk/3.9.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-A7t/a7Flms9WMrGJCAMT/xiEbPVLAaB5fqsvNBuebD1odkATL2QqvfIlXLlVQJLfv2CqorkyDfoGdFFZIUSoxw==",
+      "path": "mstest.sdk/3.9.3",
+      "hashPath": "mstest.sdk.3.9.3.nupkg.sha512"
+    },
     "MSTest.TestAdapter/3.9.3": {
       "type": "package",
       "serviceable": true,
@@ -1559,8 +1555,6 @@
       "path": "system.security.principal.windows/4.7.0",
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
-<<<<<<< HEAD
-=======
     "System.Text.Encodings.Web/6.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1575,7 +1569,6 @@
       "path": "system.text.json/6.0.11",
       "hashPath": "system.text.json.6.0.11.nupkg.sha512"
     },
->>>>>>> 5bb2d80c82c62475a802cf2382d60b8cdab74f95
     "Prototyp/1.0.0": {
       "type": "project",
       "serviceable": false,

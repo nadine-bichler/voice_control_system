@@ -15,6 +15,9 @@ namespace Spritzgusslogik
     /// </summary>
     public class SignalFFTSharpTransformer : IFFTTransformer
     {
+        
+
+        string IFFTTransformer.Name => "SignalFFTSharpTransformer";
 
         //PCM ideal für FFT, MFCC, Filter, etc.
 

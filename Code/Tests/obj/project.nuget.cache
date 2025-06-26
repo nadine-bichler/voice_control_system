@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8CLw7LZBHqGf6+LsmKKWMgu+7ZUyVRU0Y8O61d6Ec8sajIaGgEFp6uNBwsd/tXk2JA+bXNFWmvtdxabQ3ombUg==",
+  "dgSpecHash": "PPS816BDUVXNC+/FRWheXuNP8anybC3KaZJUUOG26bl757vsYYDrf+E2+hR3ts8YMeVg+y/YWhLRmduonxUvqw==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest\\3.9.3\\mstest.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.analyzers\\3.9.3\\mstest.analyzers.3.9.3.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\mstest.sdk\\3.9.3\\mstest.sdk.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.testadapter\\3.9.3\\mstest.testadapter.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.testframework\\3.9.3\\mstest.testframework.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\naudio\\2.2.1\\naudio.2.2.1.nupkg.sha512",
