@@ -369,11 +369,9 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\tr\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\zh-Hans\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\zh-Hant\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Prototyp.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Spritzgusslogik.dll
-C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Common.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Prototyp.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Spritzgusslogik.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
