@@ -3,6 +3,11 @@ using OxyPlot.Wpf;
 using OxyPlot;
 using Spritzgusslogik;
 
+/// <summary>
+/// Displays a waveform of incoming audio data.
+/// Manages an internal buffer and plots the waveform using OxyPlot in a PlotView.
+/// </summary>
+/// </summary>
 class SignalDrawer
 {
     private const int SampleRate = Microphone.SampleRate;
@@ -15,6 +20,10 @@ class SignalDrawer
 
     private double[] amplitudeBuffer = new double[MaxSamples];
 
+    /// <summary>
+    /// Constructor for SignalDrawer.
+    /// </summary>
+    /// <param name="plotView">The PlotView UI element where the waveform will be displayed.</param>
     public SignalDrawer(PlotView plotView)
     {
         plotModel = new PlotModel { Title = "" };
@@ -51,6 +60,11 @@ class SignalDrawer
         plotView.Model = plotModel;
     }
 
+    /// <summary>
+    /// Updates the waveform display with new PCM samples.
+    /// Implements a FIFO mechanism: old samples are shifted out to make room for new ones.
+    /// </summary>
+    /// <param name="newSamples"> A short[] array of new PCM audio samples.</param>
     public void UpdateWaveform(short[] newSamples)
     {
         if (newSamples == null || newSamples.Length == 0) return;
@@ -79,6 +93,10 @@ class SignalDrawer
         plotModel.InvalidatePlot(true);
     }
 
+    /// <summary>
+    /// Clears the waveform from the display.
+    /// Resets the amplitude buffer and clears the plot.
+    /// </summary>
     public void ClearWaveform()
     {
         Array.Clear(amplitudeBuffer, 0, amplitudeBuffer.Length);

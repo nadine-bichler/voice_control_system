@@ -1,33 +1,32 @@
-﻿///
-/// @file    HistoryEntry
-/// @brief   History Entries for History
-/// @author  Bichler Nadine
-/// @date    24.06.2025
-///
-///
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Spritzgusslogik
+﻿namespace Spritzgusslogik
 {
     /// <summary>
-    /// history entry with a command and a timestamp
+    /// Represents a single history entry consisting of a recognized digit command and the corresponding timestamp.
     /// </summary>
     public class HistoryEntry
     {
+        /// <summary>
+        /// Gets the recognized digit command (between 1 and 9).
+        /// </summary>
         public int command { get; }
+
+        /// <summary>
+        /// Gets the timestamp when the command was created.
+        /// </summary>
         public DateTime time { get; }
 
         /// <summary>
-        /// creates a new HistoryEntry
+        /// Initializes a new instance of the <see cref="HistoryEntry"/> class.
         /// </summary>
-        /// <param name="command"></param>
+        /// <param name="command">A digit command between 1 and 9.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the command is not between 1 and 9.</exception>
         public HistoryEntry(int command)
         {
+            if (command < 1 || command > 9)
+            {
+                throw new ArgumentOutOfRangeException(nameof(command), "Command must be a digit between 1 and 9.");
+            }
+
             this.command = command;
             time = DateTime.Now;
         }

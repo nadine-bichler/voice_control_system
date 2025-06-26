@@ -1,32 +1,21 @@
-﻿///
-/// @file    History
-/// @brief   Command History
-/// @author  Bichler Nadine
-/// @date    24.06.2025
-///
-///
-
-using System;
-using System.Collections.Generic;
-using System.DirectoryServices;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Spritzgusslogik
+﻿namespace Spritzgusslogik
 {
     /// <summary>
-    /// creats a list with HistoryEntries
+    /// Manages a list of <see cref="HistoryEntry"/> objects representing command history.
     /// </summary>
     public class History
     {
+        /// <summary>
+        /// A list containing all recorded history entries.
+        /// </summary>
         public readonly List<HistoryEntry> entries = new();
 
         /// <summary>
-        /// Creates a new HistoryEntry and adds it into the list
+        /// Creates a new <see cref="HistoryEntry"/> for the specified digit command and adds it to the history.
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
+        /// <param name="command">A digit command between 1 and 9.</param>
+        /// <returns>The newly created <see cref="HistoryEntry"/>.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the command is not within the valid range.</exception>
         public HistoryEntry AddEntry(int command)
         {
             var entry = new HistoryEntry(command);

@@ -15,7 +15,8 @@ using Spritzgusslogik;
 namespace Prototyp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for the main application window.
+    /// Manages GUI updates, microphone input, signal recognition, and history.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -33,7 +34,9 @@ namespace Prototyp
         TimeSpan minDelay = TimeSpan.FromSeconds(2);
         DateTime lastRecognized = DateTime.MinValue;
 
-
+        /// <summary>
+        /// Constructor: Initializes the main window and its components.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +54,10 @@ namespace Prototyp
             microphone.AudioReceived += OnAudioReceived;
         }
 
+
+        /// <summary>
+        /// Handles start/stop toggle button click for microphone recording.
+        /// </summary>
         private void ToggleButton_Click(object sender, RoutedEventArgs e)
         {
             String content;
@@ -74,12 +81,20 @@ namespace Prototyp
             ToggleButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(backgroundColor));
         }
 
+        /// <summary>
+        /// Ensures the microphone is stopped when the window closes.
+        /// </summary>
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             microphone.Stop();
         }
 
+        /// <summary>
+        /// Updates current command output on the GUI.
+        /// </summary>
+        /// <param name="value">Recognized digit</param>
+        /// <param name="confidence">Recognition confidence (0–1)</param>
         public void UpdateCurrentCommand(int value, double confidence)
         {
             AddToHistory(value);
@@ -87,17 +102,26 @@ namespace Prototyp
             SetCommandConfidence(confidence * 100);
         }
 
+        /// <summary>
+        /// Displays the recognized digit on screen.
+        /// </summary>
         private void SetCurrentCommand(int value)
         {
             commandText.Text = value.ToString();
         }
 
+        /// <summary>
+        /// Displays and colors the recognition confidence on the GUI.
+        /// </summary>
         private void SetCommandConfidence(double confidence)
         {
             commandConfidence.Text = confidence.ToString("0") + "%";
             UpdateConfidenceColor(confidence);
         }
 
+        /// <summary>
+        /// Changes the text color of the confidence label depending on confidence level.
+        /// </summary>
         private void UpdateConfidenceColor(double confidence)
         {
             String color;
@@ -118,7 +142,10 @@ namespace Prototyp
             commandConfidence.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(color));
         }
 
-        //
+        /// <summary>
+        /// Adds a digit entry to the GUI and history log.
+        /// </summary>
+        /// <param name="digit">The recognized digit to be logged</param>
         private void AddToHistory(int digit)
         {
             _history.AddEntry(digit);
@@ -153,6 +180,10 @@ namespace Prototyp
             HistoryPanel.Children.Insert(0, horizontalPanel);
         }
 
+        /// <summary>
+        /// Handles the audio input event and starts recognition asynchronously.
+        /// </summary>
+        /// <param name="pcm">PCM audio data from microphone</param>
         private void OnAudioReceived(Int16[] pcm)
         {
             if (_isProcessing || (DateTime.Now - lastRecognized) < minDelay)
@@ -177,6 +208,11 @@ namespace Prototyp
             });
         }
 
+        /// <summary>
+        /// Updates the GUI when a digit is recognized by the recognition module.
+        /// </summary>
+        /// <param name="sender">Event sender</param>
+        /// <param name="e">Digit recognition event arguments</param>
         private void OnDigitRecognized(object sender, DigitRecognizedEventArgs e)
         {
             lastRecognized = DateTime.Now;

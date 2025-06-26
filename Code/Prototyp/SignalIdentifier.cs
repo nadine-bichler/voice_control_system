@@ -5,19 +5,27 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Common;
 using Spritzgusslogik;
 
 namespace Prototyp
 {
+    /// <summary>
+    /// Identifies spoken digits based on audio input.
+    /// Converts PCM audio input to MFCC features using a Python script and compares with stored digit profiles.
+    /// </summary>
     internal class SignalIdentifier
     {
-        private readonly SignalFFTSharpTransformer transformer = new SignalFFTSharpTransformer();
-        private readonly double threshold = 0.60;
+        private static readonly double threshold = 0.60;   //threshold for signal similarity
 
-        //Event declaration
+        /// <summary>
+        /// event triggered we´hen a digit is recognized
+        /// </summary>
         public event EventHandler<DigitRecognizedEventArgs>? DigitRecognized;
 
+        /// <summary>
+        /// Converts PCM to WAV, runs MFCC extraction via Python, loads the resulting vector, and performs recognition.
+        /// </summary>
+        /// <param name="pcm">pcm audio signal as Int16 array</param>
         public void Recognition(Int16[] pcm)
         {
             if (pcm == null || pcm.Length == 0)
@@ -58,20 +66,29 @@ namespace Prototyp
             }
 
             //lade ergebnis aus csv datei
-            double[] mfcc = audioConvert.LoadDoubleArrayCSV("mfcc_vector.csv");
+            double[] mfcc = audioConvert.LoadDoubleArrayCsv("mfcc_vector.csv");
 
             int result = Identify.Recognize(mfcc, out double sim);
 
-            if (sim >= threshold)
+            if (sim > threshold)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));
         }
     }
 
+    /// <summary>
+    /// Event arguments for recognized digit results.
+    /// </summary>
     internal class DigitRecognizedEventArgs : EventArgs
     {
         public int Digit { get; }
         public double Confidence { get; }
 
+        /// <summary>
+        /// Constructs a new DigitRecognizedEventArgs object.
+        /// </summary>
+        /// <param name="digit">Recognized digit from the input signal.</param>
+        /// <param name="confidence">confidence Similarity score for the recognized digit.
+        ///</param>
         public DigitRecognizedEventArgs(int digit, double confidence)
         {
             Digit = digit;

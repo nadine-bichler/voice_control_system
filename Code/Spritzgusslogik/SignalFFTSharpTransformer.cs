@@ -1,42 +1,32 @@
-﻿/** 
-* @file SignalFFTSharpTransformer.cs 
-* @brief File is a Program that Transforms Signals with Fast Furier Transformation using FftSharp.
-* @author Donart Bazaj 
-* @date 16.05.2025 
-* 
-* Additional Infos: none
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using FftSharp;
+using MathNet.Numerics.IntegralTransforms;
 
 namespace Spritzgusslogik
 {
 
-    
+    /// <summary>
+    /// class that Transforms Signals with Fast Furier Transformation using FftSharp.
+    /// </summary>
     public class SignalFFTSharpTransformer : IFFTTransformer
     {
 
         //PCM ideal für FFT, MFCC, Filter, etc.
 
-        /** 
-        * @fn double[] Transform(Int16[] signal)
-        * @brief Transforms that signal using FFT. 
-        * @param signal , signal werte 
-        * @return double [] , double-array of Magnitudes 
-        * @author Donart Bazaj
-        * @date 09.05.2025 
-        * 
-        * This method first converts that given signal array from type Int16 Array to Complex Array. 
-        * Then uses FFT.Forward() function from FftSharp to execute the Fast Fourier Transformation.
-        * Then iterates using for-loop through FFTBuffer and saves the Magnitudes to fftMagnitudes double Array.
-        * Then returns that fftMagnitudes double Array.
-        * 
-        */
+        /// <summary>
+        /// This method first converts that given signal array from type Int16 Array to Complex Array.
+        /// Then uses FFT.Forward() function from FftSharp to execute the Fast Fourier Transformation.
+        /// Then iterates using for-loop through FFTBuffer and saves the Magnitudes to fftMagnitudes double Array.
+        /// Then returns that fftMagnitudes double Array.
+        /// </summary>
+        /// <param name="signal">signal values</param>
+        /// <returns>double-array of Magnitudes</returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public double[] Transform(Int16[] signal)
         {
 
