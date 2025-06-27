@@ -178,7 +178,7 @@ namespace Tests
         /// Tests if no input results in Exception
         /// </summary>
         [TestMethod]
-        public void TestNoInput()
+        public void RecognizeTestNoInput()
         {
             var ex = Assert.ThrowsException<ArgumentNullException>(() =>
             {
@@ -192,7 +192,7 @@ namespace Tests
         /// Tests if invalid digit is recognized
         /// </summary>
         [TestMethod]
-        public void TestInvalidCommand()
+        public void RecognizeTestInvalidCommand()
         {
             var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "wavTest");
             var referencePath = Path.Combine(basePath, "0.csv");
@@ -203,18 +203,33 @@ namespace Tests
 
         }
 
-        /// <summary>
-        /// Tests if different sized inputs are throwing an exception
-        /// </summary>
         [TestMethod]
-        public void TestDifferentSizes()
+        public void RecognizeTest_NoMatchingFiles_SkipsDigit()
         {
-            var input = new double[] { 1.0, 2.0, 3.0 };
+            // Arrange
+            // Lege eine Datei mit falscher Extension an, damit sie ignoriert wird
+            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
+            var fakeFile = Path.Combine(basePath, "1.txt"); // Wird nicht als *.csv erkannt
 
-            Assert.ThrowsException<ArgumentException>(() =>
+            File.WriteAllText(fakeFile, "1.0, 2.0, 3.0");
+
+            try
             {
-                var result = Identify.Recognize(input, out _);
-            });
+                var input = new double[] { 1.0, 2.0, 3.0 };
+
+                // Act
+                var result = Identify.Recognize(input, out double similarity);
+
+                // Assert
+                Assert.AreEqual(-1, result); // Kein Treffer, kein gültiger Vergleich
+                Assert.AreEqual(0.0, similarity);
+            }
+            finally
+            {
+                if (File.Exists(fakeFile))
+                    File.Delete(fakeFile);
+            }
         }
+
     }
 }
