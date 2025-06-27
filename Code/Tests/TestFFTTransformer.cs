@@ -163,5 +163,39 @@ namespace Tests
             var transformer = new SignalFFTSharpTransformer();
             transformer.Transform(null);
         }
+
+        [TestMethod]
+        public void FFTTransformer_Uses_SignalTransformer()
+        {
+            var fft = new FFTTransformer();
+            var signalTransformer = new SignalTransformer();
+
+            fft.setAlgorithm(signalTransformer);
+
+            Int16[] signal = new Int16[] { 1, 2, 3, 4 };
+
+            double[] result = fft.Transform(signal);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Length > 0);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FFTTransformer_SetAlgorithm_Null_Throws()
+        {
+            var fft = new FFTTransformer();
+            fft.setAlgorithm(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FFTTransformer_Transform_WithoutAlgorithm_Throws()
+        {
+            var fft = new FFTTransformer();
+
+            Int16[] signal = new Int16[] { 1, 2, 3 };
+            fft.Transform(signal);
+        }
     }
 }
