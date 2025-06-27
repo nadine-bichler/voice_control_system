@@ -152,5 +152,16 @@ namespace Tests
             SignalTransformer sT = new SignalTransformer();
             sT.Transform(null); 
         }
+
+        /// <summary>
+        /// Tests if Transform method throws an ArgumentNullException when the input signal is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestSignalFFTSharpTransformer_NullInput_Throws()
+        {
+            var transformer = new SignalFFTSharpTransformer();
+            transformer.Transform(null);
+        }
     }
 }
