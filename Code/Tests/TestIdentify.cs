@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.CodeCoverage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spritzgusslogik;
 
 namespace Tests
@@ -9,26 +9,77 @@ namespace Tests
     [TestClass]
     public class TestIdentify
     {
-        /*
         /// <summary>
-        /// Deprecated: Tests cosine similarity between two audio files.
+        /// Tests cosine similarity on valid input
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestCosine()
+        public void TestCosineSimilarity_ValidInput()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 0 };
+            double[] b = { 0, 1 };
+            var result = Identify.CosineSimilarity(a, b);
+            Assert.AreEqual(0, result, 1e-10);
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
-
-            var result = Identify.CosineSimilarity(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Similarity is too low: {result}");
+            double[] c = { 1, 1 };
+            double[] d = { 1, 1 };
+            result = Identify.CosineSimilarity(c, d);
+            Assert.AreEqual(1, result, 1e-10);
         }
 
+        /// <summary>
+        /// Tests exception for cosine similarity on inputs with different lengths
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestCosineSimilarity_DifferentLengths_Throws()
+        {
+            double[] a = { 1, 2 };
+            double[] b = { 1 };
+            Identify.CosineSimilarity(a, b);
+        }
+
+
+        /// <summary>
+        /// Tests the PearsonCorrelation for valid input
+        /// </summary>
+        [TestMethod]
+        public void PearsonCorrelation_ValidInput_ReturnsExpectedValue()
+        { 
+            double[] a = { 1, 2, 3, 4, 5 };
+            double[] b = { 2, 4, 6, 8, 10 }; 
+
+            double result = Identify.PearsonCorrelation(a, b);
+
+            Assert.AreEqual(1.0, result, 1e-10, "Pearson correlation should be 1 for perfectly linear data.");
+        }
+
+        /// <summary>
+        /// Tests the PearsonCorrelation for perfectly inversely correlated data, which should return -1.
+        /// </summary>
+        [TestMethod]
+        public void PearsonCorrelation_InverseInput_ReturnsMinusOne()
+        {
+            double[] a = { 1, 2, 3, 4, 5 };
+            double[] b = { 10, 8, 6, 4, 2 }; 
+
+            double result = Identify.PearsonCorrelation(a, b);
+
+            Assert.AreEqual(-1.0, result, 1e-10, "Pearson correlation should be -1 for perfectly inversely correlated data.");
+        }
+
+        /// <summary>
+        /// Tests the PearsonCorrelation for different lengths of input arrays, which should throw an exception.
+        /// </summary>
+        [TestMethod]
+        public void PearsonCorrelation_DifferentLengths_ThrowsArgumentException()
+        {
+            double[] a = { 1, 2, 3 };
+            double[] b = { 1, 2 };
+
+            Assert.ThrowsException<ArgumentException>(() => Identify.PearsonCorrelation(a, b));
+        }
+
+        /*
         /// <summary>
         /// Deprecated: Tests Euclidean distance between two audio files.
         /// </summary>
@@ -46,25 +97,6 @@ namespace Tests
             var result = Identify.EuclideanDistance(reference, test);
 
             Assert.IsTrue(result >= 25.0, $"Distance is too small: {result}");
-        }
-
-        /// <summary>
-        /// Deprecated: Tests Pearson correlation between two audio files.
-        /// </summary>
-        [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestPearson()
-        {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
-
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
-
-            var result = Identify.PearsonCorrelation(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Correlation is too low: {result}");
         }
 
         /// <summary>

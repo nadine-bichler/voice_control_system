@@ -9,9 +9,9 @@
 using System.IO;
 using Complex = System.Numerics.Complex;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
-
-
+[assembly: InternalsVisibleTo("Tests")]
 namespace Spritzgusslogik
 {
     /// <summary>
@@ -83,7 +83,7 @@ namespace Spritzgusslogik
         /// <param name="arrayA">First feature vector.</param>
         /// <param name="arrayB">Second feature vector.</param>
         /// <returns>Cosine similarity score in [0,1].</returns>
-        private static double CosineSimilarity(double[] arrayA, double[] arrayB)
+        internal static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
             {
@@ -126,7 +126,7 @@ namespace Spritzgusslogik
         /// <param name="a">First feature vector.</param>
         /// <param name="b">Second feature vector.</param>
         /// <returns>Pearson correlation in range [-1, 1].</returns>
-        private static double PearsonCorrelation(double[] a, double[] b)
+        internal static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
                 throw new ArgumentException("Arrays müssen gleich lang sein.");
