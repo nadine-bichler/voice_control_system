@@ -128,7 +128,7 @@ namespace Spritzgusslogik
         /// </summary>
         /// <param name="sender">The source of the audio input event.</param>
         /// <param name="e">Event arguments containing audio buffer data.</param>
-        private void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
+        internal void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
         {
             values = new Int16[e.Buffer.Length / 2];
             Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);

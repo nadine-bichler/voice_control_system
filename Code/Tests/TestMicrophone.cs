@@ -2,6 +2,8 @@
 using System;
 using Moq;
 using Spritzgusslogik;
+using NAudio.Wave;
+using System.Reflection;
 
 namespace Tests
 {
@@ -127,6 +129,122 @@ namespace Tests
 
             float rms = mic.InvokeCalculateRMS(samples);
             Assert.AreEqual(expected, rms, 0.0001f);
+        }
+    }
+
+    [TestClass]
+    public class WaveInDataAvailableTests
+    {
+        private Microphone mic;
+        private Mock<IAudioDeviceManager> mockDeviceManager;
+        private List<short[]> audioReceivedCalls;
+
+        /// <summary>
+        /// Initializes the test environment, creating a mock device manager and a microphone instance.
+        /// </summary>
+        [TestInitialize]
+        public void Setup()
+        {
+            mockDeviceManager = new Mock<IAudioDeviceManager>();
+            mic = new Microphone(mockDeviceManager.Object, null);
+
+            audioReceivedCalls = new();
+            mic.AudioReceived += (samples) => audioReceivedCalls.Add(samples);
+        }
+
+        /// <summary>
+        /// Creates a <c>WaveInEventArgs</c> instance from an array of short samples.
+        /// </summary>
+        private WaveInEventArgs CreateBuffer(params short[] samples)
+        {
+            byte[] buffer = new byte[samples.Length * 2];
+            Buffer.BlockCopy(samples, 0, buffer, 0, buffer.Length);
+            return new WaveInEventArgs(buffer, buffer.Length);
+        }
+
+        /// <summary>
+        /// Tests that the microphone does nothing when the RMS value is below the start threshold.
+        /// </summary>
+        [TestMethod]
+        public void DoesNothing_WhenBelowStartThreshold()
+        {
+            var args = CreateBuffer(Enumerable.Repeat((short)100, 100).ToArray()); // RMS < 0.03
+            mic.WaveIn_DataAvailable(null, args);
+
+            Assert.IsFalse(audioReceivedCalls.Any());
+        }
+
+        /// <summary>
+        /// Tests that the microphone starts recording when the RMS value is above the start threshold.
+        /// </summary>
+        [TestMethod]
+        public void StartsRecording_WhenAboveStartThreshold()
+        {
+            var args = CreateBuffer(Enumerable.Repeat(short.MaxValue, 100).ToArray()); // RMS ~1.0
+            mic.WaveIn_DataAvailable(null, args);
+
+            Assert.IsFalse(audioReceivedCalls.Any());
+        }
+
+        /// <summary>
+        /// Tests that the microphone continues recording when the RMS value is above the start threshold.
+        /// </summary>
+        [TestMethod]
+        public void StopsRecording_AndInvokesAudioReceived_WhenSilenceExceedsThreshold()
+        {
+            var loudSamples = Enumerable.Repeat(short.MaxValue, 2000).ToArray(); // RMS ~1.0 → Start
+            var silentSamples = new short[2000]; // RMS = 0.0 → Silence
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(loudSamples));
+
+            typeof(Microphone)
+                .GetField("lastVoiceTime", BindingFlags.NonPublic | BindingFlags.Instance)!
+                .SetValue(mic, DateTime.Now - TimeSpan.FromMilliseconds(600));
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(silentSamples));
+
+            Assert.AreEqual(1, audioReceivedCalls.Count);
+            Assert.IsTrue(audioReceivedCalls[0].Length >= 2000);
+        }
+
+        /// <summary>
+        /// Tests that the microphone stops recording without invoking audio received when the silence is too short.
+        /// </summary>
+        [TestMethod]
+        public void StopsRecording_WithoutInvoke_WhenBufferIsTooShort()
+        {
+            var loudSamples = Enumerable.Repeat(short.MaxValue, 500).ToArray(); // Start
+            var silentSamples = new short[500];
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(loudSamples));
+
+            typeof(Microphone)
+                .GetField("lastVoiceTime", BindingFlags.NonPublic | BindingFlags.Instance)!
+                .SetValue(mic, DateTime.Now - TimeSpan.FromMilliseconds(600));
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(silentSamples));
+
+            Assert.AreEqual(0, audioReceivedCalls.Count);
+        }
+
+        /// <summary>
+        /// Tests that the microphone updates the last voice time when the RMS value is above the end threshold during recording.
+        /// </summary>
+        [TestMethod]
+        public void UpdatesLastVoiceTime_WhenAboveEndThreshold_DuringRecording()
+        {
+            var loudSamples = Enumerable.Repeat(short.MaxValue, 1000).ToArray();
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(loudSamples)); // Start recording
+            var before = DateTime.Now;
+
+            mic.WaveIn_DataAvailable(null, CreateBuffer(loudSamples)); // Sustain recording
+
+            var lastVoiceTime = (DateTime)typeof(Microphone)
+                .GetField("lastVoiceTime", BindingFlags.NonPublic | BindingFlags.Instance)!
+                .GetValue(mic)!;
+
+            Assert.IsTrue(lastVoiceTime >= before);
         }
     }
 }
