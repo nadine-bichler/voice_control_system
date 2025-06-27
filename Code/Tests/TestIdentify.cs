@@ -203,6 +203,9 @@ namespace Tests
 
         }
 
+        /// <summary>
+        /// Tests if Recognition is skipped if there are no matching files
+        /// </summary>
         [TestMethod]
         public void RecognizeTest_NoMatchingFiles_SkipsDigit()
         {

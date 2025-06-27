@@ -487,3 +487,5 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.exe
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Castle.Core.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Moq.dll

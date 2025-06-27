@@ -14,6 +14,7 @@
           "MathNet.Numerics": "5.0.0",
           "Microsoft.CodeCoverage": "17.13.0",
           "Microsoft.NET.Test.Sdk": "17.13.0",
+          "Moq": "4.20.72",
           "Prototyp": "1.0.0",
           "SampleToFile": "1.0.0",
           "Spritzgusslogik": "1.0.0",
@@ -43,6 +44,17 @@
           "lib/netstandard2.0/Accord.Math.dll": {
             "assemblyVersion": "3.8.0.0",
             "fileVersion": "3.8.0.6134"
+          }
+        }
+      },
+      "Castle.Core/5.1.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.1.0"
           }
         }
       },
@@ -982,6 +994,17 @@
           "System.Security.Principal.Windows": "4.7.0"
         }
       },
+      "Moq/4.20.72": {
+        "dependencies": {
+          "Castle.Core": "5.1.1"
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.20.72.0",
+            "fileVersion": "4.20.72.0"
+          }
+        }
+      },
       "MSTest/3.9.3": {
         "dependencies": {
           "MSTest.Analyzers": "3.9.3",
@@ -1182,6 +1205,7 @@
       "System.Buffers/4.5.1": {},
       "System.Collections.Immutable/8.0.0": {},
       "System.Diagnostics.DiagnosticSource/5.0.0": {},
+      "System.Diagnostics.EventLog/6.0.0": {},
       "System.Memory/4.5.4": {},
       "System.Reflection.Metadata/8.0.0": {
         "dependencies": {
@@ -1267,6 +1291,13 @@
       "sha512": "sha512-K3dzeQjDIrwRnoTRoMOoIbul2Uc0B8cnEtdrSlirmIo37C+jVkmYpJzme/z4Kg99XR2Vj5W5TTNlhjn+AKR+8A==",
       "path": "accord.math/3.8.0",
       "hashPath": "accord.math.3.8.0.nupkg.sha512"
+    },
+    "Castle.Core/5.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "path": "castle.core/5.1.1",
+      "hashPath": "castle.core.5.1.1.nupkg.sha512"
     },
     "FftSharp/2.2.0": {
       "type": "package",
@@ -1401,6 +1432,13 @@
       "path": "microsoft.win32.registry/4.7.0",
       "hashPath": "microsoft.win32.registry.4.7.0.nupkg.sha512"
     },
+    "Moq/4.20.72": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EA55cjyNn8eTNWrgrdZJH5QLFp2L43oxl1tlkoYUKIE9pRwL784OWiTXeCV5ApS+AMYEAlt7Fo03A2XfouvHmQ==",
+      "path": "moq/4.20.72",
+      "hashPath": "moq.4.20.72.nupkg.sha512"
+    },
     "MSTest/3.9.3": {
       "type": "package",
       "serviceable": true,
@@ -1533,6 +1571,13 @@
       "sha512": "sha512-tCQTzPsGZh/A9LhhA6zrqCRV4hOHsK90/G7q3Khxmn6tnB1PuNU0cRaKANP2AWcF9bn0zsuOoZOSrHuJk6oNBA==",
       "path": "system.diagnostics.diagnosticsource/5.0.0",
       "hashPath": "system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lcyUiXTsETK2ALsZrX+nWuHSIQeazhqPphLfaRxzdGaG93+0kELqpgEHtwWOlQe7+jSFnKwaCAgL4kjeZCQJnw==",
+      "path": "system.diagnostics.eventlog/6.0.0",
+      "hashPath": "system.diagnostics.eventlog.6.0.0.nupkg.sha512"
     },
     "System.Memory/4.5.4": {
       "type": "package",

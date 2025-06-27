@@ -6,10 +6,16 @@ using System.Reflection;
 
 namespace Tests
 {
+    /// <summary>
+    /// tests 
+    /// </summary>
     [TestClass]
     public class Komponententest_1
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void TestModuleMicrophone()
         {

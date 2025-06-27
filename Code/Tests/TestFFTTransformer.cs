@@ -164,6 +164,9 @@ namespace Tests
             transformer.Transform(null);
         }
 
+        /// <summary>
+        /// Tests if setting and using signalTransformer works
+        /// </summary>
         [TestMethod]
         public void FFTTransformer_Uses_SignalTransformer()
         {
@@ -180,6 +183,9 @@ namespace Tests
             Assert.IsTrue(result.Length > 0);
         }
 
+        /// <summary>
+        /// Tests if setting Algorithm null throws NullException
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FFTTransformer_SetAlgorithm_Null_Throws()
@@ -188,6 +194,9 @@ namespace Tests
             fft.setAlgorithm(null);
         }
 
+        /// <summary>
+        /// Tests if setting no Algorithm throws NullException
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FFTTransformer_Transform_WithoutAlgorithm_Throws()

@@ -8,7 +8,7 @@ using System.Reflection;
 namespace Tests
 {
     /// <summary>
-    /// Test class for verifying the functionality of the <c>History</c> and <c>HistoryEntry</c> classes.
+    /// Test class for verifying the functionality of the Microphone Methods
     /// </summary>
     [TestClass]
     public class TestMicrophone
@@ -94,6 +94,9 @@ namespace Tests
             Assert.IsFalse(mic.IsMuted());
         }
 
+        /// <summary>
+        /// Tests if CalculateRMS works
+        /// </summary>
         private class TestableMicrophone : Microphone
         {
             public float InvokeCalculateRMS(short[] samples)
@@ -132,6 +135,10 @@ namespace Tests
         }
     }
 
+
+    /// <summary>
+    /// Test class for verifying the functionality of the VoiceRecognition and Extraction.
+    /// </summary>
     [TestClass]
     public class WaveInDataAvailableTests
     {

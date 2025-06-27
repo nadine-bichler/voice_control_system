@@ -4,10 +4,15 @@ using SampleToFile;
 
 namespace Tests;
 
+/// <summary>
+/// Tests Python Code for sample files
+/// </summary>
 [TestClass]
 public class PythonRunnerTests
 {
-
+    /// <summary>
+    /// tests if files are being created correctly
+    /// </summary>
     [TestMethod]
     public void RunPythonScript_ReturnsOutputAndErrors()
     {
