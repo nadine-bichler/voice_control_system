@@ -199,9 +199,10 @@ namespace Spritzgusslogik
                 {
                     var test = audioConvert.LoadDoubleArrayCsv(file);
 
-                    if (test.Length != input.Length)
+                    if (test == null || test.Length != input.Length)
                     {
-                        throw new ArgumentException();
+                        Debug.WriteLine($"Überspringe Datei {file} wegen unpassender Länge.");
+                        continue;
                     }
 
                     var sim = Compare(input, test);
