@@ -142,6 +142,15 @@ namespace Tests
             Assert.AreEqual(result1.Length, result2.Length, "Array-Längen müssen übereinstimmen");
         }
 
-     
+        /// <summary>
+        /// Tests if Transform method throws an ArgumentNullException when the input signal is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestTransform_NullInput_ThrowsException()
+        {
+            SignalTransformer sT = new SignalTransformer();
+            sT.Transform(null); 
+        }
     }
 }
