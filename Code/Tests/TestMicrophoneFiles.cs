@@ -142,6 +142,21 @@ namespace Tests
             CollectionAssert.AreEqual(new[] { 1.0, 2.0 }, result.Take(2).ToArray(), new DoubleComparer());
         }
 
+        [TestMethod]
+        public void LoadDoubleArrayCsv_FileInUse_ThrowsHandled_ReturnsEmptyArray()
+        {
+            var filePath = Path.Combine(csvTestFolder, "locked.csv");
+            File.WriteAllText(filePath, "1.0,2.0");
+
+            using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                double[] result = audioConvert.LoadDoubleArrayCsv(filePath);
+
+                Assert.IsNotNull(result);
+                Assert.AreEqual(0, result.Length);
+            }
+        }
+
         #endregion
 
         #region WAV Tests
