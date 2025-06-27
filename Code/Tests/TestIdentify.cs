@@ -79,45 +79,80 @@ namespace Tests
             Assert.ThrowsException<ArgumentException>(() => Identify.PearsonCorrelation(a, b));
         }
 
-        /*
         /// <summary>
-        /// Deprecated: Tests Euclidean distance between two audio files.
+        /// Tests the EuclideanDistance with two identical vectors (should be 0).
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestEuclidean()
+        public void EuclideanDistance_SameVectors_ReturnsZero()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 2, 3 };
+            double[] b = { 1, 2, 3 };
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
+            double result = Identify.EuclideanDistance(a, b);
 
-            var result = Identify.EuclideanDistance(reference, test);
-
-            Assert.IsTrue(result >= 25.0, $"Distance is too small: {result}");
+            Assert.AreEqual(0.0, result, 1e-10);
         }
 
         /// <summary>
-        /// Deprecated: Tests the combined similarity function using cosine, Pearson, and Euclidean.
+        /// Tests the EuclideanDistance with positive values.
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestCompare()
+        public void EuclideanDistance_KnownVectors_ReturnsCorrectDistance()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 2, 3 };
+            double[] b = { 4, 6, 8 };
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
+            double expected = Math.Sqrt(50);
+            double result = Identify.EuclideanDistance(a, b);
 
-            var result = Identify.Compare(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Combined similarity score is too low: {result}");
+            Assert.AreEqual(expected, result, 1e-10);
         }
-        */
+
+        /// <summary>
+        /// Tests that an ArgumentException is thrown for arrays of different lengths.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_DifferentLengths_ThrowsArgumentException()
+        {
+            double[] a = { 1, 2 };
+            double[] b = { 1, 2, 3 };
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Identify.EuclideanDistance(a, b);
+            });
+        }
+
+        /// <summary>
+        /// Tests that passing null throws an exception.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_NullInput_ThrowsArgumentException()
+        {
+            double[] a = null!;
+            double[] b = { 1, 2, 3 };
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Identify.EuclideanDistance(a, b);
+            });
+        }
+
+        /// <summary>
+        /// Tests Euclidean distance with negative values.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_NegativeValues_CalculatesCorrectly()
+        {
+            double[] a = { -1, -2, -3 };
+            double[] b = { 1, 2, 3 };
+
+            double expected = Math.Sqrt(56);
+            double result = Identify.EuclideanDistance(a, b);
+
+            Assert.AreEqual(expected, result, 1e-10);
+        }
+
 
         /// <summary>
         /// Tests the <c>Recognize</c> method by comparing one digit sample against all stored sample digits.

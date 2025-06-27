@@ -110,11 +110,17 @@ namespace Spritzgusslogik
         /// <param name="a">First feature vector.</param>
         /// <param name="b">Second feature vector.</param>
         /// <returns>Euclidean distance (lower means more similar).</returns>
-        private static double EuclideanDistance(double[] a, double[] b)
+        internal static double EuclideanDistance(double[] a, double[] b)
         {
-            double sum = 0;
+            if (a == null || b == null || a.Length != b.Length)
+                throw new ArgumentException("Arrays must be non-null and of the same length.");
+
+            double sum = 0.0;
             for (int i = 0; i < a.Length; i++)
-                sum += Math.Pow(a[i] - b[i], 2);
+            {
+                double diff = a[i] - b[i];
+                sum += diff * diff;
+            }
             return Math.Sqrt(sum);
         }
 
