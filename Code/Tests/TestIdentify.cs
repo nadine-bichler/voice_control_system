@@ -113,10 +113,12 @@ namespace Tests
         [TestMethod]
         public void TestNoInput()
         {
-            Assert.ThrowsException<ArgumentNullException>(() =>
+            var ex = Assert.ThrowsException<ArgumentNullException>(() =>
             {
-                var result = Identify.Recognize(null, out _);
+                Spritzgusslogik.Identify.Recognize(null, out _);
             });
+
+            Assert.AreEqual("input", ex.ParamName);
         }
 
         /// <summary>

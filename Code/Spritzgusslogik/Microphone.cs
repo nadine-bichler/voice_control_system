@@ -23,7 +23,7 @@ namespace Spritzgusslogik
         private short[]? lastAudioData;
 
         // Dynamic voice activation parameters
-        private const float VoiceStartThreshold = 0.02f;
+        private const float VoiceStartThreshold = 0.03f;
         private const float VoiceEndThreshold = 0.015f;
         private const int SilenceDurationMs = 500;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -15,7 +16,7 @@ namespace Prototyp
     /// </summary>
     internal class SignalIdentifier
     {
-        private static readonly double threshold = 0.60;   //threshold for signal similarity
+        private static readonly double threshold = 0.60; //threshold for signal similarity
 
         /// <summary>
         /// event triggered we´hen a digit is recognized
@@ -28,6 +29,7 @@ namespace Prototyp
         /// <param name="pcm">pcm audio signal as Int16 array</param>
         public void Recognition(Int16[] pcm)
         {
+            
             if (pcm == null || pcm.Length == 0)
                 return;
 
@@ -72,6 +74,71 @@ namespace Prototyp
 
             if (sim > threshold)
                 DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(result, sim));
+            
+
+            /*
+            if (pcm == null || pcm.Length == 0)
+                return;
+
+            audioConvert.SavePcmAsWav(pcm, "input_temp.wav");
+
+            string pythonScriptPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..",
+                "digit_recognizer.py");
+            pythonScriptPath = Path.GetFullPath(pythonScriptPath);
+
+            // Prozess vorbereiten
+            var psi = new ProcessStartInfo
+            {
+                FileName = "python",
+                Arguments = $"\"{pythonScriptPath}\"",
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory
+            };
+
+            using (var pythProcess = Process.Start(psi))
+            {
+                string output = pythProcess.StandardOutput.ReadToEnd();
+                string error = pythProcess.StandardError.ReadToEnd();
+                pythProcess.WaitForExit();
+
+                Debug.WriteLine("PYTHON-FEHLER:\n" + error);
+
+                try
+                {
+                    string[] lines = output.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                    string resultLine = lines.FirstOrDefault(line => line.Contains(","));
+
+                    if (resultLine != null)
+                    {
+                        var parts = resultLine.Trim().Split(',');
+                        int digit = int.Parse(parts[0]);
+                        double similarity = double.Parse(parts[1], CultureInfo.InvariantCulture);
+
+                        if (similarity > threshold)
+                        {
+                            DigitRecognized?.Invoke(this, new DigitRecognizedEventArgs(digit, similarity));
+                            Debug.WriteLine($"Erkannt: {digit} mit Ähnlichkeit {similarity}");
+                        }
+                        else
+                        {
+                            Debug.WriteLine($"Keine zuverlässige Erkennung: {digit} ({similarity})");
+                        }
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Kein gültiger Output von Python erhalten.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Fehler beim Parsen des Outputs: " + ex.Message);
+                }
+        
+            }
+            */
         }
     }
 

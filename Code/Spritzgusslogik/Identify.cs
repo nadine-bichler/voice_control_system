@@ -161,7 +161,7 @@ namespace Spritzgusslogik
 
             Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
 
-            return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean);
+            return (0.6 * cosine) + (0.2 * pearson) + (0.2 * euclidean);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Spritzgusslogik
         {
             if (input == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(input));
             }
 
             var bestMatch = -1;
