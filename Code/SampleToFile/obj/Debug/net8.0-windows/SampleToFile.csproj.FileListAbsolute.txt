@@ -60,3 +60,34 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\o
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.exe
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Accord.dll.config
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.deps.json
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.runtimeconfig.json
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Accord.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Accord.Math.Core.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Accord.Math.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\FftSharp.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\MathNet.Numerics.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Asio.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Core.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Midi.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\bin\Debug\net8.0-windows\Spritzgusslogik.pdb
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.AssemblyReference.cache
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfoInputs.cache
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.AssemblyInfo.cs
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.CoreCompileInputs.cache
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.csproj.CopyComplete
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\refint\SampleToFile.dll
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\SampleToFile.genruntimeconfig.cache
+C:\Users\Jan\Desktop\Studium\Semester4\Projekt 1\projekt_1_team_1\Code\SampleToFile\obj\Debug\net8.0-windows\ref\SampleToFile.dll

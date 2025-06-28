@@ -1239,10 +1239,7 @@
           "Spritzgusslogik": "1.0.0"
         },
         "runtime": {
-          "SampleToFile.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SampleToFile.dll": {}
         }
       },
       "Spritzgusslogik/1.0.0": {
