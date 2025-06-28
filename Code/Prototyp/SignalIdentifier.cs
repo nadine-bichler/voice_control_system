@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -13,9 +15,10 @@ namespace Prototyp
     /// Identifies spoken digits based on audio input.
     /// Converts PCM audio input to MFCC features using a Python script and compares with stored digit profiles.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class SignalIdentifier
     {
-        private static readonly double threshold = 0.60;   //threshold for signal similarity
+        private static readonly double threshold = 0.60; //threshold for signal similarity
 
         /// <summary>
         /// event triggered we´hen a digit is recognized
@@ -28,6 +31,7 @@ namespace Prototyp
         /// <param name="pcm">pcm audio signal as Int16 array</param>
         public void Recognition(Int16[] pcm)
         {
+            
             if (pcm == null || pcm.Length == 0)
                 return;
 
@@ -78,6 +82,7 @@ namespace Prototyp
     /// <summary>
     /// Event arguments for recognized digit results.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class DigitRecognizedEventArgs : EventArgs
     {
         public int Digit { get; }

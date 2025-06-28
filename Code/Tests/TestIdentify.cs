@@ -1,4 +1,4 @@
-using Microsoft.VisualStudio.CodeCoverage;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Spritzgusslogik;
 
 namespace Tests
@@ -9,83 +9,150 @@ namespace Tests
     [TestClass]
     public class TestIdentify
     {
-        /*
         /// <summary>
-        /// Deprecated: Tests cosine similarity between two audio files.
+        /// Tests cosine similarity on valid input
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestCosine()
+        public void TestCosineSimilarity_ValidInput()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 0 };
+            double[] b = { 0, 1 };
+            var result = Identify.CosineSimilarity(a, b);
+            Assert.AreEqual(0, result, 1e-10);
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
-
-            var result = Identify.CosineSimilarity(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Similarity is too low: {result}");
+            double[] c = { 1, 1 };
+            double[] d = { 1, 1 };
+            result = Identify.CosineSimilarity(c, d);
+            Assert.AreEqual(1, result, 1e-10);
         }
 
         /// <summary>
-        /// Deprecated: Tests Euclidean distance between two audio files.
+        /// Tests exception for cosine similarity on inputs with different lengths
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestEuclidean()
+        [ExpectedException(typeof(ArgumentException))]
+        public void TestCosineSimilarity_DifferentLengths_Throws()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 2 };
+            double[] b = { 1 };
+            Identify.CosineSimilarity(a, b);
+        }
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
 
-            var result = Identify.EuclideanDistance(reference, test);
+        /// <summary>
+        /// Tests the PearsonCorrelation for valid input
+        /// </summary>
+        [TestMethod]
+        public void PearsonCorrelation_ValidInput_ReturnsExpectedValue()
+        { 
+            double[] a = { 1, 2, 3, 4, 5 };
+            double[] b = { 2, 4, 6, 8, 10 }; 
 
-            Assert.IsTrue(result >= 25.0, $"Distance is too small: {result}");
+            double result = Identify.PearsonCorrelation(a, b);
+
+            Assert.AreEqual(1.0, result, 1e-10, "Pearson correlation should be 1 for perfectly linear data.");
         }
 
         /// <summary>
-        /// Deprecated: Tests Pearson correlation between two audio files.
+        /// Tests the PearsonCorrelation for perfectly inversely correlated data, which should return -1.
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestPearson()
+        public void PearsonCorrelation_InverseInput_ReturnsMinusOne()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 2, 3, 4, 5 };
+            double[] b = { 10, 8, 6, 4, 2 }; 
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
+            double result = Identify.PearsonCorrelation(a, b);
 
-            var result = Identify.PearsonCorrelation(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Correlation is too low: {result}");
+            Assert.AreEqual(-1.0, result, 1e-10, "Pearson correlation should be -1 for perfectly inversely correlated data.");
         }
 
         /// <summary>
-        /// Deprecated: Tests the combined similarity function using cosine, Pearson, and Euclidean.
+        /// Tests the PearsonCorrelation for different lengths of input arrays, which should throw an exception.
         /// </summary>
         [TestMethod]
-        [Obsolete("Deprecated test, use TestRecognize instead")]
-        public void TestCompare()
+        public void PearsonCorrelation_DifferentLengths_ThrowsArgumentException()
         {
-            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
-            var referencePath = Path.Combine(basePath, "3.csv");
-            var testPath = Path.Combine(basePath, "Test3.csv");
+            double[] a = { 1, 2, 3 };
+            double[] b = { 1, 2 };
 
-            var reference = audioConvert.LoadDoubleArrayCsv(referencePath);
-            var test = audioConvert.LoadDoubleArrayCsv(testPath);
-
-            var result = Identify.Compare(reference, test);
-
-            Assert.IsTrue(result >= 0.75, $"Combined similarity score is too low: {result}");
+            Assert.ThrowsException<ArgumentException>(() => Identify.PearsonCorrelation(a, b));
         }
-        */
+
+        /// <summary>
+        /// Tests the EuclideanDistance with two identical vectors (should be 0).
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_SameVectors_ReturnsZero()
+        {
+            double[] a = { 1, 2, 3 };
+            double[] b = { 1, 2, 3 };
+
+            double result = Identify.EuclideanDistance(a, b);
+
+            Assert.AreEqual(0.0, result, 1e-10);
+        }
+
+        /// <summary>
+        /// Tests the EuclideanDistance with positive values.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_KnownVectors_ReturnsCorrectDistance()
+        {
+            double[] a = { 1, 2, 3 };
+            double[] b = { 4, 6, 8 };
+
+            double expected = Math.Sqrt(50);
+            double result = Identify.EuclideanDistance(a, b);
+
+            Assert.AreEqual(expected, result, 1e-10);
+        }
+
+        /// <summary>
+        /// Tests that an ArgumentException is thrown for arrays of different lengths.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_DifferentLengths_ThrowsArgumentException()
+        {
+            double[] a = { 1, 2 };
+            double[] b = { 1, 2, 3 };
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Identify.EuclideanDistance(a, b);
+            });
+        }
+
+        /// <summary>
+        /// Tests that passing null throws an exception.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_NullInput_ThrowsArgumentException()
+        {
+            double[] a = null!;
+            double[] b = { 1, 2, 3 };
+
+            Assert.ThrowsException<ArgumentException>(() =>
+            {
+                Identify.EuclideanDistance(a, b);
+            });
+        }
+
+        /// <summary>
+        /// Tests Euclidean distance with negative values.
+        /// </summary>
+        [TestMethod]
+        public void EuclideanDistance_NegativeValues_CalculatesCorrectly()
+        {
+            double[] a = { -1, -2, -3 };
+            double[] b = { 1, 2, 3 };
+
+            double expected = Math.Sqrt(56);
+            double result = Identify.EuclideanDistance(a, b);
+
+            Assert.AreEqual(expected, result, 1e-10);
+        }
+
 
         /// <summary>
         /// Tests the <c>Recognize</c> method by comparing one digit sample against all stored sample digits.
@@ -111,19 +178,21 @@ namespace Tests
         /// Tests if no input results in Exception
         /// </summary>
         [TestMethod]
-        public void TestNoInput()
+        public void RecognizeTestNoInput()
         {
-            Assert.ThrowsException<ArgumentNullException>(() =>
+            var ex = Assert.ThrowsException<ArgumentNullException>(() =>
             {
-                var result = Identify.Recognize(null, out _);
+                Spritzgusslogik.Identify.Recognize(null, out _);
             });
+
+            Assert.AreEqual("input", ex.ParamName);
         }
 
         /// <summary>
         /// Tests if invalid digit is recognized
         /// </summary>
         [TestMethod]
-        public void TestInvalidCommand()
+        public void RecognizeTestInvalidCommand()
         {
             var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "wavTest");
             var referencePath = Path.Combine(basePath, "0.csv");
@@ -135,17 +204,35 @@ namespace Tests
         }
 
         /// <summary>
-        /// Tests if different sized inputs are throwing an exception
+        /// Tests if Recognition is skipped if there are no matching files
         /// </summary>
         [TestMethod]
-        public void TestDifferentSizes()
+        public void RecognizeTest_NoMatchingFiles_SkipsDigit()
         {
-            var input = new double[] { 1.0, 2.0, 3.0 };
+            // Arrange
+            // Lege eine Datei mit falscher Extension an, damit sie ignoriert wird
+            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile", "WAV_samples");
+            var fakeFile = Path.Combine(basePath, "1.txt"); // Wird nicht als *.csv erkannt
 
-            Assert.ThrowsException<ArgumentException>(() =>
+            File.WriteAllText(fakeFile, "1.0, 2.0, 3.0");
+
+            try
             {
-                var result = Identify.Recognize(input, out _);
-            });
+                var input = new double[] { 1.0, 2.0, 3.0 };
+
+                // Act
+                var result = Identify.Recognize(input, out double similarity);
+
+                // Assert
+                Assert.AreEqual(-1, result); // Kein Treffer, kein gültiger Vergleich
+                Assert.AreEqual(0.0, similarity);
+            }
+            finally
+            {
+                if (File.Exists(fakeFile))
+                    File.Delete(fakeFile);
+            }
         }
+
     }
 }

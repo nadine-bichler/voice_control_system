@@ -11,12 +11,15 @@ using Debug = System.Diagnostics.Debug;
 using MathNet.Numerics.LinearAlgebra;
 using Accord.Math.Distances;
 using Accord.Math.Metrics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Spritzgusslogik
 {
     /// <summary>
     /// Identifies Instructions (1-9).
     /// </summary>
+    [Obsolete("Identify2 wird nicht verwendet. Bitte Identify benutzen")]
+    [ExcludeFromCodeCoverage]
     public class Identify2
     {
 

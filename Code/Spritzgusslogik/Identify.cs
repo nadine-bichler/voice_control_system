@@ -9,9 +9,9 @@
 using System.IO;
 using Complex = System.Numerics.Complex;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
-
-
+[assembly: InternalsVisibleTo("Tests")]
 namespace Spritzgusslogik
 {
     /// <summary>
@@ -83,7 +83,7 @@ namespace Spritzgusslogik
         /// <param name="arrayA">First feature vector.</param>
         /// <param name="arrayB">Second feature vector.</param>
         /// <returns>Cosine similarity score in [0,1].</returns>
-        private static double CosineSimilarity(double[] arrayA, double[] arrayB)
+        internal static double CosineSimilarity(double[] arrayA, double[] arrayB)
         {
             if (arrayA.Length != arrayB.Length)
             {
@@ -110,11 +110,17 @@ namespace Spritzgusslogik
         /// <param name="a">First feature vector.</param>
         /// <param name="b">Second feature vector.</param>
         /// <returns>Euclidean distance (lower means more similar).</returns>
-        private static double EuclideanDistance(double[] a, double[] b)
+        internal static double EuclideanDistance(double[] a, double[] b)
         {
-            double sum = 0;
+            if (a == null || b == null || a.Length != b.Length)
+                throw new ArgumentException("Arrays must be non-null and of the same length.");
+
+            double sum = 0.0;
             for (int i = 0; i < a.Length; i++)
-                sum += Math.Pow(a[i] - b[i], 2);
+            {
+                double diff = a[i] - b[i];
+                sum += diff * diff;
+            }
             return Math.Sqrt(sum);
         }
 
@@ -126,7 +132,7 @@ namespace Spritzgusslogik
         /// <param name="a">First feature vector.</param>
         /// <param name="b">Second feature vector.</param>
         /// <returns>Pearson correlation in range [-1, 1].</returns>
-        private static double PearsonCorrelation(double[] a, double[] b)
+        internal static double PearsonCorrelation(double[] a, double[] b)
         {
             if (a.Length != b.Length)
                 throw new ArgumentException("Arrays müssen gleich lang sein.");
@@ -161,7 +167,7 @@ namespace Spritzgusslogik
 
             Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
 
-            return (0.5 * cosine) + (0.25 * pearson) + (0.25 * euclidean);
+            return (0.6 * cosine) + (0.2 * pearson) + (0.2 * euclidean);
         }
 
         /// <summary>
@@ -174,7 +180,7 @@ namespace Spritzgusslogik
         {
             if (input == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(input));
             }
 
             var bestMatch = -1;
@@ -193,9 +199,10 @@ namespace Spritzgusslogik
                 {
                     var test = audioConvert.LoadDoubleArrayCsv(file);
 
-                    if (test.Length != input.Length)
+                    if (test == null || test.Length != input.Length)
                     {
-                        throw new ArgumentException();
+                        Debug.WriteLine($"Überspringe Datei {file} wegen unpassender Länge.");
+                        continue;
                     }
 
                     var sim = Compare(input, test);

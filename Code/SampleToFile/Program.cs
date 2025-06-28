@@ -1,6 +1,8 @@
 ﻿using Spritzgusslogik;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using SampleToFile;
 using static System.Resources.ResXFileRef;
 
 /// <summary>
@@ -33,28 +35,21 @@ foreach (var file in files)
 /// </summary>
 // Run Python code
 // Absoluter Pfad basierend auf dem aktuellen Verzeichnis
-string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName; // geht 3 Ebenen hoch zur Projektwurzel
-string scriptPath = Path.Combine(projectDir, "mfcss.py");
-
-var psi = new ProcessStartInfo
+[ExcludeFromCodeCoverage]
+class Program
 {
-    FileName = "python",  // oder vollständiger Pfad zur python.exe
-    Arguments = $"\"{scriptPath}\"",
-    UseShellExecute = false,
-    RedirectStandardOutput = true,
-    RedirectStandardError = true,
-    CreateNoWindow = true
-};
-
-using (var process = Process.Start(psi))
-{
-    string output = process.StandardOutput.ReadToEnd();
-    string errors = process.StandardError.ReadToEnd();
-    process.WaitForExit();
-
-    System.Diagnostics.Debug.WriteLine("Python-Ausgabe:\n" + output);
-    if (!string.IsNullOrWhiteSpace(errors))
+    static void Main(string[] args)
     {
-        System.Diagnostics.Debug.WriteLine("Fehler:\n" + errors);
+        string projectDir = Directory.GetParent(AppContext.BaseDirectory)!.Parent!.Parent!.Parent!.FullName; // geht 3 Ebenen hoch zur Projektwurzel
+        string scriptPath = Path.Combine(projectDir, "mfcss.py");
+
+        IPythonRunner runner = new PythonRunner();
+        var (output, errors, exitCode) = runner.RunPythonScript(scriptPath);
+
+        Console.WriteLine("Python-Ausgabe:\n" + output);
+        if (!string.IsNullOrWhiteSpace(errors))
+        {
+            Console.WriteLine("Fehler:\n" + errors);
+        }
     }
 }

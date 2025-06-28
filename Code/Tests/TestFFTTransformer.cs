@@ -142,6 +142,69 @@ namespace Tests
             Assert.AreEqual(result1.Length, result2.Length, "Array-Längen müssen übereinstimmen");
         }
 
-     
+        /// <summary>
+        /// Tests if Transform method throws an ArgumentNullException when the input signal is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestTransform_NullInput_ThrowsException()
+        {
+            SignalTransformer sT = new SignalTransformer();
+            sT.Transform(null); 
+        }
+
+        /// <summary>
+        /// Tests if Transform method throws an ArgumentNullException when the input signal is null.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestSignalFFTSharpTransformer_NullInput_Throws()
+        {
+            var transformer = new SignalFFTSharpTransformer();
+            transformer.Transform(null);
+        }
+
+        /// <summary>
+        /// Tests if setting and using signalTransformer works
+        /// </summary>
+        [TestMethod]
+        public void FFTTransformer_Uses_SignalTransformer()
+        {
+            var fft = new FFTTransformer();
+            var signalTransformer = new SignalTransformer();
+
+            fft.setAlgorithm(signalTransformer);
+
+            Int16[] signal = new Int16[] { 1, 2, 3, 4 };
+
+            double[] result = fft.Transform(signal);
+
+            Assert.IsNotNull(result);
+            Assert.IsTrue(result.Length > 0);
+        }
+
+        /// <summary>
+        /// Tests if setting Algorithm null throws NullException
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FFTTransformer_SetAlgorithm_Null_Throws()
+        {
+            var fft = new FFTTransformer();
+            fft.setAlgorithm(null);
+        }
+
+        /// <summary>
+        /// Tests if setting no Algorithm throws NullException
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void FFTTransformer_Transform_WithoutAlgorithm_Throws()
+        {
+            var fft = new FFTTransformer();
+
+            Int16[] signal = new Int16[] { 1, 2, 3 };
+            fft.Transform(signal);
+        }
     }
 }

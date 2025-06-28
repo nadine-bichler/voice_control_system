@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "PPS816BDUVXNC+/FRWheXuNP8anybC3KaZJUUOG26bl757vsYYDrf+E2+hR3ts8YMeVg+y/YWhLRmduonxUvqw==",
+  "dgSpecHash": "PbrMHABgR8vyBIPzwKL/ROZjf4zGYQ/qjK3IN6QqJkaBFs2oUF41rJqIuDGqfr+bE+KB4njoynKDKWo3LGCj5A==",
   "success": true,
   "projectFilePath": "C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\donar\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\fftsharp\\2.2.0\\fftsharp.2.2.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.applicationinsights\\2.23.0\\microsoft.applicationinsights.2.23.0.nupkg.sha512",
@@ -25,6 +26,7 @@
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.13.0\\microsoft.testplatform.objectmodel.17.13.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.testplatform.testhost\\17.13.0\\microsoft.testplatform.testhost.17.13.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\moq\\4.20.72\\moq.4.20.72.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest\\3.9.3\\mstest.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.analyzers\\3.9.3\\mstest.analyzers.3.9.3.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\mstest.sdk\\3.9.3\\mstest.sdk.3.9.3.nupkg.sha512",
@@ -45,6 +47,7 @@
     "C:\\Users\\donar\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.collections.immutable\\8.0.0\\system.collections.immutable.8.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
+    "C:\\Users\\donar\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.reflection.metadata\\8.0.0\\system.reflection.metadata.8.0.0.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
@@ -53,5 +56,12 @@
     "C:\\Users\\donar\\.nuget\\packages\\system.text.encodings.web\\6.0.1\\system.text.encodings.web.6.0.1.nupkg.sha512",
     "C:\\Users\\donar\\.nuget\\packages\\system.text.json\\6.0.11\\system.text.json.6.0.11.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\donar\\Desktop\\Projekt1\\source\\Repos\\projekt1_team_1\\Code\\Tests\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

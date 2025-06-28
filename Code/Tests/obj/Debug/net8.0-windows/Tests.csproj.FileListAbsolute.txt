@@ -466,6 +466,7 @@ C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\runtimes\win-x86\native\msdia140.dll
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.gentestingplatformentrypointinputcache.cache
 C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.genautoregisteredextensionsinputcache.cache
+<<<<<<< HEAD
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\.msCoverageExtensionSourceRootsMapping_Tests
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.DiaSymReader.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyModel.dll
@@ -576,3 +577,12 @@ C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debu
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\bin\Debug\net8.0-windows\runtimes\win-x86\native\msdia140.dll
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.gentestingplatformentrypointinputcache.cache
 C:\Users\donar\Desktop\Projekt1\source\Repos\projekt1_team_1\Code\Tests\obj\Debug\net8.0-windows\Tests.genautoregisteredextensionsinputcache.cache
+=======
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.deps.json
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.runtimeconfig.json
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.exe
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\SampleToFile.pdb
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Castle.Core.dll
+C:\Users\nbich\Source\Repos\projekt_1_team_1\Code\Tests\bin\Debug\net8.0-windows\Moq.dll
+>>>>>>> 65147e3aac0c4f522baaecd9b58ddc9b4e764d3b

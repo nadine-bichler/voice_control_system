@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.Marshalling;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +19,7 @@ namespace Prototyp
     /// Interaction logic for the main application window.
     /// Manages GUI updates, microphone input, signal recognition, and history.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public partial class MainWindow : Window
     {
         private Microphone microphone;

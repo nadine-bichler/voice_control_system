@@ -60,28 +60,30 @@ namespace Tests
         }
 
         /// <summary>
-        /// Tests that invalid command values throw <c>ArgumentOutOfRangeException</c>.
+        /// Tests that invalid command value "0" throws <c>ArgumentOutOfRangeException</c>.
         /// </summary>
         [TestMethod]
-        public void TestInvalidCommand_History()
+        public void TestInvalidCommand_Zero()
         {
-            // Invalid command: 0
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
-            {
-                var entry = new HistoryEntry(0);
-            });
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new HistoryEntry(0));
+        }
 
-            // Invalid command: 10
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
-            {
-                var entry = new HistoryEntry(10);
-            });
+        /// <summary>
+        /// Tests that invalid command value "10" throws <c>ArgumentOutOfRangeException</c>.
+        /// </summary>
+        [TestMethod]
+        public void TestInvalidCommand_Ten()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new HistoryEntry(10));
+        }
 
-            // Invalid command: -1
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() =>
-            {
-                var entry = new HistoryEntry(-1);
-            });
+        /// <summary>
+        /// Tests that invalid command value (negative) throws <c>ArgumentOutOfRangeException</c>.
+        /// </summary>
+        [TestMethod]
+        public void TestInvalidCommand_Negative()
+        {
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new HistoryEntry(-1));
         }
     }
 }

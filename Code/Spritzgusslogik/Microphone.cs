@@ -2,7 +2,9 @@
 using NAudio.CoreAudioApi;
 using System;
 using System.Timers;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Tests")]
 namespace Spritzgusslogik
 {
     /// <summary>
@@ -23,7 +25,7 @@ namespace Spritzgusslogik
         private short[]? lastAudioData;
 
         // Dynamic voice activation parameters
-        private const float VoiceStartThreshold = 0.02f;
+        private const float VoiceStartThreshold = 0.03f;
         private const float VoiceEndThreshold = 0.015f;
         private const int SilenceDurationMs = 500;
 
@@ -31,18 +33,30 @@ namespace Spritzgusslogik
         private DateTime lastVoiceTime = DateTime.MinValue;
         private List<short> activeRecordingBuffer = new();
 
+        private readonly IAudioDeviceManager audioDeviceManager;
+        private readonly IAudioRecorder audioRecorder;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Microphone"/> class.
         /// </summary>
-        public Microphone()
+        public Microphone(IAudioDeviceManager deviceManager, IAudioRecorder recoder)
         {
-            waveIn = new WaveInEvent
-            {
-                DeviceNumber = 0,
-                WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
-                BufferMilliseconds = 30
-            };
-            waveIn.DataAvailable += WaveIn_DataAvailable;
+            audioDeviceManager = deviceManager;
+            audioRecorder = recoder;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Microphone"/> class with the default audio device manager.
+        /// </summary>
+        public Microphone() : this(new NAudioDeviceManager(), new NAudioRecorder(new WaveInEvent
+        {
+            DeviceNumber = 0,
+            WaveFormat = new WaveFormat(rate: SampleRate, bits: 16, channels: 1),
+            BufferMilliseconds = 30
+        }))
+        {
+            var waveInEvent = ((NAudioRecorder)audioRecorder).WaveIn;
+            waveInEvent.DataAvailable += WaveIn_DataAvailable;
         }
 
         /// <summary>
@@ -52,7 +66,7 @@ namespace Spritzgusslogik
         {
             try
             {
-                waveIn.StartRecording();
+                audioRecorder.StartRecording();
             }
             catch (Exception ex)
             {
@@ -66,7 +80,7 @@ namespace Spritzgusslogik
         /// </summary>
         public void Stop()
         {
-            waveIn.StopRecording();
+            audioRecorder.StopRecording();
             muted = true;
         }
 
@@ -85,12 +99,12 @@ namespace Spritzgusslogik
         /// <returns>The name of the microphone, or a message if none is found.</returns>
         public string GetStandardMicrophoneName()
         {
-            if (WaveIn.DeviceCount == 0)
+            if (audioDeviceManager.DeviceCount == 0)
             {
                 return "No microphone found";
             }
 
-            var caps = WaveIn.GetCapabilities(0);
+            var caps = audioDeviceManager.GetCapabilities(0);
             return caps.ProductName;
         }
 
@@ -114,7 +128,7 @@ namespace Spritzgusslogik
         /// </summary>
         /// <param name="sender">The source of the audio input event.</param>
         /// <param name="e">Event arguments containing audio buffer data.</param>
-        private void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
+        internal void WaveIn_DataAvailable(object? sender, WaveInEventArgs e)
         {
             values = new Int16[e.Buffer.Length / 2];
             Buffer.BlockCopy(e.Buffer, 0, values, 0, e.Buffer.Length);
@@ -159,7 +173,7 @@ namespace Spritzgusslogik
         /// </summary>
         /// <param name="samples">The array of audio sample data.</param>
         /// <returns>The RMS value representing the signal volume.</returns>
-        private float CalculateRMS(short[] samples)
+        internal float CalculateRMS(short[] samples)
         {
             if (samples.Length == 0) return 0f;
 
@@ -172,5 +186,47 @@ namespace Spritzgusslogik
 
             return (float)Math.Sqrt(sum / samples.Length);
         }
+    }
+
+    public interface IAudioDeviceManager
+    {
+        int DeviceCount { get; }
+
+        /// <summary>
+        /// Gets the capabilities of a specific audio input device.
+        /// </summary>
+        /// <param name="deviceNumber">The index of the audio device to query.</param>
+        /// <returns>The capabilities of the audio device.</returns>
+        WaveInCapabilities GetCapabilities(int deviceNumber);
+    }
+
+    public class NAudioDeviceManager : IAudioDeviceManager
+    {
+        public int DeviceCount => WaveIn.DeviceCount;
+
+        public WaveInCapabilities GetCapabilities(int deviceNumber)
+        {
+            return WaveIn.GetCapabilities(deviceNumber);
+        }
+    }
+
+    public interface IAudioRecorder
+    {
+        void StartRecording();
+        void StopRecording();
+    }
+
+    public class NAudioRecorder : IAudioRecorder
+    {
+        private readonly WaveInEvent waveIn;
+        public WaveInEvent WaveIn => waveIn;
+
+        public NAudioRecorder(WaveInEvent waveIn)
+        {
+            this.waveIn = waveIn;
+        }
+
+        public void StartRecording() => waveIn.StartRecording();
+        public void StopRecording() => waveIn.StopRecording();
     }
 }
