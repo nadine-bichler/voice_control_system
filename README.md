@@ -1,4 +1,4 @@
-# Project_1_Team_1
+# voice_control_system
 # Prototype: Voice Control for Injection Molding Machines
 
 ## Project Overview & Focus
