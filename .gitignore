@@ -6,3 +6,7 @@
 
 *.wav
 Code/SampleToFile/WAV_samples/
+
+[Oo]bj/
+[Bb]in/
+.vs/
