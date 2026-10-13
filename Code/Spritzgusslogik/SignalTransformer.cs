@@ -16,10 +16,6 @@ namespace Spritzgusslogik
     /// </summary>
     public class SignalTransformer : IFFTTransformer
     {
-        
-
-        string IFFTTransformer.Name => "SignalTransformer";
-
         /// <summary>
         /// This method first converts that given signal array from type Int16 to Complex Array.
         /// Then uses Fourier.Forward() function from MathNet to execute the Fast Fourier Transformation.

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using OxyPlot.Series;
+﻿using OxyPlot.Series;
 using OxyPlot.Wpf;
 using OxyPlot;
 using Spritzgusslogik;
@@ -9,7 +8,6 @@ using Spritzgusslogik;
 /// Manages an internal buffer and plots the waveform using OxyPlot in a PlotView.
 /// </summary>
 /// </summary>
-[ExcludeFromCodeCoverage]
 class SignalDrawer
 {
     private const int SampleRate = Microphone.SampleRate;

@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices.Marshalling;
+﻿using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +18,6 @@ namespace Prototyp
     /// Interaction logic for the main application window.
     /// Manages GUI updates, microphone input, signal recognition, and history.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public partial class MainWindow : Window
     {
         private Microphone microphone;
@@ -30,6 +28,12 @@ namespace Prototyp
         private SignalIdentifier identifier;
 
         private bool _isProcessing = false;
+
+        // Zustand fuer den gefuehrten Referenz-Aufnahmemodus
+        private const int ReferenceRepetitions = 3;
+        private bool _recordingReferences = false;
+        private int _referenceDigit = 1;
+        private int _referenceRepetition = 1;
 
 
         //Cooldown, um AudioWiederholung zu verhindern
@@ -188,6 +192,12 @@ namespace Prototyp
         /// <param name="pcm">PCM audio data from microphone</param>
         private void OnAudioReceived(Int16[] pcm)
         {
+            if (_recordingReferences)
+            {
+                HandleReferenceRecording(pcm);
+                return;
+            }
+
             if (_isProcessing || (DateTime.Now - lastRecognized) < minDelay)
                 return;
 
@@ -207,6 +217,105 @@ namespace Prototyp
                 {
                     _isProcessing = false;
                 }
+            });
+        }
+
+        /// <summary>
+        /// Starts the guided reference recording: the user is asked to say each digit
+        /// several times; the recordings are stored and the references are rebuilt.
+        /// </summary>
+        private void RecordReferences_Click(object sender, RoutedEventArgs e)
+        {
+            if (_recordingReferences)
+                return;
+
+            _recordingReferences = true;
+            _referenceDigit = 1;
+            _referenceRepetition = 1;
+
+            if (microphone.IsMuted())
+            {
+                microphone.Start();
+                ToggleButton.Content = "Stop";
+                ToggleButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ff9d98"));
+            }
+
+            RecordReferencesButton.IsEnabled = false;
+            UpdateReferenceStatus();
+        }
+
+        private void UpdateReferenceStatus()
+        {
+            referenceStatus.Text =
+                $"Sprich Ziffer {_referenceDigit} – Aufnahme {_referenceRepetition}/{ReferenceRepetitions}";
+        }
+
+        /// <summary>
+        /// Saves the current utterance as a reference sample and advances the guided flow.
+        /// </summary>
+        private void HandleReferenceRecording(Int16[] pcm)
+        {
+            if (_isProcessing)
+                return;
+
+            _isProcessing = true;
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    string samplesDir = System.IO.Path.GetFullPath(System.IO.Path.Combine(
+                        AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..",
+                        "SampleToFile", "WAV_samples"));
+                    System.IO.Directory.CreateDirectory(samplesDir);
+
+                    string fileName = $"own{_referenceRepetition}_{_referenceDigit}.wav";
+                    audioConvert.SavePcmAsWav(pcm, System.IO.Path.Combine(samplesDir, fileName));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    _isProcessing = false;
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    _referenceRepetition++;
+                    if (_referenceRepetition > ReferenceRepetitions)
+                    {
+                        _referenceRepetition = 1;
+                        _referenceDigit++;
+                    }
+
+                    if (_referenceDigit > 9)
+                    {
+                        _recordingReferences = false;
+                        RecordReferencesButton.IsEnabled = true;
+                        referenceStatus.Text = "Aufnahmen fertig – Referenzen werden neu berechnet …";
+
+                        Task.Run(() =>
+                        {
+                            try
+                            {
+                                identifier.RebuildReferenceSequences();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex);
+                            }
+
+                            Dispatcher.Invoke(() =>
+                                referenceStatus.Text = "Referenzen aktualisiert. Du kannst jetzt testen.");
+                        });
+                    }
+                    else
+                    {
+                        UpdateReferenceStatus();
+                    }
+                });
             });
         }
 

@@ -1,14 +1,12 @@
 ﻿///
 /// @file    Identify.cs
-/// Identifies digits from audio input using similarity metrics.
+/// Identifies digits from audio input using dynamic time warping on MFCC sequences.
 /// @author  Bichler Nadine, Anton Armin
 /// @date    24.06.2025
 ///
 ///
 
 using System.IO;
-using Complex = System.Numerics.Complex;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tests")]
@@ -19,210 +17,128 @@ namespace Spritzgusslogik
     /// </summary>
     public class Identify
     {
-        //const int TargetLength = 2048;
-
-        /// <deprecated>
-        /// </deprecated>
-        /*
-        public static double PearsonCorrelation(Complex[] arrayA, Complex[] arrayB)
+        /// <summary>
+        /// Calculates the Euclidean distance between two feature frames.
+        /// </summary>
+        private static double FrameDistance(double[] x, double[] y)
         {
-            Console.WriteLine(arrayA.Length);
-            Console.WriteLine(arrayB.Length);
-
-            var maxLength = Math.Max(arrayA.Length, arrayB.Length);
-
-            var x = GetMagnitudeSpectrum(PadArray(arrayA, maxLength));
-            var y = GetMagnitudeSpectrum(PadArray(arrayB, maxLength));
-
-            if (x.Length != y.Length)
-                throw new ArgumentException("Arrays must be the same length");
-
-            double meanX = x.Average();
-            double meanY = y.Average();
-
-            double numerator = 0, denomX = 0, denomY = 0;
+            double sum = 0;
             for (int i = 0; i < x.Length; i++)
             {
-                double dx = x[i] - meanX;
-                double dy = y[i] - meanY;
-                numerator += dx * dy;
-                denomX += dx * dx;
-                denomY += dy * dy;
-            }
-
-            return numerator / Math.Sqrt(denomX * denomY);
-        }
-        */
-
-        /// <deprecated>
-        /// </deprecated>
-        /*
-        private static double[] GetMagnitudeSpectrum(Complex[] fft)
-        {
-            return fft.Select(c => c.Magnitude).ToArray();
-        }
-        */
-
-        /// <deprecated>
-        /// </deprecated>
-        /*
-        private static Complex[] PadArray(Complex[] array, int targetLength)
-        {
-            var result = new Complex[targetLength];
-            Array.Copy(array, result, array.Length);
-            return result; // Rest ist automatisch (0, 0)
-        }
-        */
-
-        // Richtungs-/Winkel-Sensitiv
-        //Robust gegen Lautstärkeunterschiede = Ideal für Richtung & Klangmuster
-        /// <summary>
-        /// Calculates cosine similarity between two vectors.
-        /// Measures directional similarity regardless of magnitude.
-        /// </summary>
-        /// <param name="arrayA">First feature vector.</param>
-        /// <param name="arrayB">Second feature vector.</param>
-        /// <returns>Cosine similarity score in [0,1].</returns>
-        internal static double CosineSimilarity(double[] arrayA, double[] arrayB)
-        {
-            if (arrayA.Length != arrayB.Length)
-            {
-                throw new ArgumentException("Arrays must be the same length");
-            }
-
-            double dot = 0, normA = 0, normB = 0;
-            for (int i = 0; i < arrayA.Length; i++)
-            {
-                dot += arrayA[i] * arrayB[i];
-                normA += arrayA[i] * arrayA[i];
-                normB += arrayB[i] * arrayB[i];
-            }
-
-            return dot / (Math.Sqrt(normA) * Math.Sqrt(normB));
-        }
-
-        // Absoluter-Abstand-Sensitiv
-        //Robust gegen Verschiebungen = Idel für Strukturähnlichkeiten
-        /// <summary>
-        /// Calculates Euclidean distance between two vectors.
-        /// Measures absolute difference between elements.
-        /// </summary>
-        /// <param name="a">First feature vector.</param>
-        /// <param name="b">Second feature vector.</param>
-        /// <returns>Euclidean distance (lower means more similar).</returns>
-        internal static double EuclideanDistance(double[] a, double[] b)
-        {
-            if (a == null || b == null || a.Length != b.Length)
-                throw new ArgumentException("Arrays must be non-null and of the same length.");
-
-            double sum = 0.0;
-            for (int i = 0; i < a.Length; i++)
-            {
-                double diff = a[i] - b[i];
-                sum += diff * diff;
+                double d = x[i] - y[i];
+                sum += d * d;
             }
             return Math.Sqrt(sum);
         }
 
-        // Lineare-Korrelation-Sensitiv
         /// <summary>
-        /// Calculates Pearson correlation coefficient between two vectors.
-        /// Measures linear correlation and scale-invariant similarity.
+        /// Calculates the normalized dynamic time warping (DTW) distance between two
+        /// MFCC feature sequences. Lower values mean more similar sequences.
         /// </summary>
-        /// <param name="a">First feature vector.</param>
-        /// <param name="b">Second feature vector.</param>
-        /// <returns>Pearson correlation in range [-1, 1].</returns>
-        internal static double PearsonCorrelation(double[] a, double[] b)
+        /// <param name="a">First feature sequence (frames x coefficients).</param>
+        /// <param name="b">Second feature sequence (frames x coefficients).</param>
+        /// <returns>The accumulated DTW cost normalized by the total number of frames.</returns>
+        internal static double DtwDistance(double[][] a, double[][] b)
         {
-            if (a.Length != b.Length)
-                throw new ArgumentException("Arrays müssen gleich lang sein.");
+            int n = a.Length;
+            int m = b.Length;
+            if (n == 0 || m == 0)
+                return double.PositiveInfinity;
 
-            double meanA = a.Average();
-            double meanB = b.Average();
+            var prev = new double[m + 1];
+            var cur = new double[m + 1];
+            for (int j = 0; j <= m; j++)
+                prev[j] = double.PositiveInfinity;
+            prev[0] = 0.0;
 
-            double numerator = 0, denomA = 0, denomB = 0;
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 1; i <= n; i++)
             {
-                double da = a[i] - meanA;
-                double db = b[i] - meanB;
-                numerator += da * db;
-                denomA += da * da;
-                denomB += db * db;
+                cur[0] = double.PositiveInfinity;
+                var ai = a[i - 1];
+                for (int j = 1; j <= m; j++)
+                {
+                    double cost = FrameDistance(ai, b[j - 1]);
+                    double best = Math.Min(prev[j], Math.Min(cur[j - 1], prev[j - 1]));
+                    cur[j] = cost + best;
+                }
+
+                var tmp = prev;
+                prev = cur;
+                cur = tmp;
             }
 
-            return numerator / Math.Sqrt(denomA * denomB);
+            return prev[m] / (n + m);
         }
 
         /// <summary>
-        // /// Combines multiple similarity metrics into a single composite score.
-        // /// </summary>
-        // /// <param name="a">First feature vector.</param>
-        // /// <param name="b">Second feature vector.</param>
-        // /// <returns>Aggregated similarity score.</returns>
-        private static double Compare(double[] a, double[] b)
-        {
-            double cosine = CosineSimilarity(a, b);
-            double pearson = (PearsonCorrelation(a, b) + 1) / 2;
-            double euclidean = 1.0 / (1.0 + EuclideanDistance(a, b));
-
-            Console.WriteLine($"Cosine: {cosine:F3}, Pearson: {pearson:F3}, Euclid: {euclidean:F3}");
-
-            return (0.6 * cosine) + (0.2 * pearson) + (0.2 * euclidean);
-        }
-
-        /// <summary>
-        /// Attempts to recognize a digit from the provided audio feature vector by comparing it to stored samples.
+        /// Recognizes a spoken digit from a sequence of MFCC feature frames by comparing it
+        /// to stored reference sequences using dynamic time warping. For each digit the
+        /// closest reference (nearest neighbour) is used, so that a small set of references
+        /// that match the speaker well is not diluted by many dissimilar (other-speaker)
+        /// references.
         /// </summary>
-        /// <param name="input">Audio feature vector of the recorded digit.</param>
-        /// <param name="bestSimilarity">Outputs the best similarity score found.</param>
+        /// <param name="input">Feature sequence of the recorded digit (frames x coefficients).</param>
+        /// <param name="bestSimilarity">Outputs a confidence in [0,1] derived from the margin between the best and second best digit.</param>
         /// <returns>The recognized digit (1-9), or -1 if no match is found.</returns>
-        public static int Recognize(double[] input, out double bestSimilarity)
+        public static int RecognizeSequence(double[][] input, out double bestSimilarity)
         {
-            if (input == null)
+            if (input == null || input.Length == 0)
             {
                 throw new ArgumentNullException(nameof(input));
             }
 
             var bestMatch = -1;
-            bestSimilarity = 0.0;
+            double bestDistance = double.PositiveInfinity;
+            double secondDistance = double.PositiveInfinity;
+
+            var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile",
+                "WAV_sequences");
 
             for (int i = 1; i <= 9; i++)
             {
-                var scores = new List<double>();
-
-                var basePath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", "SampleToFile",
-                    "WAV_samples");
-
                 var files = Directory.GetFiles(basePath, $"*{i}.csv");
 
+                var distances = new List<double>();
                 foreach (var file in files)
                 {
-                    var test = audioConvert.LoadDoubleArrayCsv(file);
+                    var reference = audioConvert.LoadDoubleArray2DCsv(file);
 
-                    if (test == null || test.Length != input.Length)
-                    {
-                        Debug.WriteLine($"Überspringe Datei {file} wegen unpassender Länge.");
+                    if (reference == null || reference.Length == 0)
                         continue;
-                    }
+                    if (reference[0].Length != input[0].Length)
+                        continue;
 
-                    var sim = Compare(input, test);
-                    scores.Add(sim);
+                    distances.Add(DtwDistance(input, reference));
                 }
 
-                if (scores.Count == 0) continue;
+                if (distances.Count == 0)
+                    continue;
 
-                var avgScore = scores.Average();
+                // Nearest neighbour: take the closest reference for this digit. Averaging
+                // would let dissimilar (other-speaker) references outweigh a good match.
+                var digitDistance = distances.Min();
 
-                if (avgScore > bestSimilarity)
+                if (digitDistance < bestDistance)
                 {
-                    bestSimilarity = avgScore;
+                    secondDistance = bestDistance;
+                    bestDistance = digitDistance;
                     bestMatch = i;
-                    var d = audioConvert.LoadDoubleArrayCsv(files[0]);
-                    Debug.WriteLine("Reference Daten: " + string.Join(", ", d.Take(10)) + "\n Input Daten: " +
-                                    string.Join(", ", input.Take(10)));
+                }
+                else if (digitDistance < secondDistance)
+                {
+                    secondDistance = digitDistance;
                 }
             }
 
+            if (bestMatch < 0 || double.IsInfinity(secondDistance))
+            {
+                bestSimilarity = 0.0;
+                return bestMatch;
+            }
+
+            // Relative margin between best and second best digit, scaled to [0,1] for display.
+            double margin = (secondDistance - bestDistance) / secondDistance;
+            bestSimilarity = Math.Clamp(margin * 5.0, 0.0, 1.0);
             return bestMatch;
         }
     }

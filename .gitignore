@@ -3,3 +3,6 @@
 ################################################################################
 
 /Project-organisation/.~lock.Storyboard.docx#
+
+*.wav
+Code/SampleToFile/WAV_samples/

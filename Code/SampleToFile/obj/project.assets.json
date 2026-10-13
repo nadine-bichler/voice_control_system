@@ -1,7 +1,7 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
-    "net8.0-windows7.0": {
+    "net8.0-windows": {
       "Accord/3.8.0": {
         "type": "package",
         "compile": {
@@ -101,9 +101,6 @@
             "rid": "win"
           }
         }
-      },
-      "MSTest.Sdk/3.9.3": {
-        "type": "package"
       },
       "NAudio/2.2.1": {
         "type": "package",
@@ -277,7 +274,6 @@
           "Accord": "3.8.0",
           "Accord.Math": "3.8.0",
           "FftSharp": "2.2.0",
-          "MSTest.Sdk": "3.9.3",
           "MathNet.Numerics": "5.0.0",
           "NAudio": "2.2.1"
         },
@@ -485,28 +481,6 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
-      ]
-    },
-    "MSTest.Sdk/3.9.3": {
-      "sha512": "A7t/a7Flms9WMrGJCAMT/xiEbPVLAaB5fqsvNBuebD1odkATL2QqvfIlXLlVQJLfv2CqorkyDfoGdFFZIUSoxw==",
-      "type": "package",
-      "path": "mstest.sdk/3.9.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "Sdk/Features/Aspire.targets",
-        "Sdk/Features/Playwright.targets",
-        "Sdk/Runner/ClassicEngine.targets",
-        "Sdk/Runner/Common.targets",
-        "Sdk/Runner/NativeAOT.targets",
-        "Sdk/Runner/Runner.targets",
-        "Sdk/Sdk.props",
-        "Sdk/Sdk.targets",
-        "Sdk/VSTest/VSTest.targets",
-        "mstest.sdk.3.9.3.nupkg.sha512",
-        "mstest.sdk.nuspec"
       ]
     },
     "NAudio/2.2.1": {
@@ -726,40 +700,39 @@
     }
   },
   "projectFileDependencyGroups": {
-    "net8.0-windows7.0": [
+    "net8.0-windows": [
       "NAudio >= 2.2.1",
       "Spritzgusslogik >= 1.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jan\\.nuget\\packages\\": {}
+    "C:\\Users\\nbich\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
+      "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
       "projectName": "SampleToFile",
-      "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
-      "packagesPath": "C:\\Users\\Jan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\obj\\",
+      "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
+      "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0-windows"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-              "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+            "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
             }
           }
         }
@@ -768,10 +741,17 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
-      "net8.0-windows7.0": {
+      "net8.0-windows": {
+        "framework": "net8.0-windows7.0",
         "targetAlias": "net8.0-windows",
         "dependencies": {
           "NAudio": {
@@ -790,12 +770,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.27, 8.0.27]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,35 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj": {}
+    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj",
         "projectName": "Prototyp",
-        "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj",
-        "packagesPath": "C:\\Users\\Jan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\obj\\",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj",
+        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -38,10 +37,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "NWaves": {
@@ -64,6 +70,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -72,36 +96,35 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
         "projectName": "SampleToFile",
-        "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj",
-        "packagesPath": "C:\\Users\\Jan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\obj\\",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
+        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -110,10 +133,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "NAudio": {
@@ -132,37 +162,50 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
         "projectName": "Spritzgusslogik",
-        "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
-        "packagesPath": "C:\\Users\\Jan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\obj\\",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {}
           }
@@ -171,10 +214,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "Accord": {
@@ -188,10 +238,6 @@
             "FftSharp": {
               "target": "Package",
               "version": "[2.2.0, )"
-            },
-            "MSTest.Sdk": {
-              "target": "Package",
-              "version": "[3.9.3, )"
             },
             "MathNet.Numerics": {
               "target": "Package",
@@ -213,6 +259,20 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
@@ -221,42 +281,41 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\Tests.csproj",
-        "packagesPath": "C:\\Users\\Jan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Tests\\obj\\",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0-windows7.0": {
+          "net8.0-windows": {
+            "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj": {
-                "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Prototyp\\Prototyp.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj"
               },
-              "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj": {
-                "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\SampleToFile\\SampleToFile.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj"
               },
-              "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\Jan\\Desktop\\Studium\\Semester4\\Projekt 1\\projekt_1_team_1\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -265,10 +324,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
-        "net8.0-windows7.0": {
+        "net8.0-windows": {
+          "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "dependencies": {
             "MSTest": {
@@ -311,12 +377,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.27, 8.0.27]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

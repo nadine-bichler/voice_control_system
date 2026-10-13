@@ -1,12 +1,10 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Spritzgusslogik;
+﻿using Spritzgusslogik;
 using System.Windows.Threading;
 
 /// <summary>
 /// Updates the waveform display with real-time audio data.
 /// Uses a DispatcherTimer to periodically fetch microphone samples and draw them on the UI.
 /// </summary>
-[ExcludeFromCodeCoverage]
 class SignalGuiUpdater
 {
     private DispatcherTimer timer;

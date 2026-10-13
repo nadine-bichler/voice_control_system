@@ -12,7 +12,6 @@ namespace Spritzgusslogik
     /// </summary>
     public  interface IFFTTransformer
     {
-        public string Name { get; }
         /// <summary>
         /// This method transforms an Signal using FFT.
         /// </summary>
