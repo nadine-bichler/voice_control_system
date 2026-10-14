@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj": {}
+    "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj",
         "projectName": "SampleToFile",
-        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj",
         "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\obj\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -27,8 +27,8 @@
             "framework": "net8.0-windows7.0",
             "targetAlias": "net8.0-windows",
             "projectReferences": {
-              "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+              "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+                "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
               }
             }
           }
@@ -89,14 +89,14 @@
         }
       }
     },
-    "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+    "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
         "projectName": "Spritzgusslogik",
-        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
+        "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj",
         "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\obj\\",
+        "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"

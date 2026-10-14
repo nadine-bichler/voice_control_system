@@ -7,6 +7,7 @@
 ///
 
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tests")]
@@ -97,6 +98,17 @@ namespace Spritzgusslogik
             for (int i = 1; i <= 9; i++)
             {
                 var files = Directory.GetFiles(basePath, $"*{i}.csv");
+
+                // As soon as the user has recorded his own references via the
+                // "Referenzen aufnehmen" button (files named own*.csv), only those are
+                // used. References from other speakers (spk*, Test*, single digit files)
+                // are only a fallback: mixing voices in the nearest-neighbour comparison
+                // causes systematic confusions (e.g. 2 <-> 3 or 9 -> 3/5).
+                var ownFiles = files
+                    .Where(f => Path.GetFileName(f).StartsWith("own", StringComparison.OrdinalIgnoreCase))
+                    .ToArray();
+                if (ownFiles.Length > 0)
+                    files = ownFiles;
 
                 var distances = new List<double>();
                 foreach (var file in files)

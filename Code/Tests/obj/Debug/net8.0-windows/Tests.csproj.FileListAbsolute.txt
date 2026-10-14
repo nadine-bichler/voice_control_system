@@ -784,3 +784,4 @@ C:\Users\nbich\Downloads\voice_control_system\Code\Tests\obj\Debug\net8.0-window
 C:\Users\nbich\Downloads\voice_control_system\Code\Tests\obj\Debug\net8.0-windows\Tests.pdb
 C:\Users\nbich\Downloads\voice_control_system\Code\Tests\obj\Debug\net8.0-windows\Tests.genruntimeconfig.cache
 C:\Users\nbich\Downloads\voice_control_system\Code\Tests\obj\Debug\net8.0-windows\ref\Tests.dll
+C:\Users\nbich\Downloads\voice_control_system\Code\Tests\obj\Debug\net8.0-windows\Tests.sourcelink.json

@@ -3904,11 +3904,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj",
+      "projectUniqueName": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Tests\\Tests.csproj",
       "projectName": "Tests",
-      "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\Tests.csproj",
+      "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Tests\\Tests.csproj",
       "packagesPath": "C:\\Users\\nbich\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Tests\\obj\\",
+      "outputPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nbich\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3924,14 +3924,14 @@
           "framework": "net8.0-windows7.0",
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Prototyp\\Prototyp.csproj"
+            "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Prototyp\\Prototyp.csproj": {
+              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Prototyp\\Prototyp.csproj"
             },
-            "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj"
+            "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj": {
+              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj"
             },
-            "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
-              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
+            "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj": {
+              "projectPath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\Spritzgusslogik\\Spritzgusslogik.csproj"
             }
           }
         }

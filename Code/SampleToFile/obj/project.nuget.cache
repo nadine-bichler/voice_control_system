@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B2tPGTV3HCE=",
+  "dgSpecHash": "isWFCsO//88=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nbich\\Downloads\\voice_control_system(1)\\Code\\SampleToFile\\SampleToFile.csproj",
+  "projectFilePath": "C:\\Users\\nbich\\Downloads\\voice_control_system\\Code\\SampleToFile\\SampleToFile.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nbich\\.nuget\\packages\\accord\\3.8.0\\accord.3.8.0.nupkg.sha512",
     "C:\\Users\\nbich\\.nuget\\packages\\accord.math\\3.8.0\\accord.math.3.8.0.nupkg.sha512",
