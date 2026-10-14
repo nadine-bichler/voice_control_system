@@ -20,6 +20,21 @@ The user interface was implemented in WPF (Windows Presentation Foundation) and 
 - **Modern UI Design:** An appealing, professional appearance to convince management and the Product Owner (PO).
 - **Ease of Use:** Clear visual feedback upon recognition of voice commands.
 - **Real-Time Visualization:** Direct display of the audio time-domain signal and the recognized command on the GUI.
+- **Interactive Controls:** 
+  - **"Referenzen aufnehmen" Button:** Allows users to record and save additional voice samples to continuously optimize and adapt the recognition accuracy.
+  - **"Start" Button:** Initiates and activates the live command recognition process.
+
+## Build & Run
+To build and run this project via the terminal:
+
+1. Navigate to the project directory:
+    ```bash
+    cd Code/Prototype
+    ```
+2. Run the project:
+    ```bash
+    dotnet run
+    ```
 
 ## Lessons Learned: 
 In retrospect and to optimize future project phases, the team evaluated that alternative, uniform templates for creating the documents would have been more effective.
