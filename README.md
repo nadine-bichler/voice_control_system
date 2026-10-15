@@ -23,6 +23,8 @@ The user interface was implemented in WPF (Windows Presentation Foundation) and 
 - **Interactive Controls:** 
   - **"Referenzen aufnehmen" Button:** Allows users to record and save additional voice samples to continuously optimize and adapt the recognition accuracy.
   - **"Start" Button:** Initiates and activates the live command recognition process.
+ 
+![Grafic Userinterface](GUI6.png)
 
 ## Build & Run
 To build and run this project via the terminal:
